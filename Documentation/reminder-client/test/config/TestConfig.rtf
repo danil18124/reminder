@@ -1,0 +1,44 @@
+{\rtf1\fbidis\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Calibri;}{\f2\fnil\fcharset204 Calibri;}{\f3\fnil\fcharset1 Cambria Math;}{\f4\fnil\fcharset1 Segoe UI Emoji;}{\f5\fnil\fcharset1 Segoe UI Symbol;}}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont3\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang9 @TestConfiguration \f1\emdash  \f2\lang1049\'f1\'ef\'e5\'f6-\'ea\'ee\'ed\'f4\'e8\'e3, \'ef\'ee\'e4\'f5\'e2\'e0\'f2\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'f2\'ee\'eb\'fc\'ea\'ee \'e2 \'f2\'e5\'f1\'f2\'e0\'f5 (\'ea\'ee\'e3\'e4\'e0 \'f2\'fb \'e4\'e5\'eb\'e0\'e5\'f8\'fc @Import(TestConfig.class)), \'e8 \'e4\'ee\'e1\'e0\'e2\'eb\'ff\'e5\'f2 \'ed\'f3\'e6\'ed\'fb\'e5 \'e1\'e8\'ed\'fb.\par
+\par
+1) noOpViewResolver() \f1\emdash  \f2\'e7\'e0\'e3\'eb\'f3\'f8\'ea\'e0 ViewResolver\par
+\'d7\'f2\'ee \'e4\'e5\'eb\'e0\'e5\'f2: \'ed\'e0 \'eb\'fe\'e1\'ee\'e9 viewName \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 \'ef\'f0\'ee\'f1\'f2\'f3\'fe AbstractView, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'ed\'e8\'f7\'e5\'e3\'ee \'ed\'e5 \'f0\'e5\'ed\'e4\'e5\'f0\'e8\'f2.\par
+\'c7\'e0\'f7\'e5\'ec:\par
+\'c2 @WebMvcTest \'f7\'e0\'f1\'f2\'ee \'ed\'e5\'f2 Thymeleaf/Freemarker. \'c1\'e5\'e7 \'f0\'e5\'e7\'ee\'eb\'e2\'e5\'f0\'e0 \'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e8 \'e2\'e8\'e4\'e0 (.andExpect(view().name("..."))) \'ec\'ee\'e3\'f3\'f2 \'ef\'e0\'e4\'e0\'f2\'fc: \f1\ldblquote\f2 Could not resolve view \f1\'85\rdblquote\f2 .\par
+\'d1 \'fd\'f2\'ee\'e9 \'e7\'e0\'e3\'eb\'f3\'f8\'ea\'ee\'e9 MockMvc \'e2\'e8\'e4\'e8\'f2, \'f7\'f2\'ee View \'f1\'f3\'f9\'e5\'f1\'f2\'e2\'f3\'e5\'f2, \'f1\'f2\'e0\'f2\'f3\'f1 200 \'ee\'f1\'f2\'e0\'b8\'f2\'f1\'ff \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'ec, \'e8 \'f2\'e5\'f1\'f2 \'ec\'ee\'e6\'e5\'f2 \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'f2\'fc \'e8\'ec\'ff view \'e8 \'ec\'ee\'e4\'e5\'eb\'fc, \'ed\'e5 \'f2\'f0\'e5\'e1\'f3\'ff \'e4\'e2\'e8\'e6\'ea\'e0 \'f8\'e0\'e1\'eb\'ee\'ed\'ee\'e2.\par
+\'ca\'ee\'e3\'e4\'e0 \'fd\'f2\'ee \'f3\'e4\'ee\'e1\'ed\'ee: \'ea\'ee\'e3\'e4\'e0 \'f2\'fb \'f2\'e5\'f1\'f2\'e8\'f0\'f3\'e5\'f8\'fc \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 (\'f0\'ee\'f3\'f2\'e8\'ed\'e3, \'ec\'ee\'e4\'e5\'eb\'fc, \'ee\'e1\'f0\'e0\'e1\'ee\'f2\'ea\'f3 \'ee\'f8\'e8\'e1\'ee\'ea), \'ed\'ee \'ed\'e5 \'f1\'e0\'ec \'f0\'e5\'ed\'e4\'e5\'f0\'e8\'ed\'e3 HTML.\par
+\'c0\'eb\'fc\'f2\'e5\'f0\'ed\'e0\'f2\'e8\'e2\'fb:\par
+\'cf\'ee\'e4\'f6\'e5\'ef\'e8\'f2\'fc \'f0\'e5\'e0\'eb\'fc\'ed\'fb\'e9 ThymeleafViewResolver (\'ec\'e5\'e4\'eb\'e5\'ed\'ed\'e5\'e5 \'e8 \'f2\'f0\'e5\'e1\'f3\'e5\'f2 \'e7\'e0\'e2\'e8\'f1\'e8\'ec\'ee\'f1\'f2\'e5\'e9).\par
+\'c2 standaloneSetup \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'fc .setSingleView(...).\par
+\'c4\'eb\'ff API-\'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'ee\'e2 \f1\emdash  \f2\'e2\'ee\'ee\'e1\'f9\'e5 \'e1\'e5\'e7 \'f0\'e5\'e7\'ee\'eb\'e2\'e5\'f0\'e0, \'e5\'f1\'eb\'e8 \'f2\'fb \'ed\'e5 \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'f8\'fc view().\par
+\par
+2) testSecurity(HttpSecurity) \f1\emdash  \f2\'f3\'ef\'f0\'ee\'f9\'b8\'ed\'ed\'e0\'ff security-\'f1\'f5\'e5\'ec\'e0 \'e4\'eb\'ff \'f1\'eb\'e0\'e9\'f1\'e0\par
+\'d7\'f2\'ee \'e4\'e5\'eb\'e0\'e5\'f2:\par
+permitAll() \'e4\'eb\'ff /client/reminder/main/bytitle;\par
+anyRequest().authenticated() \'e4\'eb\'ff \'e2\'f1\'e5\'e3\'ee \'ee\'f1\'f2\'e0\'eb\'fc\'ed\'ee\'e3\'ee;\par
+\'e2\'ea\'eb\'fe\'f7\'e0\'e5\'f2 oauth2Login(o -> \{\}) \'ea\'e0\'ea \'e7\'e0\'e3\'eb\'f3\'f8\'ea\'f3, \'f7\'f2\'ee\'e1\'fb \'f1\'ee\'e1\'f0\'e0\'eb\'f1\'ff security-\'ea\'ee\'ed\'f2\'e5\'ea\'f1\'f2 \'f1 OIDC/OAuth2 (\'f1\'ee\'e2\'ec\'e5\'f1\'f2\'e8\'ec\'ee \'f1 .with(oauth2Login()) \'e8\'e7 spring-security-test).\par
+\par
+\'c7\'e0\'f7\'e5\'ec:\par
+\'c2 @WebMvcTest security-\'e0\'e2\'f2\'ee\'ea\'ee\'ed\'f4\'e8\'e3\'f3\'f0\'e0\'f6\'e8\'ff \'f3\'f0\'e5\'e7\'e0\'ed\'e0. \'c5\'f1\'eb\'e8 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'fb \'e7\'e0\'f9\'e8\'f9\'e5\'ed\'fb, \'ed\'f3\'e6\'e5\'ed \'ec\'e8\'ed\'e8\'ec\'e0\'eb\'fc\'ed\'fb\'e9 SecurityFilterChain, \'e8\'ed\'e0\'f7\'e5:\par
+\'ea\'ee\'ed\'f2\'e5\'ea\'f1\'f2 \'ec\'ee\'e6\'e5\'f2 \'ed\'e5 \'f1\'ee\'e1\'f0\'e0\'f2\'fc\'f1\'ff (\'ed\'e5\'f2 \'f6\'e5\'ef\'ee\'f7\'ea\'e8 \'f4\'e8\'eb\'fc\'f2\'f0\'ee\'e2),\par
+\'e8\'eb\'e8 \'ef\'ee\'e2\'e5\'e4\'e5\'ed\'e8\'e5 \'e1\'f3\'e4\'e5\'f2 \'ee\'f2\'eb\'e8\'f7\'e0\'f2\'fc\'f1\'ff \'ee\'f2 \'ef\'f0\'ee\'e4\'e0\'ea\'f8\'e5\'ed\'e0.\par
+\'c4\'e0\'b8\'f2 \'f2\'e5\'e1\'e5 \'ef\'f0\'e5\'e4\'f1\'ea\'e0\'e7\'f3\'e5\'ec\'f3\'fe \'ec\'ee\'e4\'e5\'eb\'fc \'e4\'ee\'f1\'f2\'f3\'ef\'e0: \'f7\'e0\'f1\'f2\'fc \'fd\'ed\'e4\'ef\'ee\'e8\'ed\'f2\'ee\'e2 \'ee\'f2\'ea\'f0\'fb\'f2\'e0, \'ee\'f1\'f2\'e0\'eb\'fc\'ed\'fb\'e5 \'f2\'f0\'e5\'e1\'f3\'fe\'f2 \'eb\'ee\'e3\'e8\'ed\'e0 \f3\u8594?\f1  \f2\lang1049\'ec\'ee\'e6\'ed\'ee \'f2\'e5\'f1\'f2\'e8\'f0\'ee\'e2\'e0\'f2\'fc 200/3xx/403 \'f1\'f6\'e5\'ed\'e0\'f0\'e8\'e8.\par
+\par
+\'c7\'e0\'ec\'e5\'f7\'e0\'ed\'e8\'ff:\par
+\'d1\'eb\'e5\'e4\'e8, \'f7\'f2\'ee\'e1\'fb \'ed\'e5 \'e1\'fb\'eb\'ee \'e2\'f2\'ee\'f0\'ee\'e3\'ee SecurityFilterChain \'e2 \'fd\'f2\'ee\'ec \'e6\'e5 \'f1\'eb\'e0\'e9\'f1\'e5 \f1\emdash  \f2\'e8\'ed\'e0\'f7\'e5 \'ea\'ee\'ed\'f4\'eb\'e8\'ea\'f2. \'c2 \'f0\'e0\'ec\'ea\'e0\'f5 @WebMvcTest \'ee\'e1\'fb\'f7\'ed\'ee \'e2\'f1\'e5\'e3\'ee \'ee\'e4\'e8\'ed.\par
+\'c4\'eb\'ff \'f2\'e5\'f1\'f2\'ee\'e2 \'f1 .with(oauth2Login()) \'e4\'ee\'f1\'f2\'e0\'f2\'ee\'f7\'ed\'ee \'fd\'f2\'ee\'e9 \'ec\'e8\'ed\'e8\'ec\'e0\'eb\'fc\'ed\'ee\'e9 \'f1\'f5\'e5\'ec\'fb; \'e4\'eb\'ff \'ea\'e0\'f1\'f2\'ee\'ec\'ed\'fb\'f5 \'ef\'f0\'e0\'e2\'e8\'eb (CSRF, custom handlers, \'f0\'ee\'eb\'e8) \f1\emdash  \f2\'e4\'ee\'e1\'e0\'e2\'eb\'ff\'e9 \'e8\'f5 \'f1\'fe\'e4\'e0 \'e6\'e5.\par
+\par
+\b\fs28\'ca\'ee\'e3\'e4\'e0 \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'fc / \'ea\'ee\'e3\'e4\'e0 \'ed\'e5 \'ed\'e0\'e4\'ee\b0\fs22\par
+\f4\u10004?\u-497?\f1\lang1033  \f2\lang1049\'c8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'fc \'e2 WebMvc slice-\'f2\'e5\'f1\'f2\'e0\'f5, \'e3\'e4\'e5:\par
+\'ed\'f3\'e6\'ed\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'f2\'fc \'e8\'ec\'e5\'ed\'e0 view() \'e8 \'ec\'ee\'e4\'e5\'eb\'fc, \'ed\'ee \'ed\'e5 \'f5\'ee\'f7\'e5\'f2\'f1\'ff \'f2\'e0\'f9\'e8\'f2\'fc Thymeleaf,\par
+\'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'fb \'e7\'e0\'e2\'ff\'e7\'e0\'ed\'fb \'ed\'e0 Security \'e8/\'e8\'eb\'e8 OAuth2/OIDC.\par
+\f5\u10134?\f1\lang1033  \f2\lang1049\'c2 \'ef\'ee\'eb\'ed\'fb\'f5 \'e8\'ed\'f2\'e5\'e3\'f0\'e0\'f6\'e8\'ee\'ed\'ed\'fb\'f5 (@SpringBootTest) \'f2\'e0\'ea\'ee\'e9 \'ea\'ee\'ed\'f4\'e8\'e3 \'ee\'e1\'fb\'f7\'ed\'ee \'ed\'e5 \'ed\'f3\'e6\'e5\'ed: \'f2\'e0\'ec \'e5\'f1\'f2\'fc \'f0\'e5\'e0\'eb\'fc\'ed\'fb\'e9 ViewResolver \'e8 \'ed\'e0\'f1\'f2\'ee\'ff\'f9\'e0\'ff security-\'ea\'ee\'ed\'f4\'e8\'e3\'f3\'f0\'e0\'f6\'e8\'ff \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'ff.\par
+\par
+\'d7\'e0\'f1\'f2\'fb\'e5 \'fd\'f4\'f4\'e5\'ea\'f2\'fb/\'ee\'f8\'e8\'e1\'ea\'e8, \'ea\'ee\'f2\'ee\'f0\'fb\'f5 \'fd\'f2\'ee \'e8\'e7\'e1\'e5\'e3\'e0\'e5\'f2\par
+\f1\ldblquote\f2 Circular view path\f1\rdblquote  \f2 / \f1\ldblquote\f2 Could not resolve view with name \f1\'85\rdblquote  \f2\'e2 @WebMvcTest.\par
+\'cf\'f3\'f1\'f2\'ee\'e9/\'ee\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'fe\'f9\'e8\'e9 SecurityFilterChain \f3\u8594?\f1  \f2\lang1049\'ed\'e5 \'f2\'ee\'f2 \'f1\'f2\'e0\'f2\'f3\'f1 (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, 200 \'e2\'ec\'e5\'f1\'f2\'ee 302 \'ed\'e0 \'ed\'e5\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'ee\'e3\'ee) \'e8\'eb\'e8 \'ef\'e0\'e4\'e5\'ed\'e8\'e5 \'ea\'ee\'ed\'f2\'e5\'ea\'f1\'f2\'e0.\par
+\par
+\'c8\'f2\'ee\'e3\'ee: TestConfig \'e4\'e5\'eb\'e0\'e5\'f2 \'f2\'e2\'ee\'e8 WebMvc-\'f2\'e5\'f1\'f2\'fb \'e1\'fb\'f1\'f2\'f0\'fb\'ec\'e8 \'e8 \'f1\'f2\'e0\'e1\'e8\'eb\'fc\'ed\'fb\'ec\'e8: \'ef\'ee\'e4\'ec\'e5\'ed\'ff\'e5\'f2 \'f2\'ff\'e6\'b8\'eb\'fb\'e5 \'f7\'e0\'f1\'f2\'e8 (view-\'f0\'e5\'e7\'ee\'eb\'e2\'e5\'f0 \'e8 security) \'eb\'b8\'e3\'ea\'e8\'ec\'e8 \'e7\'e0\'e3\'eb\'f3\'f8\'ea\'e0\'ec\'e8, \'f1\'ee\'f5\'f0\'e0\'ed\'ff\'ff \'ed\'f3\'e6\'ed\'f3\'fe \'f2\'e5\'e1\'e5 \'f1\'e5\'ec\'e0\'ed\'f2\'e8\'ea\'f3 (\'ea\'e0\'ea\'ee\'e9 view \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2\'f1\'ff \'e8 \'ea\'e0\'ea\'e8\'e5 \'ef\'f0\'e0\'e2\'e8\'eb\'e0 \'e4\'ee\'f1\'f2\'f3\'ef\'e0 \'e4\'e5\'e9\'f1\'f2\'e2\'f3\'fe\'f2).\f0\lang9\par
+}
+ 

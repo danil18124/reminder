@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Reminders</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h1>My Reminders</h1>
+
+        <div class="auth-section">
+            <div th:if="${auth == null or !auth.authenticated}">
+                <a href="/oauth2/authorization/google">
+                    <button type="button">Войти через Google</button>
+                </a>
+            </div>
+            <div th:if="${auth != null and auth.authenticated}">
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit">Выйти</button>
+                </form>
+            </div>
+        </div>
+
+        <div th:if="${auth != null}">
+
+            <div class="actions">
+                <a th:href="@{/client/reminder/create}" class="create-button">Создать новое напоминание</a>
+
+                <!-- Переключатели сортировки -->
+                <div class="sort-section">
+                    <a th:if="${sort == 'bytitle'}" th:href="@{/client/reminder/main/bydate}" class="sort-button">Сортировать по дате</a>
+                    <a th:if="${sort == 'bydate'}" th:href="@{/client/reminder/main/bytitle}" class="sort-button">Сортировать по заголовку</a>
+                </div>
+            </div>
+
+            <!-- Поиск по заголовку -->
+            <div class="search-section">
+                <form th:action="@{/client/reminder/main/search}" method="get" class="search-form">
+                    <input type="text" name="title" th:value="${title}" placeholder="Введите заголовок" required>
+                    <button type="submit">Найти</button>
+                </form>
+            </div>
+
+            <!-- Поиск по одной дате -->
+            <div class="search-section">
+                <form th:action="@{/client/reminder/main/search-by-date}" method="get" class="search-form">
+                    <input type="date" name="date" th:value="${date}" required>
+                    <button type="submit">Найти по дате</button>
+                </form>
+            </div>
+
+            <!-- Поиск по диапазону дат -->
+            <div class="search-section">
+                <form th:action="@{/client/reminder/main/searchbydaterange}" method="get" class="search-form">
+                    <label>С: <input type="date" name="startDate" th:value="${startDate}" required></label>
+                    <label>По: <input type="date" name="endDate" th:value="${endDate}" required></label>
+                    <button type="submit">Найти по диапазону дат</button>
+                </form>
+            </div>
+
+
+            <!-- Список напоминаний -->
+            <div th:each="reminder : ${reminders}" class="reminder-card">
+                <p><strong>ID:</strong> <span th:text="${reminder.id}">1</span></p>
+                <p><strong>Title:</strong> <span th:text="${reminder.title}">Title</span></p>
+                <p><strong>Description:</strong> <span th:text="${reminder.description}">Description</span></p>
+                <p><strong>Remind Time:</strong> <span th:text="${reminder.remind}">2025-08-20T20:30:10Z</span></p>
+                <p><strong>User ID:</strong> <span th:text="${reminder.userId}">1</span></p>
+
+                <div class="card-actions">
+                    <a th:href="@{/client/reminder/{id}/edit(id=${reminder.id})}" class="edit-link">Edit</a>
+
+                    <form th:action="@{/client/reminder/{id}/delete(id=${reminder.id})}" method="post" style="display:inline;">
+                        <button type="submit" class="delete-link"
+                                onclick="return confirm('Вы уверены, что хотите удалить напоминание?')">Delete</button>
+                    </form>
+                </div>
+
+
+            </div>
+
+            <!-- Пагинация -->
+            <div class="pagination">
+                <!-- Назад -->
+                <a th:if="${currentPage > 0}"
+                   th:href="@{/client/reminder/main/{sortType}(sortType=${sort}, page=${currentPage - 1}, size=${size})}">
+                    ← Назад
+                </a>
+                <span th:if="${currentPage == 0}" class="disabled">← Назад</span>
+
+                <!-- Текущая страница -->
+                <span>
+                    Страница <span th:text="${currentPage + 1}">1</span> из <span th:text="${totalPages}">1</span>
+                </span>
+
+                <!-- Вперёд -->
+                <a th:if="${currentPage + 1 < totalPages}"
+                   th:href="@{/client/reminder/main/{sortType}(sortType=${sort}, page=${currentPage + 1}, size=${size})}">
+                    Вперёд →
+                </a>
+                <span th:if="${currentPage + 1 >= totalPages}" class="disabled">Вперёд →</span>
+            </div>
+            
+            <br> <br> 
+            <br> <br> 
+            
+            <div>
+
+                <span>
+                    Этот JWT нужен только клиентскому приложению (браузеру, твоему UI). 
+                    С ним нельзя ходить в API — по спецификации он не предназначен для авторизации запросов.
+                </span>
+
+                <h3>ID Token</h3>
+                <div id="idToken" class="token-box" th:text="${idToken}"></div>
+                <button onclick="copyToClipboard('idToken')">Copy ID Token</button>
+            </div>
+
+            <br> <br> 
+            <br> <br> 
+            
+            <span> 
+                Именно Access Token должен проверять ресурс-сервер (Spring Boot, Google API и т.д.).
+                Его надо вставлять в заголовок Authorization: Bearer ... в Postman и при запросах.
+                Но в моем случае это почему-то не работает, и я отправляю именно ID Token
+            </span>
+
+
+            <div>
+                <h3>Access Token</h3>
+                <div id="accessToken" class="token-box" th:text="${accessToken}"></div>
+                <button onclick="copyToClipboard('accessToken')">Copy Access Token</button>
+            </div>
+
+
+        </div>
+
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: #f4f6f9;
+                margin: 0;
+                padding: 20px;
+                color: #333;
+            }
+
+            h1 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .auth-section {
+                text-align: right;
+                margin-bottom: 20px;
+            }
+
+            .auth-section button {
+                padding: 8px 16px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                background-color: #007bff;
+                color: #fff;
+                font-weight: bold;
+            }
+
+            .auth-section form button {
+                background-color: #dc3545;
+            }
+
+            .actions, .search-section {
+                margin-bottom: 15px;
+                text-align: center;
+            }
+
+            .actions a, .search-section button {
+                background: #007bff;
+                color: white;
+                padding: 8px 14px;
+                border-radius: 6px;
+                text-decoration: none;
+                border: none;
+                cursor: pointer;
+                margin: 5px;
+                display: inline-block;
+            }
+
+            .actions a:hover, .search-section button:hover,
+            .auth-section button:hover {
+                opacity: 0.9;
+            }
+
+            .reminder-card {
+                background: white;
+                border-radius: 8px;
+                padding: 15px;
+                margin: 10px auto;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                width: 300px;
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            .reminder-card p {
+                margin: 5px 0;
+                font-size: 14px;
+            }
+
+            .card-actions {
+                margin-top: 10px;
+                text-align: right;
+            }
+
+            .edit-link, .delete-link {
+                padding: 6px 10px;
+                font-size: 12px;
+                border-radius: 5px;
+                text-decoration: none;
+                margin-left: 5px;
+            }
+
+            .edit-link {
+                background-color: #ffc107;
+                color: black;
+            }
+
+            .delete-link {
+                background-color: #dc3545;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+
+            .pagination {
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            .pagination a {
+                margin: 0 10px;
+                color: #007bff;
+                text-decoration: none;
+            }
+
+            .pagination a:hover {
+                text-decoration: underline;
+            }
+
+            .pagination .disabled {
+                color: gray;
+                pointer-events: none;
+                text-decoration: none;
+            }
+
+        </style>
+
+        <script>
+            function copyToClipboard(id) {
+            const token = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(token)
+            .then()
+            .catch(err => alert("Ошибка: " + err));
+            }
+        </script>
+
+    </body>
+</html>

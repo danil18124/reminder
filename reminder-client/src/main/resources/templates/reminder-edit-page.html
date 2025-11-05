@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Reminder</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<h1>Edit Reminder</h1>
+<a th:href="@{/client/reminder/main/bytitle}">Вернуться на главную</a>
+
+<form th:action="@{/client/reminder/{id}/edit(id=${reminder.id})}" method="post" enctype="application/json">
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" th:value="${reminder.title}" required/>
+        <ul th:if="${errors != null and errors.containsKey('title')}" class="field-error">
+            <li th:each="err : ${errors.get('title')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="3" required
+                  th:text="${reminder.description}"></textarea>
+        <ul th:if="${errors != null and errors.containsKey('description')}" class="field-error">
+            <li th:each="err : ${errors.get('description')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div>
+        <label for="remind">Remind Time:</label>
+        <input type="datetime-local" id="remind" name="remind"
+               th:value="${#temporals.format(reminder.remind, 'yyyy-MM-dd''T''HH:mm')}"/>
+        <ul th:if="${errors != null and errors.containsKey('remind')}" class="field-error">
+            <li th:each="err : ${errors.get('remind')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div>
+        <button type="submit">Update</button>
+    </div>
+</form>
+
+<style>
+    form {
+        max-width: 400px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    div {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input, textarea, button {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #2196F3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #1976D2;
+    }
+</style>
+</body>
+</html>

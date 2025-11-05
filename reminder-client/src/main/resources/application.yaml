@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: reminder-client
+  security:
+    oauth2:
+      client:
+        registration:
+          google:                                 
+            client-id: 1092248815122-p9cqi83pb0uj7rui7habghm9s26jdm00.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - openid
+              - email
+              - profile
+        provider:
+          google:                                 
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+server:
+  port: 8085
+rest:
+  reminder:
+    base-url: http://localhost:8080

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Ошибка</title>
+</head>
+<body>
+  <h1>Что-то пошло не так</h1>
+  <p th:text="${errorMessage}">Внутренняя ошибка. Мы уже разбираемся.</p>
+
+  <p>
+    Код ошибки: <strong th:text="${status}">500</strong><br/>
+    Путь: <code th:text="${path}">/path</code><br/>
+    Время: <span th:text="${timestamp}">now</span><br/>
+    Correlation ID: <code th:text="${correlationId}">cid</code>
+  </p>
+
+  <p>Если проблема повторится, пожалуйста, сообщите поддержку и укажите Correlation ID.</p>
+</body>
+</html>

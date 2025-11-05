@@ -1,0 +1,95 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset204 Calibri;}{\f1\fnil Calibri;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil\fcharset1 Cambria Math;}{\f4\fnil\fcharset2 Symbol;}}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont3\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang1049\'dd\'f2\'ee \'ea\'eb\'e0\'f1\'f1 \'ed\'e0\'f1\'f2\'f0\'ee\'e9\'ea\'e8 \'e1\'e5\'e7\'ee\'ef\'e0\'f1\'ed\'ee\'f1\'f2\'e8 REST-\'f1\'e5\'f0\'e2\'e8\'f1\'e0, \'e2 \'ea\'ee\'f2\'ee\'f0\'ee\'ec \'f0\'e5\'e0\'eb\'e8\'e7\'ee\'e2\'e0\'ed\'ee:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'e4\'ee\'ef\'f3\'f1\'ea \'ea API \'f2\'ee\'eb\'fc\'ea\'ee \'f1 \'e2\'e0\'eb\'e8\'e4\'ed\'fb\'ec Bearer-\'f2\'ee\'ea\'e5\'ed\'ee\'ec (JWT),\par
+{\pntext\f4\'B7\tab}\'ee\'f2\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'e5 CSRF \'e4\'eb\'ff REST-\'fd\'ed\'e4\'ef\'ee\'e8\'ed\'f2\'ee\'e2,\par
+{\pntext\f4\'B7\tab}\'f1\'f2\'f0\'ee\'e3\'e0\'ff \'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e0, \'f7\'f2\'ee \'f2\'ee\'ea\'e5\'ed \'e2\'fb\'ef\'f3\'f9\'e5\'ed Google \'e8 \'ef\'f0\'e5\'e4\'ed\'e0\'e7\'ed\'e0\'f7\'e5\'ed \'e8\'ec\'e5\'ed\'ed\'ee \'e4\'e0\'ed\'ed\'ee\'ec\'f3 \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'fe (audience = \'f2\'e2\'ee\'e9 clientId).\par
+
+\pard\sl240\slmult1\par
+\b\fs24\'cc\'e5\'f2\'ee\'e4 SecurityFilterChain security(HttpSecurity http)\par
+\b0\fs22\par
+\'ca\'e0\'ea \'ee\'e1\'f0\'e0\'e1\'e0\'f2\'fb\'e2\'e0\'e5\'f2\'f1\'ff HTTP-\'e7\'e0\'ef\'f0\'ee\'f1 \'ea REST-\'f1\'e5\'f0\'e2\'e8\'f1\'f3\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 authorizeHttpRequests().anyRequest().authenticated()\par
+
+\pard\sl240\slmult1\tab\'cb\'fe\'e1\'ee\'e9 \'e7\'e0\'ef\'f0\'ee\'f1 \'f2\'f0\'e5\'e1\'f3\'e5\'f2 \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'e8.\par
+\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 csrf(...).ignoringRequestMatchers("/api/**")\par
+
+\pard\sl240\slmult1\tab CSRF (\'e7\'e0\'f9\'e8\'f2\'e0 \'ee\'f2 \'ef\'ee\'e4\'e4\'e5\'eb\'ea\'e8 \'e7\'e0\'ef\'f0\'ee\'f1\'ee\'e2) \'ed\'e5 \'ef\'f0\'e8\'ec\'e5\'ed\'ff\'e5\'f2\'f1\'ff \'ea REST-\'fd\'ed\'e4\'ef\'ee\'e8\'ed\'f2\'e0\'ec. \'c4\'eb\'ff \'f1\'f2\'e0\'f2eless-API \'f1 Bearer-\'f2\'ee\'ea\'e5\'ed\'e0\'ec\'e8 \'fd\'f2\'ee \'ed\'ee\'f0\'ec\'e0\'eb\'fc\'ed\'e0\'ff \'ef\'f0\'e0\'ea\'f2\'e8\'ea\'e0: \'e7\'e0\'f9\'e8\'f2\'e0 \'e7\'e4\'e5\'f1\'fc \f1\emdash  \f0\'f1\'e0\'ec \'f2\'ee\'ea\'e5\'ed \'e2 \'e7\'e0\'e3\'ee\'eb\'ee\'e2\'ea\'e5 Authorization, \'e0 \'ed\'e5 cookie-\'f1\'e5\'f1\'f1\'e8\'ff.\par
+\par
+\'c4\'f0\'f3\'e3\'e8\'e5 \'f1\'ef\'ee\'f1\'ee\'e1\'fb \'ee\'f2\'ea\'eb\'fe\'f7\'e8\'f2\'fc \f2\lang1033 csrf: \par
+\f0\lang1049\par
+\f2\lang1033 - \f0\lang1049\'ce\'f2\'ea\'eb\'fe\'f7\'e8\'f2\'fc \'e2 \'f6\'e5\'eb\'ee\'ec \'e4\'eb\'ff \'fd\'f2\'ee\'e3\'ee SecurityFilterChain\f2\lang1033 http.csrf(AbstractHttpConfigurer::disable);\par
+\par
+- \f0\lang1049\'ce\'f2\'ea\'eb\'fe\'f7\'e8\'f2\'fc \'f2\'ee\'f7\'e5\'f7\'ed\'ee\par
+http.csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"));\par
+\par
+\f2\lang1033 - \f0\lang1049\'d0\'e0\'e7\'ed\'e5\'f1\'f2\'e8 \'ed\'e0 \'e4\'e2\'e0 \'f4\'e8\'eb\'fc\'f2\'f0-\'f7\'e5\'e9\'ed\'e0\f2\lang1033\par
+\f0\lang1049\'ce\'e4\'e8\'ed \'f7\'e5\'e9\'ed \f1\emdash  \f0\'f2\'ee\'eb\'fc\'ea\'ee \'e4\'eb\'ff /api/**: stateless, JWT, csrf disabled.\par
+\'c2\'f2\'ee\'f0\'ee\'e9 \'f7\'e5\'e9\'ed \f1\emdash  \f0\'e4\'eb\'ff \'e2\'e5\'e1-\'f7\'e0\'f1\'f2\'e8: \'f4\'ee\'f0\'ec\'e0-\'eb\'ee\'e3\'e8\'ed, csrf enabled.\par
+\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 .oauth2ResourceServer(rs -> rs.jwt(Customizer.withDefaults()));\par
+
+\pard\sl240\slmult1\'c8\'e4\'e5\'ff \'e2\'f1\'e5\'e9 \'f1\'f2\'f0\'ee\'ea\'e8:\par
+\ldblquote\'d1\'e4\'e5\'eb\'e0\'e9 \'ec\'ee\'e9 \'f1\'e5\'f0\'e2\'e8\'f1 Resource Server \'ef\'ee OAuth2 \'e8 \'ef\'f0\'e8\'ed\'e8\'ec\'e0\'e9 Bearer-\'f2\'ee\'ea\'e5\'ed\'fb \'e2 \'e2\'e8\'e4\'e5 JWT. \'cd\'e0\'f1\'f2\'f0\'ee\'e9\'ea\'e8 \f1\emdash  \f0\'f1\'f2\'e0\'ed\'e4\'e0\'f0\'f2\'ed\'fb\'e5 \'ef\'ee \'f3\'ec\'ee\'eb\'f7\'e0\'ed\'e8\'fe.\rdblquote\f2\lang1033\par
+\par
+
+\pard\sl240\slmult1\f0\lang1049\'cf\'ee\'f7\'e5\'ec\'f3 \'f2\'e0\'ea: REST-\'f1\'e5\'f0\'e2\'e8\'f1 \'ed\'e5 \'e4\'e5\'eb\'e0\'e5\'f2 \'e8\'ed\'f2\'e5\'f0\'e0\'ea\'f2\'e8\'e2\'ed\'fb\'e9 \'eb\'ee\'e3\'e8\'ed, \'ee\'ed \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'f2 \'f2\'ee\'ea\'e5\'ed, \'ea\'ee\'f2\'ee\'f0\'fb\'e9 \'e5\'ec\'f3 \'ef\'f0\'e8\'ed\'b8\'f1 \'ea\'eb\'e8\'e5\'ed\'f2 (\'e2 \'f2\'e2\'ee\'b8\'ec \'f1\'eb\'f3\'f7\'e0\'e5 \f1\emdash  client-service).\f0\par
+\f2\lang1033\par
+\par
+\b\f0\fs24\lang1049\'cc\'e5\'f2\'ee\'e4 JwtDecoder jwtDecoder()\b0\f2\fs22\lang1033\par
+\par
+\f0\lang1049\'dd\'f2\'ee\'f2 \'ec\'e5\'f2\'ee\'e4 \'ef\'f0\'e5\'e4\'ee\'f1\'f2\'e0\'e2\'eb\'ff\'e5\'f2 JwtDecoder, \'ea\'ee\'f2\'ee\'f0\'fb\'e9 \'e4\'ee\'f1\'f2\'e0\'e5\'f2 \'e8\'ed\'f4\'ee\'f0\'ec\'e0\'f6\'e8\'fe \'e8\'e7 \f2\lang1033 JWT \f0\lang1049\'f2\'ee\'ea\'e5\'ed\'e0.\f2\lang1033\par
+\par
+\f0\lang1049\'c4\'e0\'ed\'ed\'fb\'e9 \'ec\'e5\'f2\'ee\'e4 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'ed\'e0 \'f1\'f2\'e0\'f0\'f2\'e5 \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'ff. \'ca\'ee\'ed\'f2\'e5\'e9\'ed\'e5\'f0 Spring \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2 \'ec\'e5\'f2\'ee\'e4 jwtDecoder() \'ee\'e4\'e8\'ed \'f0\'e0\'e7, \'f7\'f2\'ee\'e1\'fb \'f1\'ee\'e7\'e4\'e0\'f2\'fc \'e1\'e8\'ed \'f2\'e8\'ef\'e0 JwtDecoder. \'ce\'ed \'ef\'ee\'ef\'e0\'e4\'e0\'e5\'f2 \'e2 \'ea\'ee\'ed\'f2\'e5\'ea\'f1\'f2 (DI).\par
+\par
+\'c2\'ee \'e2\'f0\'e5\'ec\'ff \'ea\'e0\'e6\'e4\'ee\'e3\'ee HTTP-\'e7\'e0\'ef\'f0\'ee\'f1\'e0 \'f1 Authorization: Bearer \'f6\'e5\'ef\'ee\'f7\'ea\'e0 \'e1\'e5\'e7\'ee\'ef\'e0\'f1\'ed\'ee\'f1\'f2\'e8 \'f1\'f0\'e0\'e1\'e0\'f2\'fb\'e2\'e0\'e5\'f2 \'f2\'e0\'ea:\f2\lang1033\par
+\f0\lang1049 1 BearerTokenAuthenticationFilter \'e2\'fb\'f2\'e0\'f1\'ea\'e8\'e2\'e0\'e5\'f2 \'f2\'ee\'ea\'e5\'ed \'e8\'e7 \'e7\'e0\'e3\'ee\'eb\'ee\'e2\'ea\'e0. \par
+2 \'c4\'e5\'eb\'e5\'e3\'e8\'f0\'f3\'e5\'f2 \'e2 AuthenticationManager\par
+3 JwtAuthenticationProvider \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2 \'e1\'e8\'ed JwtDecoder.decode(token).\par
+4 JwtDecoder \'e4\'ee\'f1\'f2\'e0\'e5\'f2 \'e4\'e0\'ed\'ed\'fb\'e5 \'e8\'e7 \'f2\'ee\'ea\'e5\'ed\'e0\par
+\par
+\'d7\'f2\'ee\'e1\'fb \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'ff \'f0\'e0\'e1\'ee\'f2\'e0\'eb\'ee \'f1 \'f2\'ee\'ea\'e5\'ed\'e0\'ec\'e8, \'ed\'f3\'e6\'ed\'ee: \par
+ - \'cb\'e8\'e1\'ee \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'fc \'ef\'ee\'e4\'ee\'e1\'ed\'fb\'e9 \'ec\'e5\'f2\'ee\'e4 \par
+ - \'cb\'e8\'e1\'ee \'e4\'e5\'eb\'e0\'f2\'fc \'ed\'e0\'f1\'f2\'f0\'ee\'e9\'ea\'f3 \'e2 \f2\lang1033 yaml \f0\lang1049\'f4\'e0\'e9\'eb\'e5, \'f7\'f2\'ee\'e1\'fb Spring Boot \'f1\'e0\'ec \'f1\'ee\'e7\'e4\'e0\'eb JwtDecoder (\'e0\'e2\'f2\'ee\'ea\'ee\'ed\'f4\'e8\'e3\'f3\'f0\'e0\'f6\'e8\'ff).\par
+\'c5\'f1\'eb\'e8 \'f3\'e1\'f0\'e0\'f2\'fc \'ec\'e5\'f2\'ee\'e4 \'e8 \'ed\'e5 \'e7\'e0\'e4\'e0\'f2\'fc \'f1\'e2\'ee\'e9\'f1\'f2\'e2\'e0 \f1\emdash  \f0\'e2\'f1\'e5 \'e7\'e0\'ef\'f0\'ee\'f1\'fb \'f1 Bearer \'e1\'f3\'e4\'f3\'f2 \'ef\'e0\'e4\'e0\'f2\'fc \'ed\'e0 401, \'ef\'ee\'f2\'ee\'ec\'f3 \'f7\'f2\'ee \'e4\'e5\'ea\'ee\'e4\'e5\'f0 \'ed\'e5 \'f1\'ea\'ee\'ed\'f4\'e8\'e3\'f3\'f0\'e8\'f0\'ee\'e2\'e0\'ed.\par
+\par
+\b\'cf\'e5\'f0\'e2\'fb\'e9 \'e2\'e0\'eb\'e8\'e4\'e0\'f2\'ee\'f0. \'d0\'e0\'e1\'ee\'f2\'e0 \'f1 \f2\lang1033 Google \f0\lang1049\'f2\'ee\'ea\'e5\'ed\'e0\'ec\'e8. \b0\par
+OAuth2TokenValidator<Jwt> withIssuer\par
+\'cf\'f0\'e8 \'ea\'e0\'e6\'e4\'ee\'ec \'e7\'e0\'ef\'f0\'ee\'f1\'e5 \f2\lang1033 Spring\f0\lang1049  \'ef\'ee\'e4\'f2\'ff\'e3\'e8\'e2\'e0\'e5\'f2 \'ef\'f3\'e1\'eb\'e8\'f7\'ed\'fb\'e5 \'ea\'eb\'fe\'f7\'e8 Google (JWKS \'ef\'ee issuer), \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'f2 \'ef\'ee\'e4\'ef\'e8\'f1\'fc \'e8 \'f1\'f2\'e0\'ed\'e4\'e0\'f0\'f2\'ed\'fb\'e5 \'ef\'ee\'eb\'ff (exp/nbf/iss).\par
+\'dd\'f2\'e8 \'ef\'f3\'e1\'eb\'e8\'f7\'ed\'fb\'e5 \'ea\'eb\'fe\'f7\'e8 \'ee\'ed \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'f3\'e5\'f2, \'f7\'f2\'ee\'e1\'fb \'f2\'ee\'f7\'ed\'ee \'f3\'e1\'e5\'e4\'e8\'f2\'fc\'f1\'ff, \'f7\'f2\'ee \'f2\'ee\'ea\'e5\'ed \'e2\'fb\'e4\'e0\'eb \'e8\'ec\'e5\'ed\'ed\'ee \f2\lang1033 Google. \f0\lang1049\par
+\'c8\'f2\'ee\'e3\'ee \'ef\'f0\'e8\'ed\'e8\'ec\'e0\'fe\'f2\'f1\'ff \'f2\'ee\'eb\'fc\'ea\'ee Google ID-\'f2\'ee\'ea\'e5\'ed\'fb, \'e4\'e5\'e9\'f1\'f2\'e2\'e8\'f2\'e5\'eb\'fc\'ed\'ee \'ef\'ee\'e4\'ef\'e8\'f1\'e0\'ed\'ed\'fb\'e5 Google \'e8 \'e0\'e4\'f0\'e5\'f1\'ee\'e2\'e0\'ed\'ed\'fb\'e5 \'e8\'ec\'e5\'ed\'ed\'ee \'f2\'e2\'ee\'e5\'ec\'f3 \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'fe.\par
+\'c5\'f1\'eb\'e8 \'e2\'f1\'e5 \'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e8 \'ef\'f0\'ee\'f5\'ee\'e4\'ff\'f2, \'e2 \'ea\'ee\'ed\'f2\'e5\'ea\'f1\'f2 \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'e8 \'ea\'eb\'e0\'e4\'f3\'f2\'f1\'ff \'ea\'eb\'e5\'e9\'ec\'fb \'f2\'ee\'ea\'e5\'ed\'e0, \'e8 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'fb \'ec\'ee\'e3\'f3\'f2 \'e8\'f5 \'f7\'e8\'f2\'e0\'f2\'fc.\par
+\par
+\b clientId\b0\par
+String clientId = "1092\'85apps.googleusercontent.com";\par
+\'dd\'f2\'ee \'ef\'f3\'e1\'eb\'e8\'f7\'ed\'fb\'e9 \'e8\'e4\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f2\'ee\'f0 \'f2\'e2\'ee\'e5\'e3\'ee OAuth-\'ea\'eb\'e8\'e5\'ed\'f2\'e0 \'e2 Google. \'d2\'fb \'ef\'ee\'eb\'f3\'f7\'e0\'e5\'f8\'fc \'e5\'e3\'ee \'e2 Google Cloud Console \f3\u8594?\f2  APIs & Services \f3\u8594?\f2  Credentials, \f0\lang1049\'ea\'ee\'e3\'e4\'e0 \'f1\'ee\'e7\'e4\'e0\'b8\'f8\'fc \f2\lang1033\'abOAuth 2.0 Client ID\'bb (\f0\lang1049\'ee\'e1\'fb\'f7\'ed\'ee \'f2\'e8\'ef\'e0 Web application). \'ce\'ed \'e2\'f8\'e8\'e2\'e0\'e5\'f2\'f1\'ff \'e2 ID-\'f2\'ee\'ea\'e5\'ed \'ea\'e0\'ea aud (\'e4\'eb\'ff \'ea\'ee\'e3\'ee \'f2\'ee\'ea\'e5\'ed) \'e8 \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'f3\'e5\'f2\'f1\'ff \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'e5\'ec/\'f0\'e5\'f1\'f3\'f0\'f1-\'f1\'e5\'f0\'e2\'e5\'f0\'ee\'ec, \'f7\'f2\'ee\'e1\'fb \'f3\'e1\'e5\'e4\'e8\'f2\'fc\'f1\'ff: \'f2\'ee\'ea\'e5\'ed \'e0\'e4\'f0\'e5\'f1\'ee\'e2\'e0\'ed \'e8\'ec\'e5\'ed\'ed\'ee \'f2\'e2\'ee\'e5\'ec\'f3 \'ea\'eb\'e8\'e5\'ed\'f2\'f3. \'d1\'f3\'f9\'e5\'f1\'f2\'e2\'ee\'e2\'e0\'f2\'fc \'ee\'ed \'e1\'f3\'e4\'e5\'f2 \'f1\'f2\'ee\'eb\'fc\'ea\'ee, \'f1\'ea\'ee\'eb\'fc\'ea\'ee \'e6\'e8\'e2\'b8\'f2 \'e7\'e0\'ef\'e8\'f1\'fc \'e2 \'ea\'ee\'ed\'f1\'ee\'eb\'e8 (\'ef\'f0\'e0\'ea\'f2\'e8\'f7\'e5\'f1\'ea\'e8 \'e1\'e5\'f1\'f1\'f0\'ee\'f7\'ed\'ee); \'e8\'e7\'ec\'e5\'ed\'e8\'f2\'f1\'ff \'f2\'ee\'eb\'fc\'ea\'ee \'e5\'f1\'eb\'e8 \'f2\'fb \'f3\'e4\'e0\'eb\'e8\'f8\'fc/\'f1\'ee\'e7\'e4\'e0\'f8\'fc \'ed\'ee\'e2\'fb\'e9 \'ea\'eb\'e8\'e5\'ed\'f2.\par
+\par
+\par
+\b\'c2\'f2\'ee\'f0\'ee\'e9 \'e2\'e0\'eb\'e8\'e4\'e0\'f2\'ee\'f0\b0\par
+OAuth2TokenValidator<Jwt> withAudience\par
+\'c4\'ee\'f1\'f2\'e0\'b8\'f2 \'ea\'eb\'e5\'e9\'ec aud. \'d3 Google \'ee\'ed \'e1\'fb\'e2\'e0\'e5\'f2 \'f1\'f2\'f0\'ee\'ea\'ee\'e9 \'e8\'eb\'e8 \'ec\'e0\'f1\'f1\'e8\'e2\'ee\'ec \f1\emdash  \f0\'e2 \'ec\'ee\'e5\'ec \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'e8 \'ee\'e1\'f0\'e0\'e1\'e0\'f2\'fb\'e2\'e0\'fe\'f2\'f1\'ff \'ee\'e1\'e0 \'f1\'eb\'f3\'f7\'e0\'ff (\'ef\'f0\'e0\'e2\'e8\'eb\'fc\'ed\'ee).\par
+\'c5\'f1\'eb\'e8 aud \'ed\'e5 \'f1\'ee\'e4\'e5\'f0\'e6\'e8\'f2 \'ed\'f3\'e6\'ed\'fb\'e9 client_id \f3\u8594?\f2  \f0\lang1049\'e2\'e0\'eb\'e8\'e4\'e0\'f2\'ee\'f0 \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 failure("invalid_token", "Invalid audience").\par
+\'dd\'f2\'ee \'e7\'e0\'f9\'e8\'f9\'e0\'e5\'f2 \'ee\'f2 \f2\lang1033\'ab\f0\lang1049\'f7\'f3\'e6\'e8\'f5\f2\lang1033\'bb \f0\lang1049\'f2\'ee\'ea\'e5\'ed\'ee\'e2 (\'e2\'e0\'eb\'e8\'e4\'ed\'fb\'f5 \'ef\'ee \'ef\'ee\'e4\'ef\'e8\'f1\'e8 Google, \'ed\'ee \'ed\'e5 \'e4\'eb\'ff \'f2\'e2\'ee\'e5\'e3\'ee \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'ff).\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\f2\lang1033\par
+}
+ 

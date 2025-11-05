@@ -1,0 +1,123 @@
+{\rtf1\ansi\ansicpg1251\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset204 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil Calibri;}{\f3\fnil\fcharset1 Cambria Math;}}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont3\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang1049\par
+\'c8\'ed\'f2\'e5\'e3\'f0\'e0\'f6\'e8\'ee\'ed\'ed\'fb\'e5 \'f2\'e5\'f1\'f2\'fb REST-\'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e0 \f1\lang1033\'ab\f0\lang1049\'f1\'ef\'e8\'f1\'ea\'ee\'e2/\'f1\'ee\'f0\'f2\'e8\'f0\'ee\'e2\'ee\'ea\f1\lang1033\'bb \f0\lang1049\'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'e9. \'cf\'ee\'e4\'ed\'e8\'ec\'e0\'e5\'f2\'f1\'ff \'ef\'ee\'eb\'ed\'ee\'f6\'e5\'ed\'ed\'fb\'e9 Spring Boot-\'ea\'ee\'ed\'f2\'e5\'ea\'f1\'f2 \'f1 \'e2\'e5\'e1-\'f1\'eb\'ee\'e5\'ec \'e8 \'f0\'e5\'e0\'eb\'fc\'ed\'ee\'e9 \'c1\'c4 (\'f7\'e5\'f0\'e5\'e7 \'e1\'e0\'e7\'ee\'e2\'fb\'e9 AbstractIntegrationTest), \'e7\'e0\'ef\'f0\'ee\'f1\'fb \'e2\'fb\'ef\'ee\'eb\'ed\'ff\'fe\'f2\'f1\'ff \'f7\'e5\'f0\'e5\'e7 MockMvc, \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'ff \'ec\'ee\'e4\'e5\'eb\'e8\'f0\'f3\'e5\'f2\'f1\'ff \'e7\'e0\'ec\'ee\'ea\'e0\'ed\'ed\'fb\'ec JwtDecoder.\par
+\par
+\'d7\'f2\'ee \'e4\'e5\'eb\'e0\'fe\'f2 \'e0\'ed\'ed\'ee\'f2\'e0\'f6\'e8\'e8\par
+@SpringBootTest \f2\emdash  \f0\'ef\'ee\'eb\'ed\'fb\'e9 \'ea\'ee\'ed\'f2\'e5\'ea\'f1\'f2 \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'ff (web, data, security, liquibase).\par
+@AutoConfigureMockMvc \f2\emdash  \f0\'e4\'e0\'b8\'f2 MockMvc \'e4\'eb\'ff HTTP-\'e7\'e0\'ef\'f0\'ee\'f1\'ee\'e2 \'e1\'e5\'e7 \'e2\'ed\'e5\'f8\'ed\'e5\'e3\'ee \'f1\'e5\'f0\'e2\'e5\'f0\'e0.\par
+\par
+\'ca\'eb\'fe\'f7\'e5\'e2\'fb\'e5 \'e1\'e8\'ed\'fb/\'ef\'ee\'eb\'ff\par
+MockMvc \f2\emdash  \f0\'ee\'f2\'ef\'f0\'e0\'e2\'ea\'e0 HTTP-\'e7\'e0\'ef\'f0\'ee\'f1\'ee\'e2, \'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e0 \'f1\'f2\'e0\'f2\'f3\'f1\'ee\'e2/JSON (jsonPath).\par
+ReminderRepository, UserRepository \f2\emdash  \f0\'f1\'ee\'e7\'e4\'e0\'ed\'e8\'e5 \'f4\'e8\'ea\'f1\'f2\'f3\'f0 \'e8 \'ef\'ee\'f1\'f2\'f4\'e0\'ea\'f2\'f3\'ec-\'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e8 \'ef\'e5\'f0\'f1\'e8\'f1\'f2\'e5\'ed\'f2\'ed\'ee\'f1\'f2\'e8.\par
+@MockBean JwtDecoder \f2\emdash  \f0\'e4\'e5\'f2\'e5\'f0\'ec\'e8\'ed\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'e0\'ff \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'ff: \'ef\'ee\'e4\'f1\'f2\'e0\'e2\'eb\'ff\'e5\'ec \'f3\'ef\'f0\'e0\'e2\'eb\'ff\'e5\'ec\'fb\'e9 Jwt.\par
+testUser, providerId \f2\emdash  \f0\'e4\'ee\'ec\'e5\'ed\'ed\'e0\'ff \'e8\'e4\'e5\'ed\'f2\'e8\'f7\'ed\'ee\'f1\'f2\'fc, \'ef\'f0\'e8\'e2\'ff\'e7\'e0\'ed\'ed\'e0\'ff \'ea JWT (sub = providerId).\par
+\par
+\'cb\'ee\'e3\'e8\'ea\'e0 setUp() (\'ef\'e5\'f0\'e5\'e4 \'ea\'e0\'e6\'e4\'fb\'ec \'f2\'e5\'f1\'f2\'ee\'ec)\par
+1 \'ce\'f7\'e8\'f1\'f2\'ea\'e0 \'e4\'e0\'ed\'ed\'fb\'f5: deleteAll() \'e4\'eb\'ff reminderRepository \'e8 userRepository \f2\emdash  \f0\'e8\'e7\'ee\'eb\'ff\'f6\'e8\'ff \'f1\'f6\'e5\'ed\'e0\'f0\'e8\'e5\'e2.\par
+2 \'d1\'ee\'e7\'e4\'e0\'ed\'e8\'e5 \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff:\par
+\tab\'c3\'e5\'ed\'e5\'f0\'e8\'f0\'f3\'e5\'ec providerId = "google-" + UUID.\par
+\tab\'d1\'ee\'f5\'f0\'e0\'ed\'ff\'e5\'ec testUser \'f1 \'f0\'ee\'eb\'fc\'fe USER, \'ef\'f0\'ee\'e2\'e0\'e9\'e4\'e5\'f0\'ee\'ec GOOGLE.\par
+3 \'d4\'e8\'ea\'f1\'f2\'f3\'f0\'fb \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'e9 (\'ef\'f0\'e8\'ed\'e0\'e4\'eb\'e5\'e6\'e0\'f2 testUser):\par
+\tab\'d2\'f0\'e8 \'e7\'e0\'ef\'e8\'f1\'e8 \'f1 \'f0\'e0\'e7\'ed\'fb\'ec\'e8 title: "Buy protein", "Attend meeting", "Call mom".\par
+\tab\'d0\'e0\'e7\'ed\'fb\'e5 remind (\'f7\'e5\'f0\'e5\'e7 Instant.now().plusSeconds(...)) \f2\emdash  \f0\'e2\'e0\'eb\'e8\'e4\'ed\'fb\'e5 \'e1\'f3\'e4\'f3\'f9\'e8\'e5 \'e4\'e0\'f2\'fb.\par
+\tab\'dd\'f2\'ee \'e4\'e0\'b8\'f2 \'ec\'e0\'f2\'e5\'f0\'e8\'e0\'eb \'e4\'eb\'ff \'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e8 \'f1\'ee\'f0\'f2\'e8\'f0\'ee\'e2\'ea\'e8/\'ef\'e0\'e3\'e8\'ed\'e0\'f6\'e8\'e8/\'f4\'e8\'eb\'fc\'f2\'f0\'e0\'f6\'e8\'e8 \'ef\'ee \'e2\'eb\'e0\'e4\'e5\'eb\'fc\'f6\'f3.\par
+4 \'cc\'ee\'ea \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'e8:\par
+\tab\'d1\'ee\'e1\'e8\'f0\'e0\'e5\'ec Jwt("fake-token", ..., claims: sub=providerId, email=test@example.com).\par
+\tab when(jwtDecoder.decode("fake-token")).thenReturn(jwt); \f2\emdash  \f0\'eb\'fe\'e1\'ee\'e9 \'e7\'e0\'ef\'f0\'ee\'f1 \'f1 \'fd\'f2\'e8\'ec \'f2\'ee\'ea\'e5\'ed\'ee\'ec \'e2\'fb\'ef\'ee\'eb\'ed\'ff\'e5\'f2\'f1\'ff \'ee\'f2 \'eb\'e8\'f6\'e0 testUser.\par
+\par
+\'c7\'e0\'f7\'e5\'ec \'e8\'ec\'e5\'ed\'ed\'ee \'f2\'e0\'ea\'e0\'ff \'f4\'e8\'ea\'f1\'f2\'f3\'f0\'e0\par
+\'d0\'e0\'e7\'ed\'fb\'e5 title \f3\u8594?\f1  \f0\lang1049\'ec\'ee\'e6\'ed\'ee \'e4\'e5\'f2\'e5\'f0\'ec\'e8\'ed\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'f2\'fc \'f1\'ee\'f0\'f2\'e8\'f0\'ee\'e2\'ea\'f3 (asc/desc).\par
+\'c1\'f3\'e4\'f3\'f9\'e8\'e5 remind \f3\u8594?\f1  \f0\lang1049\'ed\'e5 \'ec\'e5\'f8\'e0\'fe\'f2 \'e1\'e8\'e7\'ed\'e5\'f1-\'ef\'f0\'e0\'e2\'e8\'eb\'e0 \f1\lang1033\'ab\f0\lang1049\'ed\'e5 \'e2 \'ef\'f0\'ee\'f8\'eb\'ee\'ec\f1\lang1033\'bb.\par
+\f0\lang1049\'d1\'e2\'ff\'e7\'fc Jwt.sub == User.providerId \f3\u8594?\f1  \f0\lang1049\'f7\'b8\'f2\'ea\'e0\'ff \'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e0 \f1\lang1033\'ab\f0\lang1049\'e2\'e8\'e4\'e8\'ec \'f2\'ee\'eb\'fc\'ea\'ee \'f1\'e2\'ee\'e8 \'e7\'e0\'ef\'e8\'f1\'e8\f1\lang1033\'bb \f0\lang1049\'e2 \'eb\'e8\'f1\'f2\'e8\'ed\'e3\'e0\'f5.\par
+\par
+\'cf\'ee\'eb\'e5\'e7\'ed\'fb\'e5 \'e7\'e0\'ec\'e5\'f2\'ea\'e8\par
+\'c5\'f1\'eb\'e8 \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'f8\'fc \'ef\'ee\'f0\'ff\'e4\'ee\'ea \'fd\'eb\'e5\'ec\'e5\'ed\'f2\'ee\'e2, \'e7\'e0\'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e9 \'ee\'e6\'e8\'e4\'e0\'e5\'ec\'f3\'fe \'f1\'ee\'f0\'f2\'e8\'f0\'ee\'e2\'ea\'f3 (\'e8 \'e2\'f2\'ee\'f0\'e8\'f7\'ed\'fb\'e9 \'ea\'eb\'fe\'f7 \'ef\'f0\'e8 \'f0\'e0\'e2\'e5\'ed\'f1\'f2\'e2\'e5 title, \'e5\'f1\'eb\'e8 \'f2\'f0\'e5\'e1\'f3\'e5\'f2\'f1\'ff).\par
+\'c4\'eb\'ff \'f1\'f2\'e0\'e1\'e8\'eb\'fc\'ed\'ee\'f1\'f2\'e8 \'e2\'f0\'e5\'ec\'e5\'ed\'e8 \'e2 \'e1\'ee\'eb\'fc\'f8\'e8\'f5 \'ed\'e0\'e1\'ee\'f0\'e0\'f5 \'f2\'e5\'f1\'f2\'ee\'e2 \'ec\'ee\'e6\'ed\'ee \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'fc \'f4\'e8\'ea\'f1\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 Clock \'e2\'ec\'e5\'f1\'f2\'ee Instant.now().\par
+\'cf\'f0\'e8 \'ed\'e5\'ee\'e1\'f5\'ee\'e4\'e8\'ec\'ee\'f1\'f2\'e8 \'e8\'f1\'ea\'eb\'fe\'f7\'e8\'f2\'fc \'ea\'e5\'f8 \'ef\'e5\'f0\'e2\'ee\'e3\'ee \'f3\'f0\'ee\'e2\'ed\'ff JPA \'ef\'f0\'e8 \'ef\'ee\'e2\'f2\'ee\'f0\'ed\'fb\'f5 \'f7\'f2\'e5\'ed\'e8\'ff\'f5 \f2\emdash  \f0\'ee\'f7\'e8\'f9\'e0\'e9 \'ea\'ee\'ed\'f2\'e5\'ea\'f1\'f2 (EntityManager.clear()).\par
+\'cd\'e5\'e3\'e0\'f2\'e8\'e2\'ed\'fb\'e5 \'ea\'e5\'e9\'f1\'fb: \'e1\'e5\'e7 \'f2\'ee\'ea\'e5\'ed\'e0 (401), \'f7\'f3\'e6\'e8\'e5 \'e7\'e0\'ef\'e8\'f1\'e8 \'ed\'e5 \'ef\'ee\'ef\'e0\'e4\'e0\'fe\'f2 \'e2 \'e2\'fb\'e4\'e0\'f7\'f3, \'ed\'e5\'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'e5 \'ef\'e0\'f0\'e0\'ec\'e5\'f2\'f0\'fb \'ef\'e0\'e3\'e8\'ed\'e0\'f6\'e8\'e8/\'f1\'ee\'f0\'f2\'e8\'f0\'ee\'e2\'ea\'e8 \f3\u8594?\f1  400.\f0\lang1049\par
+\par
+========================================================\par
+\par
+\f1\lang1033 createNewReminder \f0\lang1049\par
+\par
+1: Happy path. \'d1\'ee\'e7\'e4\'e0\'ed\'e8\'e5 \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'ff\par
+\'c4\'e0\'ed\'ee: \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc (testUser); \'f2\'e5\'eb\'ee \'e7\'e0\'ef\'f0\'ee\'f1\'e0 \'e2\'e0\'eb\'e8\'e4\'ed\'ee (title, description, remind \'e2 \'e1\'f3\'e4\'f3\'f9\'e5\'ec).\par
+\'ca\'ee\'e3\'e4\'e0: \'ee\'f2\'ef\'f0\'e0\'e2\'eb\'ff\'e5\'ec POST /api/v1/reminder \'f1 Authorization: Bearer fake-token, Content-Type: application/json \'e8 \'e2\'e0\'eb\'e8\'e4\'ed\'fb\'ec JSON.\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f2\bullet\f0  HTTP 201 Created.\par
+\f2\bullet\f0  \'c2 \'e7\'e0\'e3\'ee\'eb\'ee\'e2\'ea\'e0\'f5 \'e5\'f1\'f2\'fc Location \'f1 \'f1\'f1\'fb\'eb\'ea\'ee\'e9 \'ed\'e0 \'f1\'ee\'e7\'e4\'e0\'ed\'ed\'fb\'e9 \'f0\'e5\'f1\'f3\'f0\'f1.\par
+\f2\bullet\f0  \'c2 JSON-\'ee\'f2\'e2\'e5\'f2\'e5 \f2\emdash\f0  \'ef\'e5\'f0\'e5\'e4\'e0\'ed\'ed\'fb\'e5 \'ef\'ee\'eb\'ff (title, description).\par
+\f2\bullet\f0  \'c2 \'c1\'c4 \'ef\'ee\'ff\'e2\'e8\'eb\'e0\'f1\'fc \'e7\'e0\'ef\'e8\'f1\'fc \'f1 \'ee\'e6\'e8\'e4\'e0\'e5\'ec\'fb\'ec\'e8 \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'ff\'ec\'e8; saved.user.id == testUser.id.\par
+\'c7\'e0\'f7\'e5\'ec: \'ef\'ee\'e4\'f2\'e2\'e5\'f0\'e6\'e4\'e0\'e5\'ec \f1\lang1033\'ab\f0\lang1049\'f1\'ea\'e2\'ee\'e7\'ed\'ee\'e5\f1\lang1033\'bb \f0\lang1049\'f1\'ee\'e7\'e4\'e0\'ed\'e8\'e5 (\'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \f3\u8594?\f1  \f0\lang1049\'f1\'e5\'f0\'e2\'e8\'f1 \f3\u8594?\f1  \f0\lang1049\'f0\'e5\'ef\'ee\'e7\'e8\'f2\'ee\'f0\'e8\'e9 \f3\u8594?\f1  \f0\lang1049\'c1\'c4), \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'e9 \'f1\'f2\'e0\'f2\'f3\'f1 201 \'e8 \'f4\'ee\'f0\'ec\'e8\'f0\'ee\'e2\'e0\'ed\'e8\'e5 Location.\par
+\par
+2: \'cd\'e5\'e2\'e0\'eb\'e8\'e4\'ed\'fb\'e9 \'e2\'e2\'ee\'e4 \f2\emdash\f0  \'ef\'f3\'f1\'f2\'ee\'e9 title\par
+\'c4\'e0\'ed\'ee: \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc; \'f2\'e5\'eb\'ee \'e7\'e0\'ef\'f0\'ee\'f1\'e0 \'ed\'e0\'f0\'f3\'f8\'e0\'e5\'f2 \'ef\'f0\'e0\'e2\'e8\'eb\'e0 \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'e8 (\'ef\'f3\'f1\'f2\'ee\'e9 title).\par
+\'ca\'ee\'e3\'e4\'e0: \'ee\'f2\'ef\'f0\'e0\'e2\'eb\'ff\'e5\'ec POST /api/v1/reminder \'f1 Authorization: Bearer fake-token \'e8 \'ed\'e5\'e2\'e0\'eb\'e8\'e4\'ed\'fb\'ec JSON.\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f2\bullet\f0  HTTP 400 Bad Request.\par
+\f2\bullet\f0  (\'ce\'ef\'f6\'e8\'ee\'ed\'e0\'eb\'fc\'ed\'ee) \'d2\'e5\'eb\'ee \'ee\'f8\'e8\'e1\'ea\'e8 \'e2 \'f4\'ee\'f0\'ec\'e0\'f2\'e5 ApiErrorResponse \'f1 \'e4\'e5\'f2\'e0\'eb\'ff\'ec\'e8 \'ef\'ee \'ef\'ee\'eb\'ff\'ec.\par
+\'c7\'e0\'f7\'e5\'ec: \'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e5\'ec, \'f7\'f2\'ee Bean Validation/\'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'ff DTO \'f1\'f0\'e0\'e1\'e0\'f2\'fb\'e2\'e0\'e5\'f2 \'e8 \'e1\'eb\'ee\'ea\'e8\'f0\'f3\'e5\'f2 \'f1\'ee\'e7\'e4\'e0\'ed\'e8\'e5 \'ed\'e5\'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'f5 \'e4\'e0\'ed\'ed\'fb\'f5.\par
+\par
+3: \'cd\'e5\'e2\'e0\'eb\'e8\'e4\'ed\'fb\'e9 \'e2\'e2\'ee\'e4 \f2\emdash  \f0\'ee\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'e5\'f2 remind\par
+\'c4\'e0\'ed\'ee: \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc; \'f2\'e5\'eb\'ee \'e7\'e0\'ef\'f0\'ee\'f1\'e0 \'ed\'e5 \'f1\'ee\'e4\'e5\'f0\'e6\'e8\'f2 \'ee\'e1\'ff\'e7\'e0\'f2\'e5\'eb\'fc\'ed\'ee\'e3\'ee \'ef\'ee\'eb\'ff remind.\par
+\'ca\'ee\'e3\'e4\'e0: \'ee\'f2\'ef\'f0\'e0\'e2\'eb\'ff\'e5\'ec POST /api/v1/reminder \'f1 Authorization: Bearer fake-token, Content-Type: application/json \'e8 JSON \'e1\'e5\'e7 remind.\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f2\bullet  HTTP 400 Bad Request.\par
+\bullet  (\f0\'ce\'ef\'f6\'e8\'ee\'ed\'e0\'eb\'fc\'ed\'ee) \'d2\'e5\'eb\'ee \'ee\'f8\'e8\'e1\'ea\'e8 \'e2 \'f4\'ee\'f0\'ec\'e0\'f2\'e5 ApiErrorResponse c \'e4\'e5\'f2\'e0\'eb\'ff\'ec\'e8: details.remind = ["must not be null"] (\'e8\'eb\'e8 \'e0\'ed\'e0\'eb\'ee\'e3\'e8\'f7\'ed\'ee\'e5 \'f1\'ee\'ee\'e1\'f9\'e5\'ed\'e8\'e5 \'ee\'f2 Bean Validation/JSON-\'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'e8).\par
+\'c7\'e0\'f7\'e5\'ec: \'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e5\'ec, \'f7\'f2\'ee \'ee\'e1\'ff\'e7\'e0\'f2\'e5\'eb\'fc\'ed\'fb\'e5 \'ef\'ee\'eb\'ff \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'fe\'f2\'f1\'ff \'ed\'e0 \'f3\'f0\'ee\'e2\'ed\'e5 \'e2\'f5\'ee\'e4\'e0 (Bean Validation / @NotNull) \'e8 \'ed\'e5\'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'e9 \'e7\'e0\'ef\'f0\'ee\'f1 \'ed\'e5 \'ef\'f0\'e8\'e2\'ee\'e4\'e8\'f2 \'ea \'f1\'ee\'e7\'e4\'e0\'ed\'e8\'fe \'e4\'e0\'ed\'ed\'fb\'f5.\par
+\par
+\'cf\'ee\'eb\'e5\'e7\'ed\'fb\'e5 \'f3\'f2\'ee\'f7\'ed\'e5\'ed\'e8\'ff\par
+\f2\bullet  \f0\'c5\'f1\'eb\'e8 remind \'ef\'f0\'e8\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'e5\'f2, \'ed\'ee \'ef\'f3\'f1\'f2\'e0\'ff \'f1\'f2\'f0\'ee\'ea\'e0 \'e8\'eb\'e8 \'ed\'e5\'e2\'e5\'f0\'ed\'fb\'e9 \'f4\'ee\'f0\'ec\'e0\'f2 \'e4\'e0\'f2\'fb/\'e2\'f0\'e5\'ec\'e5\'ed\'e8 \f3\u8594?\f1  \f0\lang1049\'f2\'e0\'ea\'e6\'e5 400 \'f1 \'f1\'ee\'ee\'f2\'e2\'e5\'f2\'f1\'f2\'e2\'f3\'fe\'f9\'e8\'ec \'f1\'ee\'ee\'e1\'f9\'e5\'ed\'e8\'e5\'ec \'e2 \'e4\'e5\'f2\'e0\'eb\'ff\'f5 \'ee\'f8\'e8\'e1\'ea\'e8.\par
+\f2\bullet  \f0\'cf\'f0\'e8 \'ed\'e0\'eb\'e8\'f7\'e8\'e8 \'f1\'f5\'e5\'ec\'fb (OpenAPI/JSON Schema) \'fd\'f2\'ee\'f2 \'ea\'e5\'e9\'f1 \'ef\'ee\'e4\'f2\'e2\'e5\'f0\'e6\'e4\'e0\'e5\'f2 \'f1\'ee\'ee\'f2\'e2\'e5\'f2\'f1\'f2\'e2\'e8\'e5 \'f1\'ef\'e5\'f6\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'e8: \'ef\'ee\'eb\'e5 \'ee\'e1\'ff\'e7\'e0\'f2\'e5\'eb\'fc\'ed\'ee.\par
+\par
+\par
+\'cf\'ee\'eb\'e5\'e7\'ed\'fb\'e5 \'e2\'e0\'f0\'e8\'e0\'f6\'e8\'e8 (\'f1\'f2\'ee\'e8\'f2 \'e4\'ee\'e1\'e0\'e2\'e8\'f2\'fc \'ee\'f2\'e4\'e5\'eb\'fc\'ed\'fb\'ec\'e8 \'f2\'e5\'f1\'f2\'e0\'ec\'e8)\par
+\f2\bullet  shouldReturnUnauthorized_whenNoTokenProvided \f3\u8594?\f1  401.\par
+\f2\bullet  shouldReturnBadRequest_whenRemindInPast \f3\u8594?\f1  400 (\f0\lang1049\'e1\'e8\'e7\'ed\'e5\'f1-\'ef\'f0\'e0\'e2\'e8\'eb\'ee: \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'e5 \'f2\'ee\'eb\'fc\'ea\'ee \'e2 \'e1\'f3\'e4\'f3\'f9\'e5\'ec).\par
+\f2\bullet  shouldReturnUnsupportedMediaType_whenMissingOrWrongContentType \f3\u8594?\f1  415 (\f0\lang1049\'e5\'f1\'eb\'e8 Content-Type \'ed\'e5 application/json).\par
+\f2\bullet  shouldReturnBadRequest_whenTitleTooLong \f3\u8594?\f1  400 (\f0\lang1049\'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e0 \'ee\'e3\'f0\'e0\'ed\'e8\'f7\'e5\'ed\'e8\'e9 \'e4\'eb\'e8\'ed\'fb).\par
+\par
+===============================================================\par
+\par
+findAllSortedByTitle\par
+\par
+\f1\lang9 1: \f0\lang1049\'d1\'ee\'f0\'f2\'e8\'f0\'ee\'e2\'ea\'e0 \'ef\'ee \'e7\'e0\'e3\'ee\'eb\'ee\'e2\'ea\'f3 \'ef\'ee \'f3\'e1\'fb\'e2\'e0\'ed\'e8\'fe (happy path)\par
+\'c4\'e0\'ed\'ee: \'f3 \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff (testUser) \'e2 \'c1\'c4 \'e5\'f1\'f2\'fc 3 \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'ff \'f1 \'f0\'e0\'e7\'ed\'fb\'ec\'e8 title.\par
+\'ca\'ee\'e3\'e4\'e0: \'ee\'f2\'ef\'f0\'e0\'e2\'eb\'ff\'e5\'ec GET /api/v1/reminder/sort/title \'f1 Authorization: Bearer fake-token \'e8 \'ef\'e0\'f0\'e0\'ec\'e5\'f2\'f0\'e0\'ec\'e8 page=0, size=3, sort=title,desc.\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f2\bullet  HTTP 200 OK.\par
+\bullet  \f0\'cc\'e0\'f1\'f1\'e8\'e2 content \'ee\'f2\'f1\'ee\'f0\'f2\'e8\'f0\'ee\'e2\'e0\'ed \'ef\'ee title \'ef\'ee \'f3\'e1\'fb\'e2\'e0\'ed\'e8\'fe (\'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec \'ef\'ee\'f0\'ff\'e4\'ee\'ea \'fd\'eb\'e5\'ec\'e5\'ed\'f2\'ee\'e2 \'ef\'ee \'e8\'ed\'e4\'e5\'ea\'f1\'e0\'ec \'e2 jsonPath).\par
+\f2\bullet  \f0\'cc\'e5\'f2\'e0\'e4\'e0\'ed\'ed\'fb\'e5 \'ef\'e0\'e3\'e8\'ed\'e0\'f6\'e8\'e8 \'f1\'ee\'ee\'f2\'e2\'e5\'f2\'f1\'f2\'e2\'f3\'fe\'f2 \'e7\'e0\'ef\'f0\'ee\'f1\'f3: pageable.pageNumber = 0, size = 3, totalElements = 3.\par
+\'c7\'e0\'f7\'e5\'ec: \'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e5\'ec \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'ee\'f1\'f2\'fc \'f1\'ee\'f0\'f2\'e8\'f0\'ee\'e2\'ea\'e8 \'ed\'e0 \'f3\'f0\'ee\'e2\'ed\'e5 \'f0\'e5\'ef\'ee\'e7\'e8\'f2\'ee\'f0\'e8\'ff/\'f1\'e5\'f0\'e2\'e8\'f1\'e0 \'e8 \'f1\'ee\'e3\'eb\'e0\'f1\'ee\'e2\'e0\'ed\'ed\'ee\'f1\'f2\'fc \'ec\'e5\'f2\'e0\'e4\'e0\'ed\'ed\'fb\'f5 \'ef\'e0\'e3\'e8\'ed\'e0\'f6\'e8\'e8.\par
+\par
+2: \'cf\'e0\'e3\'e8\'ed\'e0\'f6\'e8\'ff \'f1 \'ee\'e3\'f0\'e0\'ed\'e8\'f7\'e5\'ed\'e8\'e5\'ec \'f0\'e0\'e7\'ec\'e5\'f0\'e0 \'f1\'f2\'f0\'e0\'ed\'e8\'f6\'fb\par
+\'c4\'e0\'ed\'ee: \'f3 \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff (testUser) \'e5\'f1\'f2\'fc \'ec\'e8\'ed\'e8\'ec\'f3\'ec 3 \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'ff.\par
+\'ca\'ee\'e3\'e4\'e0: \'ee\'f2\'ef\'f0\'e0\'e2\'eb\'ff\'e5\'ec GET /api/v1/reminder/sort/title \'f1 Authorization: Bearer fake-token, page=0, size=2, sort=title,desc.\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f2\bullet  HTTP 200 OK.\par
+\bullet  content.length() = 2.\par
+\bullet  totalElements = 3, totalPages = 2.\par
+\f0\'c7\'e0\'f7\'e5\'ec: \'ef\'ee\'e4\'f2\'e2\'e5\'f0\'e6\'e4\'e0\'e5\'ec \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'f3\'fe \'f0\'e0\'e1\'ee\'f2\'f3 \'ef\'ee\'f1\'f2\'f0\'e0\'ed\'e8\'f7\'ed\'ee\'e9 \'e2\'fb\'e1\'ee\'f0\'ea\'e8 (\'ee\'e3\'f0\'e0\'ed\'e8\'f7\'e5\'ed\'e8\'e5 \'f0\'e0\'e7\'ec\'e5\'f0\'e0 \'e2\'fb\'e4\'e0\'f7\'e8 \'e8 \'f0\'e0\'f1\'f7\'b8\'f2 totalPages).\par
+\par
+3: \'c2\'e8\'e4\'e8\'ec\'ee\'f1\'f2\'fc \'f2\'ee\'eb\'fc\'ea\'ee \'f1\'e2\'ee\'e8\'f5 \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'e9 \'ef\'f0\'e8 \'f1\'ee\'f0\'f2\'e8\'f0\'ee\'e2\'ea\'e5\par
+\'c4\'e0\'ed\'ee: \'e2 \'c1\'c4 \'e5\'f1\'f2\'fc \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'ff testUser \'e8 \'ee\'f2\'e4\'e5\'eb\'fc\'ed\'ee\'e5 \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'e5 \'e4\'f0\'f3\'e3\'ee\'e3\'ee \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff.\par
+\'ca\'ee\'e3\'e4\'e0: \'ee\'f2\'ef\'f0\'e0\'e2\'eb\'ff\'e5\'ec GET /api/v1/reminder/sort/title \'ee\'f2 \'e8\'ec\'e5\'ed\'e8 testUser (Authorization: Bearer fake-token) \'f1 page=0, size=10, sort=title,desc.\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f2\bullet  HTTP 200 OK.\par
+\bullet  totalElements \f0\'f3\'f7\'e8\'f2\'fb\'e2\'e0\'e5\'f2 \'f2\'ee\'eb\'fc\'ea\'ee \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'ff testUser (\'f7\'f3\'e6\'e8\'e5 \'e7\'e0\'ef\'e8\'f1\'e8 \'ed\'e5 \'ef\'ee\'ef\'e0\'e4\'e0\'fe\'f2 \'e2 \'e2\'fb\'e4\'e0\'f7\'f3).\par
+\'c7\'e0\'f7\'e5\'ec: \'ef\'ee\'e4\'f2\'e2\'e5\'f0\'e6\'e4\'e0\'e5\'ec \'ef\'ee\'eb\'e8\'f2\'e8\'ea\'f3 \'e1\'e5\'e7\'ee\'ef\'e0\'f1\'ed\'ee\'f1\'f2\'e8/\'f4\'e8\'eb\'fc\'f2\'f0\'e0\'f6\'e8\'e8 \'ef\'ee \'e2\'eb\'e0\'e4\'e5\'eb\'fc\'f6\'f3 \'e2 \'eb\'e8\'f1\'f2\'e8\'ed\'e3\'e0\'f5.\par
+\par
+\'cf\'ee\'eb\'e5\'e7\'ed\'fb\'e5 \'e2\'e0\'f0\'e8\'e0\'f6\'e8\'e8 (\'f1\'f2\'ee\'e8\'f2 \'e4\'ee\'e1\'e0\'e2\'e8\'f2\'fc \'ee\'f2\'e4\'e5\'eb\'fc\'ed\'fb\'ec\'e8 \'f2\'e5\'f1\'f2\'e0\'ec\'e8)\par
+\f2\bullet  shouldReturnUnauthorized_whenNoTokenProvided \f3\u8594?\f1  401.\par
+\f2\bullet  shouldApplyDefaultPaging_whenParamsMissing \emdash  \f0\lang1049\'e5\'f1\'eb\'e8 \'ed\'e5 \'ef\'e5\'f0\'e5\'e4\'e0\'ed\'fb page/size, \'ef\'f0\'e8\'ec\'e5\'ed\'ff\'fe\'f2\'f1\'ff \'e4\'e5\'f4\'ee\'eb\'f2\'fb (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, page=0, size=20).\par
+\f2\bullet  shouldRejectInvalidSortParam \f3\u8594?\f1  400 \f0\lang1049\'ef\'f0\'e8 \'ed\'e5\'e2\'e0\'eb\'e8\'e4\'ed\'ee\'ec \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'e8 sort (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, \'ef\'ee\'eb\'e5 \'ed\'e5 \'f1\'f3\'f9\'e5\'f1\'f2\'e2\'f3\'e5\'f2).\par
+\f2\bullet  shouldClampMaxPageSize_whenTooLarge \emdash  \f0\'e5\'f1\'eb\'e8 \'e7\'e0\'e4\'e0\'ed \'f1\'eb\'e8\'f8\'ea\'ee\'ec \'e1\'ee\'eb\'fc\'f8\'ee\'e9 size, \'f1\'e5\'f0\'e2\'e8\'f1 \'ee\'e3\'f0\'e0\'ed\'e8\'f7\'e8\'e2\'e0\'e5\'f2 \'e4\'ee \'ec\'e0\'ea\'f1\'e8\'ec\'f3\'ec\'e0 (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, 100).\par
+\f2\bullet  shouldReturnEmptyPage_whenPageBeyondTotal \emdash  \f0\'ef\'f0\'e8 page \'e7\'e0 \'ef\'f0\'e5\'e4\'e5\'eb\'e0\'ec\'e8 \'e4\'e8\'e0\'ef\'e0\'e7\'ee\'ed\'e0 content \'ef\'f3\'f1\'f2\'ee\'e9, totalElements \'e8 totalPages \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'e5.\par
+\f1\lang9\par
+\par
+\par
+\par
+\par
+}
+ 

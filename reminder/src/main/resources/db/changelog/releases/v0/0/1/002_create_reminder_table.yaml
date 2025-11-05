@@ -1,0 +1,69 @@
+databaseChangeLog:
+  - changeSet:
+      id: reminders-001-create-seq
+      author: danil
+      changes:
+        - createSequence:
+            sequenceName: reminder_seq
+            schemaName: public
+            incrementBy: 1
+
+  - changeSet:
+      id: reminders-002-create-table
+      author: danil
+      preConditions:
+        - tableExists:
+            tableName: users     # убеждаемся, что таблица users уже создана
+      changes:
+        - createTable:
+            tableName: reminders
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints: { primaryKey: true, nullable: false }
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints: { nullable: false }
+              - column:
+                  name: description
+                  type: varchar(4096)
+                  constraints: { nullable: false }
+              - column:
+                  name: remind
+                  type: timestamptz
+                  constraints: { nullable: false }
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints: { nullable: false }
+        - addDefaultValue:
+            tableName: reminders
+            columnName: id
+            defaultValueSequenceNext: reminder_seq
+
+  - changeSet:
+      id: reminders-003-fk-and-indexes
+      author: danil
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: reminders
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_reminder_user
+            onDelete: CASCADE
+
+        - createIndex:
+            tableName: reminders
+            indexName: idx_reminders_user_id
+            columns:
+              - column: { name: user_id }
+
+        - createIndex:
+            tableName: reminders
+            indexName: idx_reminders_user_id_remind
+            columns:
+              - column: { name: user_id }
+              - column: { name: remind }

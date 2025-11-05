@@ -1,0 +1,52 @@
+0:00:20 Microsoft.Shutdown.TabStripModel.ShouldRunUnloadListenerBeforeClosing_false
+0:00:20 Tab2 RenderProcessGone
+0:00:20 Microsoft.UnloadController.ClearUnloadState
+0:00:20 Microsoft.Shutdown.TabStripModel.RunUnloadListenerBeforeClosing_false
+0:00:20 Microsoft.Shutdown.TabStripModel.InternalCloseTabsImpl_ClosedAll
+0:00:20 Microsoft.Shutdown.TabStripModel.SendDetachWebContentsNotifications
+0:00:20 Microsoft.UnloadController.ClearUnloadState
+0:00:20 Browser2 Close Tab2 at 0
+0:00:20 Tab2 WebContentsDestroyed
+0:00:20 Microsoft.UnloadController.TabStripEmpty
+0:00:20 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+0:00:20 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+0:00:20 Microsoft.Shutdown.OnWindowClosing
+0:00:20 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+0:00:20 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+0:00:20 Microsoft.Shutdown.OnWindowClosingPostClearBrowsingData_NoBrowsingDataCleared
+0:00:20 Widget Closed: BrowserFrame
+0:00:20 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+0:00:20 Microsoft.Shutdown.OnWindowClosing
+0:00:20 Microsoft.Shutdown.OnWindowClosing_DeleteScheduled
+0:00:20 Microsoft.Browser_Removed
+0:00:20 Microsoft.NewBrowser_Popup
+0:00:20 Microsoft.BrowserList.AddBrowser
+0:00:20 Browser4 Insert active Tab4 at 0
+0:00:20 Tab4 StartNav7 #auto_toplevel
+0:00:20 Tab4 StartNav8 #typed
+0:00:20 Tab4 FinishNav7
+0:00:20 Tab4 PageLoad
+0:00:20 Tab4 FinishNav8
+0:00:20 Tab4 PageLoad
+0:00:20 Tab4 StartNav9 #typed
+0:00:20 Tab4 FinishNav9
+0:00:20 Tab4 PageLoad
+0:00:30 Tab4 StartNav10 #typed
+0:00:30 Tab4 FinishNav10
+0:00:30 Tab4 PageLoad
+0:05:22 Tab4 StartNav11 #typed
+0:05:22 Tab4 FinishNav11
+0:05:22 Tab4 PageLoad
+0:10:21 Tab4 StartNav12 #typed
+0:10:21 Tab4 FinishNav12
+0:10:21 Tab4 PageLoad
+0:10:21 Tab4 StartNav13 #typed
+0:10:21 Tab4 FinishNav13
+0:10:21 Tab4 PageLoad
+0:10:39 Tab4 StartNav14 #typed
+0:10:39 Tab4 FinishNav14
+0:10:39 Tab4 PageLoad
+0:11:04 Tab4 StartNav15 #typed
+0:11:04 Tab4 FinishNav15
+0:11:04 Tab4 PageLoad
+0:11:12 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp

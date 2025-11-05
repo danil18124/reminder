@@ -1,0 +1,193 @@
+{\rtf1\ansi\ansicpg1251\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset204 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil Calibri;}{\f3\fnil\fcharset1 Cambria Math;}}
+{\colortbl ;\red192\green192\blue192;}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont3\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang1049 @EntityListeners(AuditingEntityListener.class)\par
+\f1\lang9\par
+\f0\lang1049\'c0\'ed\'ed\'ee\'f2\'e0\'f6\'e8\'ff @EntityListeners \'e4\'ee\'e1\'e0\'e2\'eb\'ff\'e5\'f2 \'f1\'eb\'f3\'f8\'e0\'f2\'e5\'eb\'e5\'e9 \'e6\'e8\'e7\'ed\'e5\'ed\'ed\'ee\'e3\'ee \'f6\'e8\'ea\'eb\'e0 \'ea \'f1\'f3\'f9\'ed\'ee\'f1\'f2\'e8.\par
+\'d1\'eb\'f3\'f8\'e0\'f2\'e5\'eb\'e8 - \'fd\'f2\'ee \'ea\'eb\'e0\'f1\'f1\'fb \'f1 \'ec\'e5\'f2\'ee\'e4\'e0\'ec\'e8 @PrePersist, @PostPersist, @PreUpdate \'e8 \'f2.\'e4. \'dd\'f2\'e8 \'ec\'e5\'f2\'ee\'e4\'fb \'e0\'e2\'f2\'ee\'ec\'e0\'f2\'e8\'f7\'e5\'f1\'ea\'e8 \'e2\'fb\'e7\'fb\'e2\'e0\'fe\'f2\'f1\'ff \'ef\'f0\'ee\'e2\'e0\'e9\'e4\'e5\'f0\'ee\'ec JPA (Hibernate) \'e2 \'ed\'f3\'e6\'ed\'fb\'e5 \'ec\'ee\'ec\'e5\'ed\'f2\'fb \f2\emdash  \f0\'e4\'ee/\'ef\'ee\'f1\'eb\'e5 \'f1\'ee\'f5\'f0\'e0\'ed\'e5\'ed\'e8\'ff, \'ee\'e1\'ed\'ee\'e2\'eb\'e5\'ed\'e8\'ff, \'f3\'e4\'e0\'eb\'e5\'ed\'e8\'ff \'e8 \'e7\'e0\'e3\'f0\'f3\'e7\'ea\'e8 \'f1\'f3\'f9\'ed\'ee\'f1\'f2\'e8.\par
+\par
+\'c8\'ed\'ee\'e3\'e4\'e0 \'f1\'f3\'f9\'e5\'f1\'f2\'e2\'f3\'fe\'f2 \'f1\'e8\'f2\'f3\'e0\'f6\'e8\'e8, \'ea\'ee\'e3\'e4\'e0 \'e0\'ed\'ed\'ee\'f2\'e0\'f6\'e8\'e8 @PrePersist, @PostPersist, @PreUpdate \'e8 \'f2.\'e4. \'eb\'f3\'f7\'f8\'e5 \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'fc \'ef\'f0\'ff\'ec\'ee \'f1 \'f1\'f3\'f9\'ed\'ee\'f1\'f2\'e8. \'d2\'e0\'ea\'ee\'e9 \'ef\'ee\'e4\'f5\'ee\'e4 \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'f3\'e5\'f2\'f1\'ff, \'ea\'ee\'e3\'e4\'e0 \'f3 \'f1\'f3\'f9\'ed\'ee\'f1\'f2\'e8 \'e5\'f1\'f2\'fc \'f1\'e2\'ee\'ff \'f3\'ed\'e8\'ea\'e0\'eb\'fc\'ed\'e0\'ff \'eb\'ee\'e3\'e8\'ea\'e0 \'f1\'ee\'f5\'f0\'e0\'ed\'e5\'ed\'e8\'ff \'e8\'eb\'e8 \'ee\'e1\'ed\'ee\'e2\'eb\'e5\'ed\'e8\'ff.\par
+\f1\lang9\par
+AuditingEntityListener \f0\lang1049 - \'fd\'f2\'ee \'ea\'eb\'e0\'f1\'f1-\'f1\'eb\'f3\'f8\'e0\'f2\'e5\'eb\'fc, \'ea\'ee\'f2\'ee\'f0\'fb\'e9 \'ef\'ee\'e4\'ea\'eb\'fe\'f7\'e0\'e5\'f2\'f1\'ff \'ea \'e6\'e8\'e7\'ed\'e5\'ed\'ed\'ee\'ec\'f3 \'f6\'e8\'ea\'eb\'f3 JPA. \'c5\'e3\'ee \'e7\'ee\'ed\'e0 \'ee\'f2\'e2\'e5\'f2\'f1\'f2\'e2\'e5\'ed\'ed\'ee\'f1\'f2\'e8 - \'e0\'f3\'e4\'e8\'f2 \'e2\'f0\'e5\'ec\'e5\'ed\'e8/\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff.\par
+\'c1\'eb\'e0\'e3\'ee\'e4\'e0\'f0\'ff \f1\lang9 AuditingEntityListener\f0\lang1049  \'e0\'e2\'f2\'ee\'ec\'e0\'f2\'ee\'ec \'e7\'e0\'ef\'ee\'eb\'ed\'ff\'fe\'f2\'f1\'ff \'ef\'ee\'eb\'ff createdAt/updatedAt, \'ea\'ee\'f2\'ee\'f0\'fb\'e5 \'ef\'ee\'ec\'e5\'f7\'e5\'ed\'fb \'e0\'ed\'ed\'ee\'f2\'e0\'f6\'e8\'ff\'ec\'e8 @CreatedDate/@LastModifiedDate.\par
+\'c0\'f3\'e4\'e8\'f2 \'e7\'e0\'ef\'ee\'eb\'ed\'ff\'e5\'f2 \'ef\'ee\'eb\'ff \'f2\'ee\'eb\'fc\'ea\'ee \'ef\'f0\'e8 JPA-\'ee\'ef\'e5\'f0\'e0\'f6\'e8\'ff\'f5; \f1\lang1033\'ab\f0\lang1049\'f1\'fb\'f0\'fb\'e5\f1\lang1033\'bb native-SQL \f0\lang1049\'ee\'ef\'e5\'f0\'e0\'f6\'e8\'e8 \'fd\'f2\'ee \'ed\'e5 \'f2\'f0\'e8\'e3\'e3\'e5\'f0\'ff\'f2.\f1\lang9\par
+\f0\lang1049\'d7\'f2\'ee\'e1\'fb AuditingEntityListener \'e7\'e0\'f0\'e0\'e1\'ee\'f2\'e0\'eb, \'ed\'f3\'e6\'ed\'ee \'e2\'ea\'eb\'fe\'f7\'e8\'f2\'fc \'e0\'f3\'e4\'e8\'f2: @EnableJpaAuditing \'e2 \'ea\'ee\'ed\'f4\'e8\'e3\'f3\'f0\'e0\'f6\'e8\'e8. \'c4\'eb\'ff @CreatedBy/@LastModifiedBy \'e5\'f9\'b8 \'ed\'f3\'e6\'e5\'ed \'e1\'e8\'ed AuditorAware<T>.\f1\lang9\par
+\par
+\f0\lang1049 ---------\par
+\par
+@GeneratedValue(...)\par
+\'c4\'e0\'ed\'ed\'e0\'ff \'e0\'ed\'ed\'ee\'f2\'e0\'f6\'e8\'ff \'e3\'ee\'e2\'ee\'f0\'e8\'f2 JPA/Hibernate: id \'e1\'f3\'e4\'e5\'f2 \'e3\'e5\'ed\'e5\'f0\'e8\'f0\'ee\'e2\'e0\'f2\'fc\'f1\'ff \'e0\'e2\'f2\'ee\'ec\'e0\'f2\'e8\'f7\'e5\'f1\'ea\'e8, \'ed\'e5 \'f0\'f3\'ea\'e0\'ec\'e8. \'ca\'e0\'ea \'e8\'ec\'e5\'ed\'ed\'ee \'e3\'e5\'ed\'e5\'f0\'e8\'f0\'ee\'e2\'e0\'f2\'fc \f2\emdash  \f0\'e7\'e0\'e4\'e0\'b8\'f2\'f1\'ff \'ef\'e0\'f0\'e0\'ec\'e5\'f2\'f0\'e0\'ec\'e8.\par
+\f1\lang9\par
+strategy = GenerationType.SEQUENCE\par
+\f0\lang1049\'c2\'fb\'e1\'f0\'e0\'ed \'f1\'f2\'f0\'e0\'f2\'e5\'e3\'e8\'ff \f1\lang1033\'abSEQUENCE\'bb \f2\emdash  \f0\lang1049\'e3\'e5\'ed\'e5\'f0\'e0\'f6\'e8\'ff id \'ef\'ee\'f1\'eb\'e5\'e4\'ee\'e2\'e0\'f2\'e5\'eb\'fc\'ed\'ee. \'ca\'e0\'e6\'e4\'fb\'e9 \'ed\'ee\'e2\'fb\'e9 \f1\lang1033 id \f0\lang1049\'e1\'f3\'e4\'e5\'f2 \'f3\'e2\'e5\'eb\'e8\'f7\'e8\'e2\'e0\'f2\'fc\'f1\'ff \'ed\'e0 1 \'e2 \'c1\'c4 (database sequence).\par
+\'c4\'eb\'ff PostgreSQL \'fd\'f2\'ee \'eb\'f3\'f7\'f8\'e8\'e9 \'e8 \'f1\'e0\'ec\'fb\'e9 \'ef\'f0\'e5\'e4\'f1\'ea\'e0\'e7\'f3\'e5\'ec\'fb\'e9 \'e2\'e0\'f0\'e8\'e0\'ed\'f2: \'e1\'fb\'f1\'f2\'f0\'ee, \'e1\'e5\'e7 \'e1\'eb\'ee\'ea\'e8\'f0\'ee\'e2\'ee\'ea \'f2\'e0\'e1\'eb\'e8\'f6\'fb.\par
+\par
+generator = "user_seq"\par
+\'dd\'f2\'ee \'e8\'ec\'ff \'e3\'e5\'ed\'e5\'f0\'e0\'f2\'ee\'f0\'e0 \'e2\'ed\'f3\'f2\'f0\'e8 JPA.\par
+\'d1\'e0\'ec\'e0 \'f1\'f2\'f0\'ee\'ea\'e0 "user_seq" \f2\emdash  \f0\'fd\'f2\'ee \'ef\'f0\'ee\'f1\'f2\'ee \'f1\'e2\'ff\'e7\'ea\'e0 \f1\lang1033\'ab\f0\lang1049\'ef\'ee\'eb\'e5 id \f3\u8594?\f1  \f0\lang1049\'e3\'e5\'ed\'e5\'f0\'e0\'f2\'ee\'f0 \'f1 \'f2\'e0\'ea\'e8\'ec \'e8\'ec\'e5\'ed\'e5\'ec\f1\lang1033\'bb.\par
+\f0\lang1049\'d1\'e0\'ec \'e3\'e5\'ed\'e5\'f0\'e0\'f2\'ee\'f0 \'ee\'e1\'fa\'ff\'e2\'e8\'f2\'f1\'ff \'e2 \'f1\'eb\'e5\'e4\'f3\'fe\'f9\'e5\'e9 \'e0\'ed\'ed\'ee\'f2\'e0\'f6\'e8\'e8 @SequenceGenerator\f1\lang1033\par
+\par
+\f0\lang1049 ---------\par
+\par
+@SequenceGenerator(...)\par
+\'c4\'e0\'ed\'ed\'e0\'ff \'e0\'ed\'ed\'ee\'f2\'e0\'f6\'e8\'ff \'ee\'e1\'fa\'ff\'e2\'eb\'ff\'e5\'f2 \'e3\'e5\'ed\'e5\'f0\'e0\'f2\'ee\'f0 \'ef\'ee\'f1\'eb\'e5\'e4\'ee\'e2\'e0\'f2\'e5\'eb\'fc\'ed\'ee\'f1\'f2\'e8 \'f1 \'ed\'e0\'f1\'f2\'f0\'ee\'e9\'ea\'e0\'ec\'e8.\par
+\par
+name = "user_seq" \f2\emdash  \f0\'e8\'ec\'ff \'e3\'e5\'ed\'e5\'f0\'e0\'f2\'ee\'f0\'e0 \'e2 JPA (\'e4\'ee\'eb\'e6\'ed\'ee \'f1\'ee\'e2\'ef\'e0\'e4\'e0\'f2\'fc \'f1 generator \'e8\'e7 @GeneratedValue).\par
+\par
+sequenceName = "user_seq" \f2\emdash  \f0\'e8\'ec\'ff DB-\'ef\'ee\'f1\'eb\'e5\'e4\'ee\'e2\'e0\'f2\'e5\'eb\'fc\'ed\'ee\'f1\'f2\'e8 \'e2 \'f1\'e0\'ec\'ee\'e9 \'c1\'c4.\par
+\'c2 PostgreSQL \'ee\'e6\'e8\'e4\'e0\'e5\'f2\'f1\'ff, \'f7\'f2\'ee \'f1\'f3\'f9\'e5\'f1\'f2\'e2\'f3\'e5\'f2 \'ef\'ee\'f1\'eb\'e5\'e4\'ee\'e2\'e0\'f2\'e5\'eb\'fc\'ed\'ee\'f1\'f2\'fc user_seq (\'e5\'b8 \'ee\'e1\'fb\'f7\'ed\'ee \'f1\'ee\'e7\'e4\'e0\'fe\'f2 \'ec\'e8\'e3\'f0\'e0\'f6\'e8\'e5\'e9 Liquibase)\par
+\par
+\f1\lang1033 allocationSize = 1 \f2\emdash  \f0\lang1049\'f0\'e0\'e7\'ec\'e5\'f0 \f1\lang1033\'ab\f0\lang1049\'ef\'f3\'eb\'e0\f1\lang1033\'bb \f0\lang1049\'e7\'ed\'e0\'f7\'e5\'ed\'e8\'e9, \'ea\'ee\'f2\'ee\'f0\'fb\'e5 Hibernate \'e1\'e5\'f0\'b8\'f2 \'e7\'e0 \'ee\'e4\'e8\'ed \'f0\'e0\'e7 \'e8\'e7 \'ef\'ee\'f1\'eb\'e5\'e4\'ee\'e2\'e0\'f2\'e5\'eb\'fc\'ed\'ee\'f1\'f2\'e8.\par
+\'cf\'f0\'e8 1 \'ea\'e0\'e6\'e4\'fb\'e9 \'ed\'ee\'e2\'fb\'e9 id = \'ee\'e4\'e8\'ed \'e2\'fb\'e7\'ee\'e2 nextval('user_seq'). \'cf\'f0\'ee\'f1\'f2\'ee \'e8 \'ef\'f0\'ee\'e7\'f0\'e0\'f7\'ed\'ee, \'ed\'ee \'e1\'ee\'eb\'fc\'f8\'e5 \'ef\'ee\'f5\'ee\'e4\'ee\'e2 \'ea \'c1\'c4.\par
+\'c5\'f1\'eb\'e8 \'ef\'ee\'f1\'f2\'e0\'e2\'e8\'f2\'fc, \'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, 50, Hibernate \'e2\'ee\'e7\'fc\'ec\'b8\'f2 \'ef\'e0\'f7\'ea\'f3 \'e8\'e7 50 id \'e7\'e0\'f0\'e0\'ed\'e5\'e5 (\'ee\'ef\'f2\'e8\'ec\'e8\'e7\'e0\'f6\'e8\'ff), \'e8 \'f1\'eb\'e5\'e4\'f3\'fe\'f9\'e8\'e5 50 \'e2\'f1\'f2\'e0\'e2\'ee\'ea \'ed\'e5 \'e1\'f3\'e4\'f3\'f2 \'e4\'b8\'f0\'e3\'e0\'f2\'fc \'ef\'ee\'f1\'eb\'e5\'e4\'ee\'e2\'e0\'f2\'e5\'eb\'fc\'ed\'ee\'f1\'f2\'fc. \'dd\'f2\'ee \'e1\'fb\'f1\'f2\'f0\'e5\'e5, \'ed\'ee \'ef\'ee\'f1\'eb\'e5\'e4\'ee\'e2\'e0\'f2\'e5\'eb\'fc\'ed\'ee\'f1\'f2\'fc \'e2 \'c1\'c4 \f1\lang1033\'ab\f0\lang1049\'f1\'ea\'e0\'f7\'e5\'f2\f1\lang1033\'bb \f0\lang1049\'e1\'eb\'ee\'ea\'e0\'ec\'e8 (\'e5\'f1\'eb\'e8 \'f0\'e5\'f1\'f2\'e0\'f0\'f2 \'ef\'ee\'f1\'f0\'e5\'e4\'e8 \'e1\'eb\'ee\'ea\'e0 \f2\emdash  \f0\'ef\'f0\'ee\'ef\'f3\'f1\'ea\'e8 \'ed\'ee\'ec\'e5\'f0\'ee\'e2 \'ed\'ee\'f0\'ec\'e0\'eb\'fc\'ed\'fb).\f1\lang1033\par
+\f0\lang1049\'cd\'e0 \'ef\'f0\'ee\'e4\'e5 \'f7\'e0\'f1\'f2\'ee \'f1\'f2\'e0\'e2\'ff\'f2 50/100 \'e4\'eb\'ff \'ef\'f0\'ee\'e8\'e7\'e2\'ee\'e4\'e8\'f2\'e5\'eb\'fc\'ed\'ee\'f1\'f2\'e8.\f1\lang1033  \f0\lang1049\'cd\'f3 \'e8 \'ef\'f0\'ee\'e8\'f1\'f5\'ee\'e4\'ff\'f2 \'f1\'ea\'e0\'f7\'ea\'e8 \'ef\'f0\'e8 \'e2\'e2\'ee\'e4\'e5 \'ed\'ee\'e2\'fb\'f5 \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'e9. \f1\lang1033\par
+\par
+\f0\lang1049 -----------\par
+\par
+@Email \f2\emdash  \f0\'fd\'f2\'ee \'e0\'ed\'ed\'ee\'f2\'e0\'f6\'e8\'ff Bean Validation (Jakarta), \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'f2 \'f1\'e8\'ed\'f2\'e0\'ea\'f1\'e8\'f1 \'f1\'f2\'f0\'ee\'ea\'e8 \'ea\'e0\'ea e-mail.\par
+\par
+\'c2\'e0\'eb\'e8\'e4\'e8\'f0\'f3\'e5\'f2 \'f2\'ee\'eb\'fc\'ea\'ee \'f4\'ee\'f0\'ec\'e0\'f2 (\'ed\'e0\'eb\'e8\'f7\'e8\'e5 @, \'e4\'ee\'ef\'f3\'f1\'f2\'e8\'ec\'fb\'e5 \'f1\'e8\'ec\'e2\'ee\'eb\'fb \'e2 \'eb\'ee\'ea\'e0\'eb\'fc\'ed\'ee\'e9/\'e4\'ee\'ec\'e5\'ed\'ed\'ee\'e9 \'f7\'e0\'f1\'f2\'ff\'f5 \'e8 \'f2.\'ef.). \'c4\'ee\'f1\'f2\'e0\'e2\'eb\'ff\'e5\'ec\'ee\'f1\'f2\'fc \'e8 MX-\'e7\'e0\'ef\'e8\'f1\'e8 \'ed\'e5 \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'f2.\par
+\'cf\'f0\'e8\'ed\'e8\'ec\'e0\'e5\'f2 null \'ea\'e0\'ea \'e2\'e0\'eb\'e8\'e4\'ed\'ee\'e5 \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'e5 (\'ef\'ee \'f1\'ef\'e5\'f6\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'e8). \'cf\'ee\'fd\'f2\'ee\'ec\'f3 \'e4\'ee\'e1\'e0\'e2\'eb\'e5\'ed\'e0 \'e0\'ed\'ed\'ee\'f2\'e0\'f6\'e8\'ff @NotBlank \f2\emdash  \f0\'ee\'ed\'e0 \'e7\'e0\'ef\'f0\'e5\'f9\'e0\'e5\'f2 null/""/\'ef\'f0\'ee\'e1\'e5\'eb\'fb.\par
+\'cf\'f3\'f1\'f2\'e0\'ff \'f1\'f2\'f0\'ee\'ea\'e0 "" \'e1\'e5\'e7 @NotBlank \'ee\'e1\'fb\'f7\'ed\'ee \'e1\'f3\'e4\'e5\'f2 \'ed\'e5\'e2\'e0\'eb\'e8\'e4\'ed\'ee\'e9 (\'f4\'ee\'f0\'ec\'e0\'f2 \'ed\'e5 \'f1\'ee\'e2\'ef\'e0\'e4\'b8\'f2), \'ed\'ee null \'ef\'f0\'ee\'e9\'e4\'b8\'f2.\f1\lang1033\par
+\par
+------------\par
+\par
+@Enumerated \f2\emdash  \f0\lang1049\'e3\'ee\'e2\'ee\'f0\'e8\'f2 JPA/\'d5\'e8\'e1\'e5\'f0\'ed\'e5\'e9\'f2\'f3, \'f7\'f2\'ee \'ef\'ee\'eb\'e5 \f2\emdash  enum, \f0\'e8 \'e5\'e3\'ee \'ed\'f3\'e6\'ed\'ee \'f1\'ef\'e5\'f6\'e8\'e0\'eb\'fc\'ed\'ee \'ec\'e0\'ef\'ef\'e8\'f2\'fc \'e2 \'f1\'f2\'ee\'eb\'e1\'e5\'f6 \'c1\'c4 (\'e0 \'ed\'e5 \'ef\'fb\'f2\'e0\'f2\'fc\'f1\'ff \'f1\'e5\'f0\'e8\'e0\'eb\'e8\'e7\'ee\'e2\'e0\'f2\'fc \'ea\'e0\'ea \'ee\'e1\'fb\'f7\'ed\'fb\'e9 \'ee\'e1\'fa\'e5\'ea\'f2).\par
+EnumType.STRING \f2\emdash  \f0\'f5\'f0\'e0\'ed\'e8\'f2\'fc \'e8\'ec\'ff \'ea\'ee\'ed\'f1\'f2\'e0\'ed\'f2\'fb \'e2 \'e2\'e8\'e4\'e5 \'f1\'f2\'f0\'ee\'ea\'e8 \'e2 \'c1\'c4.\par
+\f1\lang1033\par
+\f0\lang1049\'cc\'ee\'e6\'ed\'ee \'e1\'fb\'eb\'ee \'e4\'eb\'ff \'fd\'f2\'ee\'e9 \'f6\'e5\'eb\'e8 \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'fc \'e0\'ed\'ed\'ee\'f2\'e0\'f6\'e8\'fe \f1\lang1033 @Converter.\par
+@Converter \f0\lang1049\'ed\'f3\'e6\'e5\'ed, \'e5\'f1\'eb\'e8 \'e2 \'c1\'c4 \'f5\'f0\'e0\'ed\'e8\'f2\'f1\'ff \'ed\'e5 \'f1\'f2\'f0\'ee\'ea\'e0 \'e2\'f0\'ee\'e4\'e5 \f1\lang1033 "Google", \f0\lang1049\'e0 \'e5\'e5 \'ea\'ee\'e4(\'e2\'f0\'ee\'e4\'e5 "\f1\lang1033 GGL\f0\lang1049 ") \'e8\'eb\'e8 \'ea\'e0\'ea\'ee\'e5-\'eb\'e8\'e1\'ee \'f7\'e8\'f1\'eb\'ee, \'ee\'e1\'ee\'e7\'ed\'e0\'f7\'e0\'fe\'f9\'e5\'e5 \f1\lang1033 Google. \f0\lang1049\'c2 \'eb\'e5\'e3\'e0\'f1\'e8 \'ea\'ee\'e4\'e5 \'f7\'e0\'f1\'f2\'ee \'f2\'e0\'ea\'ee\'e5 \'e2\'f1\'f2\'f0\'e5\'f7\'e0\'e5\'f2\'f1\'ff \'e8 \'e4\'e0\'ed\'ed\'e0\'ff \'e0\'ed\'ed\'ee\'f2\'e0\'f6\'e8\'ff \'ed\'f3\'e6\'ed\'e0 \'e2 \'f2\'e0\'ea\'e8\'f5 \'f1\'eb\'f3\'f7\'e0\'ff\'f5. \par
+\'cf\'eb\'fe\'f1\'fb \f2\emdash  \f0\'e3\'e8\'e1\'ea\'ee\'f1\'f2\'fc, \'ec\'ee\'e6\'ed\'ee \'ec\'e5\'ed\'ff\'f2\'fc \'ee\'f2\'ee\'e1\'f0\'e0\'e6\'e5\'ed\'e8\'e5 \'e1\'e5\'e7 \'ef\'e5\'f0\'e5\'e8\'ec\'e5\'ed\'ee\'e2\'e0\'ed\'e8\'ff \'ea\'ee\'ed\'f1\'f2\'e0\'ed\'f2. \par
+\'cc\'e8\'ed\'f3\'f1\'fb \f2\emdash  \f0\'e1\'ee\'eb\'fc\'f8\'e5 \'ea\'ee\'e4\'e0 \'e8 \f1\lang1033\'ab\f0\lang1049\'f1\'ea\'f0\'fb\'f2\'e0\'ff\f1\lang1033\'bb \f0\lang1049\'eb\'ee\'e3\'e8\'ea\'e0 \'ec\'e0\'ef\'ef\'e8\'ed\'e3\'e0 (\'ed\'e0\'e4\'ee \'e4\'e5\'f0\'e6\'e0\'f2\'fc \'ea\'ee\'ed\'e2\'e5\'f0\'f2\'e5\'f0 \'e2 \'e3\'ee\'eb\'ee\'e2\'e5/\'f2\'e5\'f1\'f2\'e0\'f5).\f1\lang9\par
+\par
+\f0\lang1049 --------------\par
+\par
+providerId\par
+\'d7\'f2\'ee \'fd\'f2\'ee? \par
+\par
+providerId \f2\emdash  \f0\'f3\'f1\'f2\'ee\'e9\'f7\'e8\'e2\'fb\'e9 \'e8\'e4\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f2\'ee\'f0 \'f3 \'ef\'f0\'ee\'e2\'e0\'e9\'e4\'e5\'f0\'e0 \par
+(\'ee\'e1\'fb\'f7\'ed\'ee:\par
+Google \f3\u8594?\f1  \f0\lang1049\'ea\'eb\'e5\'e9\'ec sub,\par
+GitHub \f3\u8594?\f1  id,\par
+Keycloak \f3\u8594?\f1  sub \f0\lang1049\'e8 \'f2.\'ef.).\par
+\'dd\'f2\'ee\'f2 ID \'ed\'e5 \'ec\'e5\'ed\'ff\'e5\'f2\'f1\'ff, \'e2 \'ee\'f2\'eb\'e8\'f7\'e8\'e5 \'ee\'f2 e-mail \'e8 \'ee\'f2\'ee\'e1\'f0\'e0\'e6\'e0\'e5\'ec\'ee\'e3\'ee \'e8\'ec\'e5\'ed\'e8.\par
+\par
+\'c4\'ee\'ef\'f3\'f1\'f2\'e8\'ec, \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc \'e2\'ef\'e5\'f0\'e2\'fb\'e5 \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'eb\'f1\'ff \'e2 \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'e8 \f1\lang1033 Reminder \f0\lang1049\'f1 \'ef\'ee\'ec\'ee\'f9\'fc\'fe \f1\lang1033 Google. \par
+\f0\lang1049\'d1 \'f2\'e5\'f5 \'ef\'ee\'f0 \f1\lang1033 Google \f0\lang1049\'e1\'f3\'e4\'e5\'f2 \'e2\'fb\'e4\'e0\'e2\'e0\'f2\'fc \'f2\'ee\'ea\'e5\'ed \'e4\'eb\'ff \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'e8 \'e4\'eb\'ff \'fd\'f2\'ee\'e3\'ee \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff, \'e3\'e4\'e5 \'e1\'f3\'e4\'e5\'f2 \'ed\'e0\'f5\'ee\'e4\'e8\'f2\'fc\'f1\'ff \'ea\'eb\'e5\'e9\'ec \f1\lang1033 sub. \par
+\f0\lang1049\'ca\'eb\'e5\'e9\'ec \f1\lang1033 sub -\f0\lang1049  \'fd\'f2\'ee \'e8 \'e5\'f1\'f2\'fc \f1\lang1033 providerId. \f0\lang1049\'dd\'f2\'ee \'ed\'e5 e-mail \'e8 \'ed\'e5 \'eb\'ee\'e3\'e8\'ed, \'e0 \f1\lang1033\'ab\f0\lang1049\'f2\'e5\'f5\'ed\'e8\'f7\'e5\'f1\'ea\'e8\'e9 ID\f1\lang1033\'bb, \f0\lang1049\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0: 113245678901234567890. \'ce\'ed \'ed\'e5 \'ec\'e5\'ed\'ff\'e5\'f2\'f1\'ff \'f1\'ee \'e2\'f0\'e5\'ec\'e5\'ed\'e5\'ec, \'e4\'e0\'e6\'e5 \'e5\'f1\'eb\'e8 \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc \'f1\'ec\'e5\'ed\'e8\'f2 e-mail/\'e8\'ec\'ff.\par
+\'cc\'ee\'e5 \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'e5 \'e2 \'e4\'e0\'eb\'fc\'ed\'e5\'e9\'f8\'e5\'ec \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'f3\'e5\'f2 \'fd\'f2\'ee\'f2 providerId, \'f7\'f2\'ee\'e1\'fb \'ed\'e0\'e4\'b8\'e6\'ed\'ee \'f3\'e7\'ed\'e0\'e2\'e0\'f2\'fc \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff \'ef\'f0\'e8 \'ea\'e0\'e6\'e4\'ee\'ec \'e7\'e0\'ef\'f0\'ee\'f1\'e5.\par
+\par
+\ul\'cf\'f0\'e0\'e2\'e8\'eb\'fc\'ed\'e5\'e5 \'e2\'f1\'e5\'e3\'ee \'f5\'f0\'e0\'ed\'e8\'f2\'fc \'ef\'e0\'f0\'f3 provider \'e8 providerId - \'f2\'e0\'ea \'e8\'f1\'ea\'eb\'fe\'f7\'e0\'fe\'f2\'f1\'ff \'ea\'ee\'eb\'eb\'e8\'e7\'e8\'e8 \'ec\'e5\'e6\'e4\'f3 \'ef\'f0\'ee\'e2\'e0\'e9\'e4\'e5\'f0\'e0\'ec\'e8.\ulnone\par
+\f1\lang1033\par
+--------------\par
+\par
+@Enumerated(EnumType.STRING)\par
+@Column(nullable = false, length = 32)\par
+private Role role = Role.USER;\par
+\par
+\f0\lang1049\'dd\'f2\'ee \'ef\'ee\'eb\'e5 \'f5\'f0\'e0\'ed\'e8\'f2 \'f0\'ee\'eb\'fc \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff \'e2 \'c1\'c4 (\'ed\'e0\'ef\'f0. USER, ADMIN) \'ea\'e0\'ea \'f1\'f2\'f0\'ee\'ea\'f3 (\'e8\'e7-\'e7\'e0 EnumType.STRING).\f1\lang1033\par
+\par
+\f0\lang1049\'c2 \'e4\'e0\'ed\'ed\'fb\'e9 \'ec\'ee\'ec\'e5\'ed\'f2 \'e2 \f1\lang1033 Security \f0\lang1049\'ed\'e5\'f2 \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'ed\'e8\'ff \'f0\'ee\'eb\'e5\'e9: \par
+authorizeHttpRequests(auth -> auth.anyRequest().authenticated())\f1\lang1033\par
+\f0\lang1049\par
+---------------\par
+\par
+@OneToMany \f2\emdash  \f0\'f3 \'ee\'e4\'ed\'ee\'e3\'ee User \'ec\'ee\'e6\'e5\'f2 \'e1\'fb\'f2\'fc \'ec\'ed\'ee\'e3\'ee Reminder\par
+\par
+mappedBy = "user" \f2\emdash  \f1\lang1033\'ab\f0\lang1049\'e2\'eb\'e0\'e4\'e5\'eb\'fc\'f6\'e5\'ec\f1\lang1033\'bb \f0\lang1049\'f1\'e2\'ff\'e7\'e8 \'ff\'e2\'eb\'ff\'e5\'f2\'f1\'ff \'ef\'ee\'eb\'e5 user \'e2 \'f1\'f3\'f9\'ed\'ee\'f1\'f2\'e8 Reminder (\'f2\'e0\'ec \'e4\'ee\'eb\'e6\'e5\'ed \'e1\'fb\'f2\'fc @ManyToOne @JoinColumn(name="user_id")).\par
+\'c7\'ed\'e0\'f7\'e8\'f2, \'e2\'ed\'e5\'f8\'ed\'e8\'e9 \'ea\'eb\'fe\'f7 \'f5\'f0\'e0\'ed\'e8\'f2\'f1\'ff \'e2 \'f2\'e0\'e1\'eb\'e8\'f6\'e5 reminders, \'e8 \'e8\'ec\'e5\'ed\'ed\'ee \'e8\'e7\'ec\'e5\'ed\'e5\'ed\'e8\'e5 reminder.user \'f0\'e5\'e0\'eb\'fc\'ed\'ee \'ec\'e5\'ed\'ff\'e5\'f2 \'c1\'c4.\par
+\par
+\b\'ca\'e0\'f1\'ea\'e0\'e4\'fb\b0\par
+cascade = \{PERSIST, MERGE\}\par
+\b PERSIST\b0 : \'ea\'ee\'e3\'e4\'e0 \'f1\'ee\'f5\'f0\'e0\'ed\'ff\'e5\'f8\'fc \'ed\'ee\'e2\'ee\'e3\'ee User, \'ed\'ee\'e2\'fb\'e5 Reminder \'e2 \'e5\'e3\'ee \'ea\'ee\'eb\'eb\'e5\'ea\'f6\'e8\'e8 \'f2\'ee\'e6\'e5 \'f1\'ee\'f5\'f0\'e0\'ed\'ff\'f2\'f1\'ff \'e0\'e2\'f2\'ee\'ec\'e0\'f2\'e8\'f7\'e5\'f1\'ea\'e8. \'c2 \'eb\'ee\'e3\'e8\'ea\'e5 \'ec\'ee\'e5\'e3\'ee \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'ff \'f2\'e0\'ea\'ee\'e5 \'e2\'f0\'ff\'e4 \'eb\'e8 \'e2\'ee\'e7\'ec\'ee\'e6\'ed\'ee, \'ed\'ee \'f7\'f2\'ee \'f1\'e4\'e5\'eb\'e0\'ed\'ee, \'f2\'ee \'f1\'e4\'e5\'eb\'e0\'ed\'ee. \'d5\'ee\'f2\'ff, \'ec\'ee\'e6\'ed\'ee \'f1\'e4\'e5\'eb\'e0\'f2\'fc \'ec\'e0\'f1\'f2\'e5\'f0-\'f0\'e5\'e3\'e8\'f1\'f2\'f0\'e0\'f6\'e8\'fe, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'f1\'ee\'e7\'e4\'e0\'b8\'f2 \f1\lang1033\'ab\f0\lang1049\'ef\'e5\'f0\'e2\'ee\'e5 \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'e5-\'ef\'f0\'e8\'ec\'e5\'f0\f1\lang1033\'bb\f0\lang1049 .\par
+\par
+\b MERGE\b0 : \'ef\'f0\'e8 merge \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff JPA \'ef\'f0\'e8\'ec\'e5\'ed\'e8\'f2 \'e8\'e7\'ec\'e5\'ed\'e5\'ed\'e8\'ff \'e8 \'ea \'e4\'ee\'f7\'e5\'f0\'ed\'e8\'ec \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'ff\'ec.\par
+\highlight1 User user = entityManager.find(User.class, 1L);\par
+user.setName("Danil G.");\par
+\par
+Reminder reminder = user.getReminders().get(0);\par
+reminder.setTitle("Buy vitamins");\par
+\par
+// \'ee\'e1\'ed\'ee\'e2\'eb\'ff\'e5\'ec (merge) \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff\par
+entityManager.merge(user);\par
+\highlight0\'d2\'ee \'e5\'f1\'f2\'fc \'e2 \'f0\'e0\'ec\'ea\'e0\'f5 \'ee\'e4\'ed\'ee\'e9 \'f2\'f0\'e0\'ed\'e7\'e0\'ea\'f6\'e8\'e8 \'ec\'e5\'ed\'ff\'e5\'ec \'e8 \f1\lang1033 User\f0\lang1049 , \'e8 \'e5\'e3\'ee \f1\lang1033 Reminder\f0\lang1049 . \'cd\'ee \'f1\'ee\'f5\'f0\'e0\'ed\'ff\'e5\'ec \'f2\'ee\'eb\'fc\'ea\'ee \f1\lang1033 User. \f0\lang1049\par
+\'c5\'f1\'eb\'e8 \'f3 User \'f1\'f2\'ee\'e8\'f2 cascade = MERGE, JPA \'ee\'e1\'ed\'ee\'e2\'e8\'f2 \'e8 User, \'e8 \'e5\'e3\'ee Reminder \'e2 \'e1\'e0\'e7\'e5.\par
+\'c5\'f1\'eb\'e8 MERGE \'f3\'e1\'f0\'e0\'f2\'fc \f2\emdash  \f0\'ee\'e1\'ed\'ee\'e2\'e8\'f2\'f1\'ff \'f2\'ee\'eb\'fc\'ea\'ee \'f1\'e0\'ec User, \'e0 \'e8\'e7\'ec\'e5\'ed\'e5\'ed\'e8\'ff \'e2 Reminder \'e1\'f3\'e4\'f3\'f2 \'ef\'f0\'ee\'e8\'e3\'ed\'ee\'f0\'e8\'f0\'ee\'e2\'e0\'ed\'fb.\par
+\par
+\'cd\'e5\'f2 \b REMOVE \b0\f2\emdash  \f0\'f3\'e4\'e0\'eb\'e5\'ed\'e8\'e5 \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff \'ed\'e5 \'ef\'ee\'f2\'ff\'ed\'e5\'f2 \'ea\'e0\'f1\'ea\'e0\'e4\'ed\'ee\'e5 \'f3\'e4\'e0\'eb\'e5\'ed\'e8\'e5 \'e2\'f1\'e5\'f5 \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'e9. \'cd\'e5\'ef\'f0\'e0\'e2\'e8\'eb\'fc\'ed\'ee\'e5 \'f0\'e5\'f8\'e5\'ed\'e8\'e5, \'ed\'ee \'f7\'f2\'ee \'e6 \'ef\'ee\'e4\'e5\'eb\'e0\'f2\'fc. \par
+\'c5\'f1\'eb\'e8 \'ef\'ee\'ef\'fb\'f2\'e0\'f2\'fc\'f1\'ff \'f3\'e4\'e0\'eb\'e8\'f2\'fc User, \'ef\'ee\'ea\'e0 \'f3 \'ed\'e5\'e3\'ee \'e5\'f1\'f2\'fc Reminder, \'c1\'c4 \'ed\'e5 \'e4\'e0\'f1\'f2 \'f3\'e4\'e0\'eb\'e8\'f2\'fc (\'ed\'e0\'f0\'f3\'f8\'e5\'ed\'e8\'e5 \'e2\'ed\'e5\'f8\'ed\'e5\'e3\'ee \'ea\'eb\'fe\'f7\'e0), \'e5\'f1\'eb\'e8 \'f1\'ef\'e5\'f6\'e8\'e0\'eb\'fc\'ed\'ee \'ed\'e5 \'ed\'e0\'f1\'f2\'f0\'ee\'e5\'ed ON DELETE CASCADE(\'ed\'e0\'f1\'f2\'f0\'e0\'e8\'e2\'e0\'e5\'f2\'f1\'ff \'ed\'e0 \'f3\'f0\'ee\'e2\'ed\'e5 \'c1\'c4).\par
+\'cd\'e0 \'f3\'f0\'ee\'e2\'ed\'e5 \'c1\'c4 \'ee\'f2\'ea\'e0\'f2\'e8\'f2\'f1\'ff \'f2\'f0\'e0\'ed\'e7\'e0\'ea\'f6\'e8\'ff, \'ed\'e0 \'f3\'f0\'ee\'e2\'ed\'e5 \f1\lang1033 Spring \f0\lang1049\'e8 \f1\lang1033 Hibernate \f0\lang1049\'e1\'f3\'e4\'f3\'f2 \'e2\'fb\'e1\'f0\'ee\'f8\'e5\'ed\'fb \'e8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'ff.\par
+\par
+--------------\par
+\par
+@PrePersist\par
+@PreUpdate\par
+private void normalize()\f1\lang9\par
+\par
+@PrePersist \f2\emdash  JPA \f0\lang1049\'e2\'fb\'e7\'ee\'e2\'e5\'f2 \'fd\'f2\'ee\'f2 \'ec\'e5\'f2\'ee\'e4 \'ef\'e5\'f0\'e5\'e4 \'ef\'e5\'f0\'e2\'ee\'e9 \'e2\'f1\'f2\'e0\'e2\'ea\'ee\'e9 \'f1\'f3\'f9\'ed\'ee\'f1\'f2\'e8 \'e2 \'c1\'c4 (\'ea\'ee\'e3\'e4\'e0 \'e2\'fb \'e4\'e5\'eb\'e0\'e5\'f2\'e5 save() \'ed\'ee\'e2\'ee\'e9 \'e7\'e0\'ef\'e8\'f1\'e8).\par
+@PreUpdate \f2\emdash  JPA \f0\'e2\'fb\'e7\'ee\'e2\'e5\'f2 \'fd\'f2\'ee\'f2 \'ec\'e5\'f2\'ee\'e4 \'ef\'e5\'f0\'e5\'e4 \'ee\'e1\'ed\'ee\'e2\'eb\'e5\'ed\'e8\'e5\'ec \'f1\'f3\'f9\'ed\'ee\'f1\'f2\'e8 \'e2 \'c1\'c4 (\'ea\'ee\'e3\'e4\'e0 \'ee\'ed\'e0 \'f1\'f2\'e0\'eb\'e0 \f1\lang1033\'ab\f0\lang1049\'e3\'f0\'ff\'e7\'ed\'ee\'e9\f1\lang1033\'bb \f0\lang1049\'e8 \'e1\'f3\'e4\'e5\'f2 \'f4\'eb\'e0\'f8\'e8\'f2\'fc\'f1\'ff).\par
+\par
+\'ec\'e5\'f2\'ee\'e4 normalize() \'e3\'e0\'f0\'e0\'ed\'f2\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'ee \'ef\'f0\'e8\'e2\'ee\'e4\'e8\'f2 \'e4\'e0\'ed\'ed\'fb\'e5 \'ea \'ea\'e0\'ed\'ee\'ed\'f3 \'ea\'e0\'e6\'e4\'fb\'e9 \'f0\'e0\'e7 \'ef\'e5\'f0\'e5\'e4 \'e7\'e0\'ef\'e8\'f1\'fc\'fe:\par
+ - email \'ee\'e1\'f0\'e5\'e7\'e0\'e5\'f2\'f1\'ff \'e8 \'ef\'f0\'e8\'e2\'ee\'e4\'e8\'f2\'f1\'ff \'ea \'ed\'e8\'e6\'ed\'e5\'ec\'f3 \'f0\'e5\'e3\'e8\'f1\'f2\'f0\'f3 \f3\u8594?\f1  \f0\lang1049\'e8\'e7\'e1\'e5\'e3\'e0\'e5\'ec \'e4\'f3\'e1\'eb\'e5\'e9 \'e2\'e8\'e4\'e0 Test@Mail / test@mail.\par
+ - providerId \'f2\'f0\'e8\'ec\'ec\'e8\'f2\'f1\'ff \'ee\'f2 \'eb\'e8\'f8\'ed\'e8\'f5 \'ef\'f0\'ee\'e1\'e5\'eb\'ee\'e2.\par
+\f1\lang9\par
+\f0\lang1049\'dd\'f2\'e8 \'ea\'ee\'eb\'e1\'fd\'ea\'e8 \'f1\'f0\'e0\'e1\'e0\'f2\'fb\'e2\'e0\'fe\'f2 \'f2\'ee\'eb\'fc\'ea\'ee \'ef\'f0\'e8 JPA-\'ee\'ef\'e5\'f0\'e0\'f6\'e8\'ff\'f5 (\'f7\'e5\'f0\'e5\'e7 EntityManager/\'f0\'e5\'ef\'ee\'e7\'e8\'f2\'ee\'f0\'e8\'e8). \'d1\'fb\'f0\'fb\'e5 native SQL \'ee\'e1\'f5\'ee\'e4\'ff\'f2 \'e8\'f5.\f1\lang9\par
+\par
+\f0\lang1049 -------------\par
+\par
+\f1\lang1033 equals() \par
+\par
+\f0\lang1049\'cf\'f0\'ee\'ea\'f1\'e8-\'e1\'e5\'e7\'ee\'ef\'e0\'f1\'ed\'ee: \'f1\'f0\'e0\'e2\'ed\'e5\'ed\'e8\'e5 \'ea\'eb\'e0\'f1\'f1\'ee\'e2 \'f7\'e5\'f0\'e5\'e7 Hibernate.getClass(this)/Hibernate.getClass(o) \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'ee \'f0\'e0\'e1\'ee\'f2\'e0\'e5\'f2 \'f1 Hibernate-\'ef\'f0\'ee\'ea\'f1\'e0\'ec\'e8 (\'e2 \'ee\'f2\'eb\'e8\'f7\'e8\'e5 \'ee\'f2 instanceof/getClass()), \'ed\'e5 \'eb\'ee\'ec\'e0\'ff \'f1\'e8\'ec\'ec\'e5\'f2\'f0\'e8\'fe equals.\par
+\'d7\'f2\'ee \'fd\'f2\'ee \'e7\'ed\'e0\'f7\'e8\'f2: \par
+\'ca\'ee\'e3\'e4\'e0 \'f1\'e2\'ff\'e7\'fc @ManyToOne/@OneToMany \'eb\'e5\'ed\'e8\'e2\'ee \'e7\'e0\'e3\'f0\'f3\'e6\'e0\'e5\'f2\'f1\'ff, Hibernate \'ef\'ee\'e4\'f1\'ee\'e2\'fb\'e2\'e0\'e5\'f2 \'ef\'f0\'ee\'ea\'f1\'e8-\'ee\'e1\'fa\'e5\'ea\'f2 \f2\emdash  \f0\'ef\'ee\'e4\'f2\'e8\'ef \'f1\'f3\'f9\'ed\'ee\'f1\'f2\'e8, \'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0 User$HibernateProxy. \'dd\'f2\'ee \ldblquote\'ee\'e1\'b8\'f0\'f2\'ea\'e0\rdblquote , \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'ef\'ee\'e4\'e3\'f0\'f3\'e7\'e8\'f2 \'e4\'e0\'ed\'ed\'fb\'e5 \'ef\'f0\'e8 \'ee\'e1\'f0\'e0\'f9\'e5\'ed\'e8\'e8.\par
+\'cf\'f0\'ee\'e1\'eb\'e5\'ec\'e0 \'f1 getClass() \'e8 instanceof:\par
+getClass() \'f3 \'ef\'f0\'ee\'ea\'f1\'e8 \f3\u8800?\f1  \f0\lang1049\'f0\'e5\'e0\'eb\'fc\'ed\'fb\'e9 \'ea\'eb\'e0\'f1\'f1.\par
+instanceof \'e2 \'ee\'e4\'ed\'f3 \'f1\'f2\'ee\'f0\'ee\'ed\'f3 \'ec\'ee\'e6\'e5\'f2 \'e4\'e0\'e2\'e0\'f2\'fc true, \'ed\'ee \'ef\'ee\'ff\'e2\'ff\'f2\'f1\'ff \'ed\'e0\'f0\'f3\'f8\'e5\'ed\'e8\'ff \'f1\'e8\'ec\'ec\'e5\'f2\'f0\'e8\'e8.\par
+\'d3\'f2\'e8\'eb\'e8\'f2\'e0 Hibernate.getClass(x) \ldblquote\'f0\'e0\'e7\'e2\'ee\'f0\'e0\'f7\'e8\'e2\'e0\'e5\'f2\rdblquote  \'ef\'f0\'ee\'ea\'f1\'e8 \'e8 \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 \'f0\'e5\'e0\'eb\'fc\'ed\'fb\'e9 \'ea\'eb\'e0\'f1\'f1 \'f1\'f3\'f9\'ed\'ee\'f1\'f2\'e8 (User.class), \'e4\'e0\'e6\'e5 \'e5\'f1\'eb\'e8 \'ee\'e1\'fa\'e5\'ea\'f2 \f2\emdash  \f0\'ef\'f0\'ee\'ea\'f1\'e8.\par
+\'c2\'fb\'e2\'ee\'e4:\par
+\'c8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'ed\'e8\'e5 Hibernate.getClass(...) \'e2 equals \'f3\'f1\'f2\'f0\'e0\'ed\'ff\'e5\'f2 \'eb\'ee\'e6\'ed\'fb\'e5 \'ed\'e5\'f0\'e0\'e2\'e5\'ed\'f1\'f2\'e2\'e0 \'e8 \'ed\'e0\'f0\'f3\'f8\'e5\'ed\'e8\'ff \'f1\'e8\'ec\'ec\'e5\'f2\'f0\'e8\'e8, \'ea\'ee\'f2\'ee\'f0\'fb\'e5 \'ef\'ee\'ff\'e2\'eb\'ff\'fe\'f2\'f1\'ff \'e8\'e7-\'e7\'e0 \'ef\'f0\'ee\'ea\'f1\'e8, \'e8 \'e4\'e5\'eb\'e0\'e5\'f2 \'f1\'f0\'e0\'e2\'ed\'e5\'ed\'e8\'e5 \'f1\'f3\'f9\'ed\'ee\'f1\'f2\'e5\'e9 \'ed\'e0\'e4\'b8\'e6\'ed\'fb\'ec \'e2 \'f3\'f1\'eb\'ee\'e2\'e8\'ff\'f5 \'eb\'e5\'ed\'e8\'e2\'ee\'e9 \'e7\'e0\'e3\'f0\'f3\'e7\'ea\'e8.\par
+\par
+\'cf\'f0\'e0\'e2\'e8\'eb\'fc\'ed\'ee \'f1\'e4\'e5\'eb\'e0\'ed\'ee \'f1\'f0\'e0\'e2\'ed\'e5\'ed\'e8\'e5 \'f2\'ee\'eb\'fc\'ea\'ee \'ef\'ee \f1\lang1033 Id. \par
+\f0\lang1049\'d2\'e0\'ea\'e6\'e5 \'ef\'f0\'e8 \'f1\'f0\'e0\'e2\'ed\'e5\'ed\'e8\'e8 \f1\lang1033 id \f0\lang1049\'f1\'ed\'e0\'f7\'e0\'eb\'e0 \'e8\'e4\'e5\'f2 \'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e0 \'ed\'e0 \f1\lang1033 null, \f0\lang1049\'ef\'ee\'f2\'ee\'ec\'f3 \'f7\'f2\'ee \'f3 \f1\lang1033 transient \f0\lang1049\'ee\'e1\'fa\'e5\'ea\'f2\'ee\'e2 \f1\lang1033 id \f0\lang1049\'ec\'ee\'e3 \'e5\'f9\'e5 \'ed\'e5 \'ef\'f0\'e8\'f1\'e2\'ee\'e8\'f2\'fc\'f1\'ff, \'e8 \f1\lang1033 equals \f0\lang1049\'f1\'f0\'e0\'e1\'ee\'f2\'e0\'eb \'e1\'fb \'ed\'e5\'ef\'f0\'e0\'e2\'e8\'eb\'fc\'ed\'ee. \par
+\par
+---------\par
+\par
+@Override\par
+public int hashCode() \{\par
+    return getClass().hashCode();\par
+\}\par
+\par
+\'c5\'f1\'eb\'e8 \'e4\'e2\'e0 \'ee\'e1\'fa\'e5\'ea\'f2\'e0 \'f0\'e0\'e2\'ed\'fb \'ef\'ee equals, \'ee\'ed\'e8 \'ee\'e1\'ff\'e7\'e0\'ed\'fb \'e8\'ec\'e5\'f2\'fc \'ee\'e4\'e8\'ed\'e0\'ea\'ee\'e2\'fb\'e9 hashCode.\par
+\'cd\'ee \'ee\'e1\'f0\'e0\'f2\'ed\'ee\'e5 \f2\emdash  \f0\'ed\'e5 \'ee\'e1\'ff\'e7\'e0\'f2\'e5\'eb\'fc\'ed\'ee.\par
+\par
+getClass() \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 Class-\'ee\'e1\'fa\'e5\'ea\'f2 \'f2\'e5\'ea\'f3\'f9\'e5\'e3\'ee \'fd\'ea\'e7\'e5\'ec\'ef\'eb\'ff\'f0\'e0.\par
+\'cd\'e0\'ef\'f0\'e8\'ec\'e5\'f0:\par
+\'e4\'eb new User() \f3\u8594?\f1  User.class\par
+\f0\lang1049\'e4\'eb\'ff new Reminder() \f3\u8594?\f1  Reminder.class\par
+\f0\lang1049\'c4\'e0\'eb\'e5\'e5 \'e1\'e5\'f0\'b8\'f2\'f1\'ff hashCode \'f1\'e0\'ec\'ee\'e3\'ee \'ea\'eb\'e0\'f1\'f1\'e0, \'f2\'ee \'e5\'f1\'f2\'fc \'e2\'fb\'f7\'e8\'f1\'eb\'ff\'e5\'f2\'f1\'ff \'ed\'e0 \'f3\'f0\'ee\'e2\'ed\'e5 \'f2\'e8\'ef\'e0, \'e0 \'ed\'e5 \'ef\'ee\'eb\'e5\'e9.\par
+\'cf\'f0\'e8\'ec\'e5\'f0\'ed\'ee \'fd\'ea\'e2\'e8\'e2\'e0\'eb\'e5\'ed\'f2\'ed\'ee:\par
+\highlight1 return User.class.hashCode();\highlight0\par
+\par
+\'d2\'ee \'e5\'f1\'f2\'fc \'e2 \'ec\'ee\'e5\'ec \'f1\'eb\'f3\'f7\'e0\'e5 \'e2\'f1\'e5 \'ee\'e1\'fa\'e5\'ea\'f2\'fb \'ee\'e4\'ed\'ee\'e3\'ee \'ea\'eb\'e0\'f1\'f1\'e0 \'e1\'f3\'e4\'f3\'f2 \'e8\'ec\'e5\'f2\'fc \'ee\'e4\'e8\'ed\'e0\'ea\'ee\'e2\'fb\'e9 hashCode,\par
+\'e0 \'ee\'e1\'fa\'e5\'ea\'f2\'fb \'f0\'e0\'e7\'ed\'fb\'f5 \'ea\'eb\'e0\'f1\'f1\'ee\'e2 \f2\emdash  \f0\'f0\'e0\'e7\'ed\'fb\'e5. \'c2 JPA-\'f1\'f3\'f9\'ed\'ee\'f1\'f2\'ff\'f5 \'f2\'e0\'ea \'f7\'e0\'f1\'f2\'ee \'ef\'e8\'f8\'f3\'f2 \'e2 \'ef\'e0\'f0\'e5 \'f1 equals, \'ea\'ee\'f2\'ee\'f0\'fb\'e9 \'f1\'f0\'e0\'e2\'ed\'e8\'e2\'e0\'e5\'f2 \'f2\'ee\'eb\'fc\'ea\'ee id.\par
+\'c7\'e4\'e5\'f1\'fc \'e8\'e4\'e5\'ff \'f2\'e0\'ea\'e0\'ff:\par
+ - \'ef\'ee\'ea\'e0 id == null (\'ee\'e1\'fa\'e5\'ea\'f2 \'e5\'f9\'b8 \'ed\'e5 \'f1\'ee\'f5\'f0\'e0\'ed\'b8\'ed) \f2\emdash  equals \f0\'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 false \'e4\'eb\'ff \'eb\'fe\'e1\'fb\'f5 \'e4\'e2\'f3\'f5 transient-\'ee\'e1\'fa\'e5\'ea\'f2\'ee\'e2;\par
+ - hashCode \'ef\'f0\'e8 \'fd\'f2\'ee\'ec \'f4\'e8\'ea\'f1\'e8\'f0\'ee\'e2\'e0\'ed \'ed\'e0 \'f3\'f0\'ee\'e2\'ed\'e5 \'ea\'eb\'e0\'f1\'f1\'e0 \f3\u8594?\f1  \f0\lang1049\'ed\'e5 \'ed\'e0\'f0\'f3\'f8\'e0\'e5\'f2\'f1\'ff \'ea\'ee\'ed\'f2\'f0\'e0\'ea\'f2 equals/hashCode, \'e4\'e0\'e6\'e5 \'e5\'f1\'eb\'e8 id \'ef\'ee\'ff\'e2\'e8\'f2\'f1\'ff \'ef\'ee\'e7\'e6\'e5.\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\f1\lang1033\par
+\par
+\f0\lang1049\par
+\par
+\f1\lang9\par
+\par
+\par
+}
+ 

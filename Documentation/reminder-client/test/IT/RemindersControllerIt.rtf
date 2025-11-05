@@ -1,0 +1,159 @@
+{\rtf1\ansi\ansicpg1251\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset204 Calibri;}{\f1\fnil\fcharset1 Cambria Math;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil Calibri;}}
+{\colortbl ;\red0\green176\blue80;\red255\green0\blue0;}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang1049\'d2\'e8\'ef: MVC integration test (full Spring Boot context, MockMvc, Spring Security).\par
+\'d6\'e5\'eb\'fc: \'ef\'f0\'ee\'e2\'e5\'f0\'e8\'f2\'fc \'f1\'e2\'ff\'e7\'ea\'f3 Controller \f1\u8594?\f2  Security \f1\u8594?\f2  MVC \f1\u8594?\f2  Advice \f0\lang1049\'e1\'e5\'e7 \'f0\'e5\'e0\'eb\'fc\'ed\'ee\'e3\'ee \'f1\'e5\'f0\'e2\'e5\'f0\'e0/\'e2\'ed\'e5\'f8\'ed\'e8\'f5 \'f1\'e8\'f1\'f2\'e5\'ec.\par
+\'c8\'ed\'f1\'f2\'f0\'f3\'ec\'e5\'ed\'f2\'fb: @SpringBootTest + @AutoConfigureMockMvc, MockMvc, SecurityMockMvcRequestPostProcessors, \'ec\'ee\'ea\'e8 RestClient.\f2\lang9\par
+\f0\lang1049\par
+getRemindersSortedByTitle\par
+\par
+shouldRenderMain_withDefaults_whenAuthenticatedAndHasAccessToken()\par
+\cf1\'d1\'e4\'e5\'eb\'e0\'ed\cf0  1) \'d1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'fb\'e9 \'ef\'f3\'f2\'fc: \'e4\'e5\'f4\'ee\'eb\'f2\'ed\'fb\'e5 \'ef\'e0\'f0\'e0\'ec\'e5\'f2\'f0\'fb\par
+\'ca\'ee\'e3\'e4\'e0: GET /client/reminder/main/bytitle \'e1\'e5\'e7 \'ef\'e0\'f0\'e0\'ec\'e5\'f2\'f0\'ee\'e2; \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed; \'f3 \'ea\'eb\'e8\'e5\'ed\'f2\'e0 \'e5\'f1\'f2\'fc accessToken; RestClient \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 \'ed\'e5\'ef\'f3\'f1\'f2\'f3\'fe \'f1\'f2\'f0\'e0\'ed\'e8\'f6\'f3.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=200, view="main".\par
+\'c2 model: reminders (\'f0\'e0\'e7\'ec\'e5\'f0 \'f1\'ee\'e2\'ef\'e0\'e4\'e0\'e5\'f2 \'f1 \'ea\'ee\'ed\'f2\'e5\'ed\'f2\'ee\'ec), currentPage, totalPages, size=3 (\'e4\'e5\'f4\'ee\'eb\'f2), sort="bytitle", auth \'ef\'f0\'e8\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'e5\'f2, idToken \'e8 accessToken \'ed\'e5\'ef\'f3\'f1\'f2\'fb\'e5.\par
+\par
+RestClient \'e2\'fb\'e7\'e2\'e0\'ed 1 \'f0\'e0\'e7 \'f1 (0,3).\par
+\par
+\par
+shouldRenderMain_withCustomPagination_whenAuthenticatedAndHasAccessToken()\par
+\cf1\'d1\'e4\'e5\'eb\'e0\'ed\cf0  2) \'cf\'e5\'f0\'e5\'ee\'ef\'f0\'e5\'e4\'e5\'eb\'e5\'ed\'e8\'e5 \'ef\'e0\'e3\'e8\'ed\'e0\'f6\'e8\'e8\par
+\'ca\'ee\'e3\'e4\'e0: GET \'f1 page=2&size=5; \'ee\'f1\'f2\'e0\'eb\'fc\'ed\'ee\'e5 \'ea\'e0\'ea \'e2 \'f1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'ee\'ec \'ef\'f3\'f2\'e8.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=200, view="main".\par
+\'c2 model: size=5, currentPage \'f0\'e0\'e2\'e5\'ed number \'e8\'e7 \'ee\'f2\'e2\'e5\'f2\'e0, \'ee\'f1\'f2\'e0\'eb\'fc\'ed\'fb\'e5 \'ef\'ee\'eb\'ff \'ef\'f0\'e8\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'fe\'f2.\par
+RestClient \'e2\'fb\'e7\'e2\'e0\'ed 1 \'f0\'e0\'e7 \'f1 (2,5).\par
+\par
+3) \'cf\'f3\'f1\'f2\'e0\'ff \'e2\'fb\'e1\'ee\'f0\'ea\'e0\par
+\'ca\'ee\'e3\'e4\'e0: \'e2\'f1\'b8 \'ea\'e0\'ea \'e2 \'f1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'ee\'ec \'ef\'f3\'f2\'e8, \'ed\'ee RestClient \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 content=[].\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=200, view="main".\par
+\'c2 model: reminders \'ef\'f3\'f1\'f2, \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'e5 currentPage/totalPages/size, sort="bytitle", \'e5\'f1\'f2\'fc auth/idToken/accessToken.\par
+RestClient \'e2\'f1\'b8 \'f2\'e0\'ea \'e6\'e5 1 \'f0\'e0\'e7.\par
+\par
+4) \'c8\'ed\'e2\'e0\'f0\'e8\'e0\'ed\'f2 \'f1\'ee\'f0\'f2\'e8\'f0\'ee\'e2\'ea\'e8\par
+\'ca\'ee\'e3\'e4\'e0: \'eb\'fe\'e1\'ee\'e9 \'f3\'f1\'ef\'e5\'f8\'ed\'fb\'e9 \'ea\'e5\'e9\'f1.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec: model["sort"] \'e2\'f1\'e5\'e3\'e4\'e0 \'f1\'f2\'f0\'ee\'e3\'ee "bytitle".\par
+\par
+\par
+shouldRenderMain_whenUnauthenticated_thenNoDataAndNoClientCalls()\par
+\cf1\'d1\'e4\'e5\'eb\'e0\'ed \cf0 5) \cf2  \cf0\'cd\'e5\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc\par
+\'ca\'ee\'e3\'e4\'e0: authentication=null (\'e8\'eb\'e8 isAuthenticated=false).\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=200, view="main".\par
+\'c2 model \'ed\'e5\'f2 reminders/currentPage/totalPages/size/sort/idToken/accessToken/auth.\par
+RestClient \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'eb\'f1\'ff.\par
+\par
+\par
+shouldRenderMain_whenAuthenticatedButNoAuthorizedClient_thenNoDataAndNoClientCalls()\par
+\cf1\'d1\'e4\'e5\'eb\'e0\'ed \cf0 6) \'c0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed, \'ed\'ee authorizedClientService \'e2\'e5\'f0\'ed\'f3\'eb null\par
+\'ca\'ee\'e3\'e4\'e0: \'e5\'f1\'f2\'fc authentication, \'ed\'ee loadAuthorizedClient(...) -> null.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=200, view="main".\par
+\'c2 model \'ed\'e5\'f2 \'f2\'ee\'ea\'e5\'ed\'ee\'e2 \'e8 \'e1\'e8\'e7\'ed\'e5\'f1-\'e0\'f2\'f0\'e8\'e1\'f3\'f2\'ee\'e2.\par
+RestClient \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'eb\'f1\'ff.\par
+\par
+7) \'c0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed, \'ea\'eb\'e8\'e5\'ed\'f2 \'e5\'f1\'f2\'fc, \'ed\'ee \'ed\'e5\'f2 accessToken\par
+\'ca\'ee\'e3\'e4\'e0: authorizedClientService \'e2\'e5\'f0\'ed\'f3\'eb \'ea\'eb\'e8\'e5\'ed\'f2\'e0 \'e1\'e5\'e7 \'f2\'ee\'ea\'e5\'ed\'e0.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec: \'ea\'e0\'ea \'e2 (6) \f3\emdash  \f0\'f1\'f2\'f0\'e0\'ed\'e8\'f6\'e0 \'f0\'e5\'ed\'e4\'e5\'f0\'e8\'f2\'f1\'ff, \'ed\'ee \'e1\'e5\'e7 \'e4\'e0\'ed\'ed\'fb\'f5 \'e8 RestClient-\'e2\'fb\'e7\'ee\'e2\'e0.\par
+\par
+8) \'c2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'ff principal: OIDC \'ee\'e1\'ff\'e7\'e0\'f2\'e5\'eb\'e5\'ed \'e4\'eb\'ff idToken\par
+\'ca\'ee\'e3\'e4\'e0: \'f3\'f1\'ef\'e5\'f8\'ed\'fb\'e9 \'ef\'f3\'f2\'fc \'f1 \'ed\'e0\'f1\'f2\'ee\'ff\'f9\'e8\'ec OidcUser.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec: \'e2 model \'ef\'f0\'e8\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'e5\'f2 \'ed\'e5\'ef\'f3\'f1\'f2\'ee\'e9 idToken. (\'dd\'f2\'ee \'f1\'f2\'f0\'e0\'f5\'ee\'e2\'ea\'e0 \'ee\'f2 \'f0\'e5\'e3\'f0\'e5\'f1\'f1\'e8\'e9, \'ea\'ee\'e3\'e4\'e0 \'ec\'ee\'e3\'f3\'f2 \'ef\'ee\'e4\'ec\'e5\'ed\'e8\'f2\'fc principal.)\par
+\par
+\par
+shouldRenderAdviceErrorPage_whenRestClientResponseExceptionThrown()\par
+\cf1\'d1\'e4\'e5\'eb\'e0\'ed \cf0 9) \'ce\'f8\'e8\'e1\'ea\'e0 RestClient (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, 5xx/\'e8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'e5)\par
+\'ca\'ee\'e3\'e4\'e0: \'e2\'f1\'b8 \'ea\'e0\'ea \'e2 \'f1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'ee\'ec \'ef\'f3\'f2\'e8, \'ed\'ee restClient.findAllSortedByTitle(...) \'e1\'f0\'ee\'f1\'e0\'e5\'f2 \'e8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'e5.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+\'c5\'f1\'eb\'e8 \'ed\'e5\'f2 \'f1\'ee\'e1\'f1\'f2\'e2\'e5\'ed\'ed\'ee\'e3\'ee @ControllerAdvice \'e2 client-service: \'ee\'e6\'e8\'e4\'e0\'e5\'ec 5xx (ServletException \'f6\'e5\'ef\'eb\'ff\'e5\'f2\'f1\'ff \'e2\'e2\'e5\'f0\'f5).\par
+\'c5\'f1\'eb\'e8 \'e5\'f1\'f2\'fc \'e3\'eb\'ee\'e1\'e0\'eb\'fc\'ed\'fb\'e9 \'f5\'fd\'ed\'e4\'eb\'e5\'f0: \'ee\'e6\'e8\'e4\'e0\'e5\'ec \'e2\'e0\'f8\'f3 \f2\lang1033\'ab\f0\lang1049\'f1\'f2\'f0\'e0\'ed\'e8\'f6\'f3 \'ee\'f8\'e8\'e1\'ea\'e8\f2\lang1033\'bb/JSON \f0\lang1049\'e8 \'ed\'f3\'e6\'ed\'fb\'e9 status \f3\emdash  \f0\'e7\'e0\'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e9\'f2\'e5 \'fd\'f2\'ee \'ef\'ee\'e2\'e5\'e4\'e5\'ed\'e8\'e5.\par
+\par
+\'c2 \'eb\'fe\'e1\'ee\'ec \'f1\'eb\'f3\'f7\'e0\'e5 \f3\emdash  \f0\'ed\'e5\'f2 \f2\lang1033\'ab\f0\lang1049\'f7\'e0\'f1\'f2\'e8\'f7\'ed\'ee \'e7\'e0\'ef\'ee\'eb\'ed\'e5\'ed\'ed\'ee\'e9\f2\lang1033\'bb \f0\lang1049\'ec\'ee\'e4\'e5\'eb\'e8 \'f2\'ee\'ea\'e5\'ed\'e0\'ec\'e8/\'e4\'e0\'ed\'ed\'fb\'ec\'e8: \'e0\'f2\'f0\'e8\'e1\'f3\'f2\'fb \'e1\'e8\'e7\'ed\'e5\'f1-\'ec\'ee\'e4\'e5\'eb\'e8 \'ed\'e5 \'e4\'ee\'e1\'e0\'e2\'eb\'ff\'fe\'f2\'f1\'ff \'ef\'ee\'f1\'eb\'e5 \'ef\'e0\'e4\'e5\'ed\'e8\'ff RestClient.\par
+\par
+10) \'ce\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'e8\'e5 \'eb\'e8\'f8\'ed\'e8\'f5 \'ee\'e1\'f0\'e0\'f9\'e5\'ed\'e8\'e9\par
+\'ca\'ee\'e3\'e4\'e0: \'eb\'fe\'e1\'ee\'e9 \'f3\'f1\'ef\'e5\'f8\'ed\'fb\'e9 \'e2\'fb\'e7\'ee\'e2.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec: RestClient \'e2\'fb\'e7\'e2\'e0\'ed \'f0\'ee\'e2\'ed\'ee \'ee\'e4\'e8\'ed \'f0\'e0\'e7; \'ef\'f0\'e8 \'ef\'ee\'e2\'f2\'ee\'f0\'ed\'fb\'f5 \'f7\'f2\'e5\'ed\'e8\'ff\'f5 \'ec\'ee\'e4\'e5\'eb\'e8/\'f0\'e5\'ed\'e4\'e5\'f0\'e8\'ed\'e3\'e0\'f5 \'ef\'ee\'e2\'f2\'ee\'f0\'ed\'fb\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 \'ed\'e5\'f2.\par
+\par
+11) \'cf\'ee\'e3\'f0\'e0\'ed\'e8\'f7\'ed\'fb\'e5 \'f1\'f2\'f0\'e0\'ed\'e8\'f6\'fb (\'ea\'f0\'e0\'ff \'ef\'e0\'e3\'e8\'ed\'e0\'f6\'e8\'e8)\par
+\'ca\'ee\'e3\'e4\'e0: RestClient \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 \f2\lang1033\'ab\f0\lang1049\'ea\'f0\'e0\'e9\f2\lang1033\'bb \f3\emdash  \f0\lang1049\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, number=last, totalPages>=1, content \'ec\'ee\'e6\'e5\'f2 \'e1\'fb\'f2\'fc \'ef\'f3\'f1\'f2/\'ed\'e5 \'ef\'f3\'f1\'f2.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec: \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'ea\'e0\'ea \'e5\'f1\'f2\'fc \'ef\'f0\'ee\'ea\'e8\'e4\'fb\'e2\'e0\'e5\'f2 \'f7\'e8\'f1\'eb\'e0 \'e2 \'ec\'ee\'e4\'e5\'eb\'fc; \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'ff \'e2 \'ec\'ee\'e4\'e5\'eb\'e8 \'f1\'ee\'e2\'ef\'e0\'e4\'e0\'fe\'f2 \'f1 \'ee\'f2\'e2\'e5\'f2\'ee\'ec RestClient (\'ea\'ee\'ed\'f2\'f0\'e0\'ea\'f2 \'ee\'f2\'ee\'e1\'f0\'e0\'e6\'e5\'ed\'e8\'ff).\par
+\par
+\par
+\f2\lang1033 ========================================================\par
+\par
+createNewReminder\par
+\par
+\cf1\f0\lang1049\'d1\'e4\'e5\'eb\'e0\'ed\cf0  \f2\lang1033 1) \f0\lang1049\'d1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'fb\'e9 \'ef\'f3\'f2\'fc (\'e2\'e0\'eb\'e8\'e4\'ed\'e0\'ff \'f4\'ee\'f0\'ec\'e0)\par
+\'ca\'ee\'e3\'e4\'e0: POST /client/reminder/create c title, description, remind=2025-11-05 (\'e2\'e0\'eb\'e8\'e4\'ed\'e0\'ff \'e4\'e0\'f2\'e0); CSRF \'e4\'ee\'e1\'e0\'e2\'eb\'e5\'ed (\'e5\'f1\'eb\'e8 \'e2\'ea\'eb\'fe\'f7\'b8\'ed). restClient.createReminder(...) \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 Result.success(ReminderDto)\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=302 \'e8 redirect:/client/reminder/main/bytitle.\par
+\'cc\'ee\'e4\'e5\'eb\'fc \'ed\'e5 \'e7\'e0\'ef\'ee\'eb\'ed\'ff\'e5\'f2\'f1\'ff (\'ed\'e8 errors, \'ed\'e8 errorMessage, \'ed\'e8 echo-\'ef\'ee\'eb\'ff).\par
+restClient.createReminder(...) \'e2\'fb\'e7\'e2\'e0\'ed \'f0\'ee\'e2\'ed\'ee \'ee\'e4\'e8\'ed \'f0\'e0\'e7 c NewReminderPayload(title, description, remindInstant).\par
+remindInstant = LocalDate(2025-11-05).atStartOfDay(ZoneId.systemDefault()).toInstant() (\'f2\'ee\'f7\'ed\'ee\'e5 \'f1\'ee\'ee\'f2\'e2\'e5\'f2\'f1\'f2\'e2\'e8\'e5).\par
+\par
+\cf1\'d1\'e4\'e5\'eb\'e0\'ed\cf0  2) \'cb\'ee\'ea\'e0\'eb\'fc\'ed\'e0\'ff \'f1\'e5\'f0\'e2\'e5\'f0\'ed\'e0\'ff \'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e0 (remind == null)\par
+\'ca\'ee\'e3\'e4\'e0: POST \'e1\'e5\'e7 remind \'e8\'eb\'e8 \'f1 \'ed\'e5\'e2\'e0\'eb\'e8\'e4\'ed\'fb\'ec \'f4\'ee\'f0\'ec\'e0\'f2\'ee\'ec \'e4\'e0\'f2\'fb (\'e1\'f0\'ee\'f1\'e0\'e5\'f2\'f1\'ff \'e1\'e8\'ed\'e4\'e8\'ed\'e3 \'e8 \'ef\'ee\'eb\'e5 \'f1\'f2\'e0\'ed\'ee\'e2\'e8\'f2\'f1\'ff null).\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=200, view="new-reminder-page".\par
+\'c2 model:\par
+errors \'f1\'ee\'e4\'e5\'f0\'e6\'e8\'f2 \'ea\'eb\'fe\'f7 remind \'f1\'ee \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'e5\'ec ["Remind is required"].\par
+errorMessage = "Invalid input data".\par
+echo-\'ef\'ee\'eb\'ff: title \'e8 description \'e8\'e7 \'f4\'ee\'f0\'ec\'fb, remind = null.\par
+restClient.createReminder(...) \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'eb\'f1\'ff.\par
+\par
+3) \'c2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'ff \'f1\'ee \'f1\'f2\'ee\'f0\'ee\'ed\'fb REST (Bean Validation)\par
+\'ca\'ee\'e3\'e4\'e0: \'f4\'ee\'f0\'ec\'e0 \'e2\'e0\'eb\'e8\'e4\'ed\'e0 \'ef\'ee \'eb\'ee\'ea\'e0\'eb\'fc\'ed\'fb\'ec \'ef\'f0\'e0\'e2\'e8\'eb\'e0\'ec (\'e5\'f1\'f2\'fc remind), \'ed\'ee restClient.createReminder(...) \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 Result.error(ApiError) \'f1 \'ef\'ee\'e4\'f0\'ee\'e1\'ed\'ee\'f1\'f2\'ff\'ec\'e8 details (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, title: ["size must be \f1\u8804?\f2  100"]).\par
+\f0\lang1049\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=200, view="new-reminder-page".\par
+\'c2 model:\par
+errors \'f1\'ee\'e2\'ef\'e0\'e4\'e0\'e5\'f2 \'f1\'ee \'f1\'f2\'f0\'f3\'ea\'f2\'f3\'f0\'ee\'e9 \'e8\'e7 ApiError.details() (\'ea\'eb\'fe\'f7\'e8 \f3\emdash  \f0\'e8\'ec\'e5\'ed\'e0 \'ef\'ee\'eb\'e5\'e9 \'f4\'ee\'f0\'ec\'fb).\par
+errorMessage \'e8\'e7 ApiError.message().\par
+echo-\'ef\'ee\'eb\'ff: title, description, remind \f3\emdash  \f0\'f0\'ee\'e2\'ed\'ee \'f2\'e5, \'f7\'f2\'ee \'ef\'f0\'e8\'f1\'eb\'e0\'eb\'e8.\par
+restClient.createReminder(...) \'e2\'fb\'e7\'e2\'e0\'ed 1 \'f0\'e0\'e7 \'f1 \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'ec NewReminderPayload.\par
+\par
+\cf1\'d1\'e4\'e5\'eb\'e0\'ed\cf0  4) \'cd\'e5\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc (\'ee\'ef\'f6\'e8\'ee\'ed\'e0\'eb\'fc\'ed\'ee, \'e7\'e0\'e2\'e8\'f1\'e8\'f2 \'ee\'f2 Security)\par
+\'c2\'fb\'e1\'e5\'f0\'e8 \'ef\'ee\'e2\'e5\'e4\'e5\'ed\'e8\'e5 \'ef\'ee \'f1\'e2\'ee\'e5\'e9 \'ea\'ee\'ed\'f4\'e8\'e3\'f3\'f0\'e0\'f6\'e8\'e8 \'e1\'e5\'e7\'ee\'ef\'e0\'f1\'ed\'ee\'f1\'f2\'e8.\par
+\'c2\'e0\'f0\'e8\'e0\'ed\'f2 \'c0 (\'ec\'e0\'f0\'f8\'f0\'f3\'f2 \'e7\'e0\'f9\'e8\'f9\'b8\'ed CS/SecRules): 302 \'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2 \'ed\'e0 \'eb\'ee\'e3\'e8\'ed / \'e8\'eb\'e8 401/403.\par
+\'c2\'e0\'f0\'e8\'e0\'ed\'f2 \'c1 (\'ec\'e0\'f0\'f8\'f0\'f3\'f2 \'ee\'f2\'ea\'f0\'fb\'f2): \'f0\'e0\'e1\'ee\'f2\'e0\'e5\'f2 \'ea\'e0\'ea \'e2 (2) \'e8\'eb\'e8 (3) \'e2 \'e7\'e0\'e2\'e8\'f1\'e8\'ec\'ee\'f1\'f2\'e8 \'ee\'f2 \'f2\'e5\'eb\'e0 \'e7\'e0\'ef\'f0\'ee\'f1\'e0.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec: \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'e9 \'f1\'f2\'e0\'f2\'f3\'f1/\'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2 \'e8 \'ee\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'e8\'e5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 restClient \'e2 \'f1\'eb\'f3\'f7\'e0\'e5 \'e1\'eb\'ee\'ea\'e8\'f0\'ee\'e2\'ea\'e8.\par
+\par
+5) CSRF (\'e5\'f1\'eb\'e8 \'e2\'ea\'eb\'fe\'f7\'b8\'ed \'e2 \'ef\'f0\'ee\'e5\'ea\'f2\'e5)\par
+\'ca\'ee\'e3\'e4\'e0: POST \'e1\'e5\'e7 CSRF \'f2\'ee\'ea\'e5\'ed\'e0.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=403 (\'e8\'eb\'e8 \'e4\'f0\'f3\'e3\'ee\'e9, \'ea\'e0\'ea \'e2 \'f2\'e2\'ee\'e5\'e9 \'ef\'ee\'eb\'e8\'f2\'e8\'ea\'e5).\par
+restClient.createReminder(...) \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'eb\'f1\'ff.\par
+\par
+\cf1\'d1\'e4\'e5\'eb\'e0\'ed\cf0  6) \'ce\'f8\'e8\'e1\'ea\'e0 \'f2\'f0\'e0\'ed\'f1\'ef\'ee\'f0\'f2\'ed\'ee\'e3\'ee \'f1\'eb\'ee\'ff/\'e8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'e5 \'e8\'e7 RestClient\par
+\'ca\'ee\'e3\'e4\'e0: \'f4\'ee\'f0\'ec\'e0 \'e2\'e0\'eb\'e8\'e4\'ed\'e0, \'ed\'ee restClient.createReminder(...) \'e1\'f0\'ee\'f1\'e0\'e5\'f2 RestClientResponseException/HttpStatusCodeException (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, 502) \f3\emdash  \f0\'ef\'ee\'ef\'e0\'e4\'e0\'e5\'f2 \'e2 \'f2\'e2\'ee\'e9 @ControllerAdvice \'e8 \'f0\'e5\'ed\'e4\'e5\'f0\'e8\'f2 errors/4xx5xx.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status \'f1\'ee\'e2\'ef\'e0\'e4\'e0\'e5\'f2 \'f1\'ee \'f1\'f2\'e0\'f2\'f3\'f1\'ee\'ec \'e8\'e7 \'e8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'ff (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, 502).\par
+view="errors/4xx5xx".\par
+\'c2 model: errorMessage \'e8 errors (\'ed\'ee\'f0\'ec\'e0\'eb\'e8\'e7\'ee\'e2\'e0\'ed\'ed\'fb\'e5), \'ed\'e5\'f2 echo-\'ef\'ee\'eb\'e5\'e9 \'e8 \'e1\'e8\'e7\'ed\'e5\'f1-\'e0\'f2\'f0\'e8\'e1\'f3\'f2\'ee\'e2 \'f4\'ee\'f0\'ec\'fb (\'ec\'fb \'ed\'e5 \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'ec \'f4\'ee\'f0\'ec\'f3 \'e2 \'fd\'f2\'ee\'ec \'f1\'f6\'e5\'ed\'e0\'f0\'e8\'e8).\par
+restClient.createReminder(...) \'e2\'fb\'e7\'e2\'e0\'ed 1 \'f0\'e0\'e7.\par
+\par
+7) \'ca\'ee\'ed\'e2\'e5\'f0\'f2\'e0\'f6\'e8\'ff \'e4\'e0\'f2\'fb \f1\u8594?\f2  Instant (\f0\lang1049\'e3\'f0\'e0\'ed\'e8\'f7\'ed\'fb\'e5 \'f1\'eb\'f3\'f7\'e0\'e8 \'e2\'f0\'e5\'ec\'e5\'ed\'e8)\par
+\'d6\'e5\'eb\'fc: \'e7\'e0\'f4\'e8\'ea\'f1\'e8\'f0\'ee\'e2\'e0\'f2\'fc \'f1\'e5\'ec\'e0\'ed\'f2\'e8\'ea\'f3 form.remind().atZone(systemDefault).toInstant()\par
+\'ca\'ee\'e3\'e4\'e0: remind \f3\emdash  \f0\'e4\'e0\'f2\'e0 \'ed\'e0 \'e3\'f0\'e0\'ed\'e8\'f6\'e5 \'ef\'e5\'f0\'e5\'f5\'ee\'e4\'e0 \'f7\'e0\'f1\'ee\'e2\'ee\'e3\'ee \'ef\'ee\'ff\'f1\'e0 (DST), \'f7\'f2\'ee\'e1\'fb \'e8\'f1\'ea\'eb\'fe\'f7\'e8\'f2\'fc \'f1\'ea\'f0\'fb\'f2\'fb\'e5 \'f1\'ec\'e5\'f9\'e5\'ed\'e8\'ff.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+remindInstant \'e2\'fb\'f7\'e8\'f1\'eb\'e5\'ed \'ea\'e0\'ea \'ef\'ee\'eb\'ed\'ee\'f7\'fc \'eb\'ee\'ea\'e0\'eb\'fc\'ed\'ee\'e9 \'e4\'e0\'f2\'fb \'e2 ZoneId.systemDefault().\par
+(\'d2\'e5\'f5\'ed\'e8\'f7\'e5\'f1\'ed\'ee: \'ec\'ee\'e6\'ed\'ee \'e2\'f0\'e5\'ec\'e5\'ed\'ed\'ee \'e7\'e0\'e4\'e0\'f2\'fc JVM user.timezone \'ed\'e0 \'f2\'e5\'f1\'f2, \'e8\'eb\'e8 \'e2\'fb\'ef\'ee\'eb\'ed\'e8\'f2\'fc \f2\lang1033\'ab\f0\lang1049\'ed\'e0 \'e8\'e7\'e2\'e5\'f1\'f2\'ed\'ee\'ec \'ef\'ee\'ff\'f1\'e5\f2\lang1033\'bb \f3\emdash  \f0\lang1049\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, Europe/Berlin.)\par
+\'cf\'ee\'e2\'e5\'e4\'e5\'ed\'e8\'e5 \'ee\'f1\'f2\'e0\'b8\'f2\'f1\'ff \'f1\'f2\'e0\'e1\'e8\'eb\'fc\'ed\'fb\'ec \'ed\'e5\'e7\'e0\'e2\'e8\'f1\'e8\'ec\'ee \'ee\'f2 \'e4\'e0\'f2\'fb \'e8 DST.\par
+\par
+8) Echo-\'ef\'ee\'eb\'ff \'ed\'e5 \'f2\'e5\'f0\'ff\'fe\'f2\'f1\'ff (\'f0\'e5\'e3\'f0\'e5\'f1\'f1\'e8\'ff UI)\par
+\'ca\'ee\'e3\'e4\'e0: (2) \'e8\'eb\'e8 (3).\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+title, description, remind \'e2 model \'f0\'ee\'e2\'ed\'ee \'f1\'ee\'ee\'f2\'e2\'e5\'f2\'f1\'f2\'e2\'f3\'fe\'f2 \'f2\'ee\'ec\'f3, \'f7\'f2\'ee \'ee\'f2\'ef\'f0\'e0\'e2\'e8\'eb \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc (\'ea\'f0\'ee\'ec\'e5 remind = null \'e2 \'ea\'e5\'e9\'f1\'e5 (2)).\par
+\'dd\'f2\'ee \'e7\'e0\'f9\'e8\'f9\'e0\'e5\'f2 \'ee\'f2 \'f1\'eb\'f3\'f7\'e0\'e9\'ed\'ee\'e9 \'ef\'ee\'f2\'e5\'f0\'e8 \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'e9 \'e2 \'f4\'ee\'f0\'ec\'e5 \'ef\'f0\'e8 \'ee\'f8\'e8\'e1\'ea\'e5.\par
+\par
+9) \'cc\'e8\'ed\'e8-\'ea\'ee\'ed\'f2\'f0\'e0\'ea\'f2 \'e4\'eb\'ff payload ( smoke )\par
+\'ca\'ee\'e3\'e4\'e0: \f2\lang1033\'ab\f0\lang1049\'f1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'fb\'e9 \'ef\'f3\'f2\'fc\f2\lang1033\'bb.\par
+\f0\lang1049\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+NewReminderPayload.title == form.title, description == form.description, remind == \'ee\'e6\'e8\'e4\'e0\'e5\'ec\'fb\'e9 Instant.\par
+\'cc\'ee\'e6\'ed\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'e8\'f2\'fc \'f7\'e5\'f0\'e5\'e7 ArgumentCaptor \'e8\'eb\'e8 argThat(...), \'f7\'f2\'ee\'e1\'fb \'e7\'e0\'f4\'e8\'ea\'f1\'e8\'f0\'ee\'e2\'e0\'f2\'fc \'f4\'ee\'f0\'ec\'f3 \'e8 \'ea\'ee\'ed\'e2\'e5\'f0\'f2\'e0\'f6\'e8\'fe.\par
+\par
+\f2\lang1033\par
+\lang9\par
+}
+ 

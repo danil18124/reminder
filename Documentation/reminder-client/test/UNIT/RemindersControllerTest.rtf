@@ -1,0 +1,221 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset204 Calibri;}{\f2\fnil Calibri;}{\f3\fnil\fcharset1 Cambria Math;}{\f4\fnil\fcharset2 Symbol;}}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont3\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang1033 getRemindersSortedByTitle\par
+\par
+1 \par
+getRemindersSortedByTitle_authenticated_happyPath()\par
+\f1\lang1049\'c0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'f1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'fb\'e9 \'ef\'f3\'f2\'fc\par
+\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+authorizedClientService.loadAuthorizedClient(...) \'e7\'ee\'e2\'b8\'f2\'f1\'ff \'f1 registrationId \'e8 name \'e8\'e7 authentication.\par
+\par
+\'c5\'f1\'eb\'e8 \'e2\'e5\'f0\'ed\'f3\'eb\'f1\'ff client \'f1 accessToken, \'e0 authentication.getPrincipal() \f2\emdash  OidcUser \f1\'f1 idToken, \'f2\'ee:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff restClient.findAllSortedByTitle(page,size) \'f0\'ee\'e2\'ed\'ee 1 \'f0\'e0\'e7 c \'ef\'e5\'f0\'e5\'e4\'e0\'ed\'ed\'fb\'ec\'e8 page/size;\par
+{\pntext\f4\'B7\tab}\'e2\'ee\'e7\'e2\'f0\'e0\'f2 view "main";\par
+{\pntext\f4\'B7\tab}\'e2 \'ec\'ee\'e4\'e5\'eb\'e8 \'e5\'f1\'f2\'fc \'e0\'f2\'f0\'e8\'e1\'f3\'f2\'fb: reminders, currentPage, totalPages, size, sort="bytitle", auth, idToken, accessToken.\par
+
+\pard\sl240\slmult1\'cd\'e5\'f2 \'eb\'e8\'f8\'ed\'e8\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 \'f3 restClient.\par
+\f0\lang1033\par
+2 \par
+getRemindersSortedByTitle_whenAnonymous_permitAll_rendersMain_withoutData_andNoBackendCalls()\par
+\f1\lang1049\'cd\'e5\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'e4\'ee\'f1\'f2\'f3\'ef (permitAll)\par
+\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'cf\'f0\'e8 authentication == null (\'e8\'eb\'e8 !isAuthenticated()):\par
+{\pntext\f4\'B7\tab}authorizedClientService \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff;\par
+{\pntext\f4\'B7\tab}restClient.findAllSortedByTitle(...) \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff;\par
+{\pntext\f4\'B7\tab}\'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2\'f1\'ff view "main";\par
+{\pntext\f4\'B7\tab}\'ed\'e5\'f2 reminders/currentPage/totalPages/idToken/accessToken \'e2 \'ec\'ee\'e4\'e5\'eb\'e8 (\'e8\'eb\'e8 \'ee\'ed\'e8 \'ee\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'fe\'f2/\'ef\'f3\'f1\'f2\'fb \'ef\'ee \'e2\'e0\'f8\'e5\'ec\'f3 \'ea\'ee\'ed\'f2\'f0\'e0\'ea\'f2\'f3);\par
+{\pntext\f4\'B7\tab}sort="bytitle" \'e2 \'ec\'ee\'e4\'e5\'eb\'e8 \'ec\'ee\'e6\'ed\'ee \'ed\'e5 \'ee\'e6\'e8\'e4\'e0\'f2\'fc (\'e5\'e3\'ee \'e2\'fb \'e4\'ee\'e1\'e0\'e2\'eb\'ff\'e5\'f2\'e5 \'f2\'ee\'eb\'fc\'ea\'ee \'e2 \'e2\'e5\'f2\'ea\'e5 \'f1 \'e4\'e0\'ed\'ed\'fb\'ec\'e8 \f2\emdash  \f1\'e7\'e0\'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e9\'f2\'e5 \'f2\'e5\'ea\'f3\'f9\'e8\'e9 \'ea\'ee\'ed\'f2\'f0\'e0\'ea\'f2).\par
+
+\pard\sl240\slmult1\f0\lang1033\par
+3 \par
+authenticated_authorizedClientWithoutAccessToken_returnsMain_withoutData_andNoBackendCalls\par
+\par
+authenticated_butAuthorizedClientIsNull_returnsMain_withoutData_andNoBackendCalls()\par
+\par
+\f1\lang1049\'ca\'eb\'e8\'e5\'ed\'f2/\'f2\'ee\'ea\'e5\'ed\'fb \'ee\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'fe\'f2\par
+(\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'ff \'e5\'f1\'f2\'fc, \'ed\'ee authorizedClientService \'e2\'e5\'f0\'ed\'f3\'eb null \'e8\'eb\'e8 \'f3 client.getAccessToken()==null \'e8\'eb\'e8 principal \'ed\'e5 OidcUser/\'e1\'e5\'e7 idToken)\par
+\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 restClient \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff;\par
+{\pntext\f4\'B7\tab}\'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2\'f1\'ff "main";\par
+{\pntext\f4\'B7\tab}\'f2\'ee\'ea\'e5\'ed\'ee\'e2 \'e8 \'e4\'e0\'ed\'ed\'fb\'f5 \'ed\'e5\'f2 \'e2 \'ec\'ee\'e4\'e5\'eb\'e8 (\'ea\'e0\'ea \'e2 \'ed\'e5\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'ee\'ec \'ea\'e5\'e9\'f1\'e5).\par
+
+\pard\sl240\slmult1\f0\lang1033\par
+4 \par
+getRemindersSortedByTitle_pagination_paramsArePassed_andModelUsesBackendPageMeta\par
+\f1\lang1049\'cf\'e0\'f0\'e0\'ec\'e5\'f2\'f0\'fb \'ef\'e0\'e3\'e8\'ed\'e0\'f6\'e8\'e8 \'ef\'f0\'e0\'e2\'e8\'eb\'fc\'ed\'ee \'ef\'f0\'ee\'ea\'e8\'e4\'fb\'e2\'e0\'fe\'f2\'f1\'ff\par
+\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'d1 \'ed\'e5-\'e4\'e5\'f4\'ee\'eb\'f2\'ed\'fb\'ec\'e8 page/size \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff restClient.findAllSortedByTitle(page,size) \'f1 \'f2\'e5\'ec\'e8 \'e6\'e5 \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'ff\'ec\'e8;\par
+{\pntext\f4\'B7\tab}\'cc\'ee\'e4\'e5\'eb\'fc \'f1\'ee\'e4\'e5\'f0\'e6\'e8\'f2 currentPage == pageResponse.number(), totalPages == pageResponse.totalPages(), size == pageResponse.size().\f0\lang1033\par
+
+\pard\sl240\slmult1\par
+======================================\f1\lang1049 ===============\f0\lang1033\par
+getRemindersSortedByDate\par
+\par
+\f1\lang1049 ======================================================\f0\lang1033\par
+createNewReminder\par
+1 \par
+createNewReminder_whenValidForm_andBackendSuccess_redirects_andBuildsCorrectPayload() throws Exception\par
+\f1\lang1049\'d3\'f1\'ef\'e5\'f5 \f2\emdash  \f1\'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'cf\'f0\'e8 \'e2\'e0\'eb\'e8\'e4\'ed\'ee\'ec form.remind() \'e8 restClient.createReminder(...) \f3\u8594?\f0  Result.success.\par
+{\pntext\f4\'B7\tab}\f1\lang1049\'c2\'ee\'e7\'e2\'f0\'e0\'f2 \'f2\'ee\'f7\'ed\'ee\'e3\'ee \'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2\'e0: "redirect:/client/reminder/main/bytitle".\par
+{\pntext\f4\'B7\tab}\'c2\'fb\'e7\'e2\'e0\'ed restClient.createReminder(payload) \'f0\'ee\'e2\'ed\'ee 1 \'f0\'e0\'e7.\par
+{\pntext\f4\'B7\tab}\'ca\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'ee\'f1\'f2\'fc payload: title, description \'f1\'ee\'e2\'ef\'e0\'e4\'e0\'fe\'f2 \'f1 \'f4\'ee\'f0\'ec\'ee\'e9; remind \f2\emdash  \f1\'fd\'f2\'ee Instant \'ef\'ee\'f1\'eb\'e5 form.remind().atZone(ZoneId.systemDefault()).toInstant() (\'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec \'e8\'ec\'e5\'ed\'ed\'ee \'ea\'ee\'ed\'e2\'e5\'f0\'f1\'e8\'fe).\par
+
+\pard\sl240\slmult1\par
+\f0\lang1033 2 \par
+createNewReminder_whenRemindIsNull_returnsFormWithErrors_andDoesNotCallBackend() throws Exception\par
+\f1\lang1049\'cb\'ee\'ea\'e0\'eb\'fc\'ed\'e0\'ff \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'ff \f2\emdash  remind == null\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\f1\'c2\'ee\'e7\'e2\'f0\'e0\'f2 "new-reminder-page".\par
+{\pntext\f4\'B7\tab}\'c2 \'ec\'ee\'e4\'e5\'eb\'fc \'ef\'ee\'ef\'e0\'e4\'e0\'fe\'f2:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl240\slmult1 errors \'f1 \'ea\'eb\'fe\'f7\'ee\'ec "remind" \f3\u8594?\f0  ["Remind is required"],\par
+{\pntext\f4\'B7\tab}errorMessage = "Invalid input data",\par
+{\pntext\f4\'B7\tab}\f1\lang1049\'fd\'f5\'ee-\'ef\'ee\'eb\'ff: title, description, remind == null.\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'cd\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff restClient.createReminder(...).\par
+
+\pard\sl240\slmult1\par
+\f0\lang1033 3 \par
+createNewReminder_whenBackendReturnsFailure_returnsFormWithBackendErrors_andEchoesForm() throws Exception\par
+\f1\lang1049\'c1\'e8\'e7\'ed\'e5\'f1-\'ee\'f8\'e8\'e1\'ea\'e0 \'ee\'f2 \'e1\'fd\'ea\'e5\'ed\'e4\'e0 (Result.failure)\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c5\'f1\'eb\'e8 restClient.createReminder(...) \'e2\'e5\'f0\'ed\'f3\'eb failure, \'e2\'ee\'e7\'e2\'f0\'e0\'f2 "new-reminder-page".\par
+
+\pard\sl240\slmult1\'c2 \'ec\'ee\'e4\'e5\'eb\'fc \'ef\'ee\'ef\'e0\'e4\'e0\'fe\'f2:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 errors \'e8\'e7 result.error().details() (\'ef\'f0\'e8\'e2\'e5\'e4\'b8\'ed\'ed\'fb\'e5 \'ea Map<String, List<String>>, \'e5\'f1\'eb\'e8 \'f3 \'f2\'e5\'e1\'ff \'ed\'ee\'f0\'ec\'e0\'eb\'e8\'e7\'e0\'f6\'e8\'ff),\par
+{\pntext\f4\'B7\tab}errorMessage \'e8\'e7 result.error().message(),\par
+{\pntext\f4\'B7\tab}\'fd\'f5\'ee-\'ef\'ee\'eb\'ff: title, description, remind \'e8\'e7 \'f4\'ee\'f0\'ec\'fb.\par
+
+\pard\sl240\slmult1\'d1\'ed\'e0\'f7\'e0\'eb\'e0 \'e2\'fb\'e7\'e2\'e0\'ed createReminder(...); \'e4\'f0\'f3\'e3\'e8\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 \'ea \'e1\'fd\'ea\'e5\'ed\'e4\'f3 \'ed\'e5\'f2.\par
+\par
+\f0\lang1033 4 \par
+createNewReminder_timeConversion_usesSystemDefaultZone_exactInstant() throws Exception\par
+\par
+createNewReminder_timeConversion_dstOverlap_picksEarlierOffset() throws Exception\par
+\par
+\f1\lang1049\'ca\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'ee\'f1\'f2\'fc \'ea\'ee\'ed\'e2\'e5\'f0\'f2\'e0\'f6\'e8\'e8 \'e2\'f0\'e5\'ec\'e5\'ed\'e8\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c4\'eb\'ff \'ea\'ee\'ed\'ea\'f0\'e5\'f2\'ed\'ee\'e3\'ee LocalDateTime \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec, \'f7\'f2\'ee \'e2 payload \'f3\'f5\'ee\'e4\'e8\'f2 \'ee\'e6\'e8\'e4\'e0\'e5\'ec\'fb\'e9 Instant \'f1 \'f3\'f7\'b8\'f2\'ee\'ec ZoneId.systemDefault().\par
+{\pntext\f4\'B7\tab}\'ce\'f2\'e4\'e5\'eb\'fc\'ed\'ee \'e6\'e5\'eb\'e0\'f2\'e5\'eb\'fc\'ed\'ee \'e7\'e0\'ea\'f0\'e5\'ef\'e8\'f2\'fc DST-\'e3\'f0\'e0\'ed\'fc (\'f1\'ec. \'f0\'e0\'f1\'f8\'e8\'f0\'e5\'ed\'e8\'ff).\par
+
+\pard\sl240\slmult1\par
+\f0\lang1033 5 \par
+createNewReminder_whenAuthenticatedWithCsrf_thenRedirects() throws Exception\par
+\par
+createNewReminder_whenAnonymousWithCsrf_thenRedirectsToLogin_andDoesNotCallBackend() throws Exception\par
+ createNewReminder_whenAuthenticatedWithoutCsrf_thenForbidden_andDoesNotCallBackend()\par
+\par
+\f1\lang1049\'c1\'e5\'e7\'ee\'ef\'e0\'f1\'ed\'ee\'f1\'f2\'fc (\'e5\'f1\'eb\'e8 \'e2\'ea\'eb\'fe\'f7\'b8\'ed CSRF / \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'ff)\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 POST \'f1 CSRF (\'e5\'f1\'eb\'e8 \'e2\'ea\'eb\'fe\'f7\'b8\'ed) \f3\u8594?\f0  \f1\lang1049\'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2 (\'f3\'f1\'ef\'e5\'f5) \'e8\'eb\'e8 \'e2\'ee\'e7\'e2\'f0\'e0\'f2 \'f4\'ee\'f0\'ec\'fb (\'ee\'f8\'e8\'e1\'ea\'e0).\par
+{\pntext\f4\'B7\tab}\'cd\'e5\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \f3\u8594?\f0  \f1\lang1049\'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2 \'ed\'e0 \'eb\'ee\'e3\'e8\'ed / 401 (\'f1\'ee\'e3\'eb\'e0\'f1\'ed\'ee SecurityConfig).\par
+{\pntext\f4\'B7\tab}\'c1\'e5\'e7 CSRF (\'e5\'f1\'eb\'e8 CSRF \'e2\'ea\'eb\'fe\'f7\'b8\'ed) \f3\u8594?\f0  403 \f1\lang1049\'e8 \'ed\'e5 \'e4\'e5\'f0\'e3\'e0\'e5\'ec \'e1\'fd\'ea\'e5\'ed\'e4.\par
+
+\pard\sl240\slmult1\f0\lang9\par
+=======================================================\par
+\par
+searchRemindersByTitle\par
+\par
+\lang1033 1 \f1\lang1049\'d1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'fb\'e9 \'ef\'f3\'f2\'fc (\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed)\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 restClient.findRemindersByTitle(title, page, size, sort) \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'f0\'ee\'e2\'ed\'ee 1 \'f0\'e0\'e7 \'f1 \'f2\'e5\'ec\'e8 \'e6\'e5 \'ef\'e0\'f0\'e0\'ec\'e5\'f2\'f0\'e0\'ec\'e8 \'e8\'e7 \'e7\'e0\'ef\'f0\'ee\'f1\'e0.\par
+{\pntext\f4\'B7\tab}\'c2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2\'f1\'ff view "main".\par
+{\pntext\f4\'B7\tab}\'c2 \'ec\'ee\'e4\'e5\'eb\'e8:\par
+
+\pard\sl240\slmult1 reminders = content, currentPage = number, totalPages = totalPages, size = size \'e8\'e7 \'ee\'f2\'e2\'e5\'f2\'e0,\par
+title = echo \'e8\'e7 \'e7\'e0\'ef\'f0\'ee\'f1\'e0, auth = authentication (\'ef\'f0\'e8\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'e5\'f2).\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'cd\'e5\'f2 \'eb\'e8\'f8\'ed\'e8\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 \'ea \'e4\'f0\'f3\'e3\'e8\'ec \'ec\'e5\'f2\'ee\'e4\'e0\'ec \'ea\'eb\'e8\'e5\'ed\'f2\'e0.\par
+
+\pard\sl240\slmult1\par
+\f0\lang1033 2 \f1\lang1049\'cf\'f0\'ee\'ea\'e8\'e4\'fb\'e2\'e0\'ed\'e8\'e5 \'ef\'e0\'f0\'e0\'ec\'e5\'f2\'f0\'ee\'e2\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'d1 \'ed\'e5-\'e4\'e5\'f4\'ee\'eb\'f2\'ed\'fb\'ec\'e8 page/size/sort \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec, \'f7\'f2\'ee \'e8\'ec\'e5\'ed\'ed\'ee \'ee\'ed\'e8 \'f3\'f8\'eb\'e8 \'e2 \'ea\'eb\'e8\'e5\'ed\'f2.\par
+{\pntext\f4\'B7\tab}\'cc\'ee\'e4\'e5\'eb\'fc \'e1\'e5\'f0\'b8\'f2 \'ec\'e5\'f2\'e0\'e4\'e0\'ed\'ed\'fb\'e5 \'e8\'e7 \'ee\'f2\'e2\'e5\'f2\'e0 \'ea\'eb\'e8\'e5\'ed\'f2\'e0 (\'e0 \'ed\'e5 \'e8\'e7 \'e7\'e0\'ef\'f0\'ee\'f1\'e0): currentPage/totalPages/size.\par
+
+\pard\sl240\slmult1\par
+\f0\lang1033 3 \f1\lang1049\'cd\'e5\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'e4\'ee\'f1\'f2\'f3\'ef (\'e5\'f1\'eb\'e8 \'ef\'f3\'f2\'fc \'ee\'f2\'ea\'f0\'fb\'f2)\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'cf\'f0\'e8 authentication == null \'ef\'ee\'e2\'e5\'e4\'e5\'ed\'e8\'e5: \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'ea\'eb\'e8\'e5\'ed\'f2, view "main",\par
+
+\pard\sl240\slmult1\'e2 \'ec\'ee\'e4\'e5\'eb\'e8 auth \'ee\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'e5\'f2 (\'e8\'eb\'e8 \'f0\'e0\'e2\'e5\'ed null), \'ee\'f1\'f2\'e0\'eb\'fc\'ed\'fb\'e5 \'ef\'ee\'eb\'ff \'e7\'e0\'ef\'ee\'eb\'ed\'e5\'ed\'fb.\par
+\par
+\f0\lang1033 4 \f1\lang1049\'cf\'f3\'f1\'f2\'ee\'e9 \'f0\'e5\'e7\'f3\'eb\'fc\'f2\'e0\'f2\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 content \'ef\'f3\'f1\'f2 \f2\emdash  \f1\'e2 \'ec\'ee\'e4\'e5\'eb\'e8 reminders \'ef\'f3\'f1\'f2\'ee\'e9 \'f1\'ef\'e8\'f1\'ee\'ea, \'ec\'e5\'f2\'e0\'e4\'e0\'ed\'ed\'fb\'e5 \'f1\'ee\'e2\'ef\'e0\'e4\'e0\'fe\'f2 \'f1 \'ee\'f2\'e2\'e5\'f2\'ee\'ec.\par
+
+\pard\sl240\slmult1\par
+\f0\lang1033 5 \f1\lang1049 Echo \'e7\'e0\'e3\'ee\'eb\'ee\'e2\'ea\'e0\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c2 \'ec\'ee\'e4\'e5\'eb\'e8 \'e2\'f1\'e5\'e3\'e4\'e0 \'e5\'f1\'f2\'fc title \'f0\'ee\'e2\'ed\'ee \'f1\'ee \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'e5\'ec \'e8\'e7 \'e7\'e0\'ef\'f0\'ee\'f1\'e0 (URL-\'e4\'e5\'ea\'ee\'e4 \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'e9).\f0\lang9\par
+
+\pard\sl240\slmult1\par
+================================================================\par
+\par
+getRemindersByDate\par
+\par
+\lang1033 1 \f1\lang1049\'d1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'fb\'e9 \'ef\'f3\'f2\'fc (\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed)\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 restClient.findRemindersByDate(date, page, size, sort) \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'f0\'ee\'e2\'ed\'ee 1 \'f0\'e0\'e7 \'f1 \'ef\'e0\'f0\'e0\'ec\'e5\'f2\'f0\'e0\'ec\'e8 \'e8\'e7 \'e7\'e0\'ef\'f0\'ee\'f1\'e0.\par
+{\pntext\f4\'B7\tab}\'c2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2\'f1\'ff view "main".\par
+{\pntext\f4\'B7\tab}\'c2 \'ec\'ee\'e4\'e5\'eb\'e8:\par
+
+\pard\sl240\slmult1 reminders = content, currentPage = pageResponse.number(), totalPages = pageResponse.totalPages(),\par
+size = pageResponse.size(), date = echo \'e8\'e7 \'e7\'e0\'ef\'f0\'ee\'f1\'e0, auth = authentication.\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'cd\'e5\'f2 \'eb\'e8\'f8\'ed\'e8\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 \'ea \'e4\'f0\'f3\'e3\'e8\'ec \'ec\'e5\'f2\'ee\'e4\'e0\'ec \'ea\'eb\'e8\'e5\'ed\'f2\'e0.\par
+
+\pard\sl240\slmult1\par
+\f0\lang1033 2 \f1\lang1049\'c1\'e8\'ed\'e4\'e8\'ed\'e3 \'e4\'e0\'f2\'fb (@DateTimeFormat)\par
+\'c2\'e0\'eb\'e8\'e4\'ed\'e0\'ff \'e4\'e0\'f2\'e0 \'e2 \'f4\'ee\'f0\'ec\'e0\'f2\'e5 YYYY-MM-DD (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, 2031-03-14) \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'ee \'e1\'e8\'ed\'e4\'e8\'f2\'f1\'ff \'e2 LocalDate \'e8 \'ef\'f0\'ee\'ea\'e8\'e4\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'e2 \'ea\'eb\'e8\'e5\'ed\'f2 \'ea\'e0\'ea \'e5\'f1\'f2\'fc.\par
+\par
+\f0\lang1033 3 \f1\lang1049\'cf\'f0\'ee\'ea\'e8\'e4\'fb\'e2\'e0\'ed\'e8\'e5 \'ef\'e0\'e3\'e8\'ed\'e0\'f6\'e8\'e8 \'e8 \'f1\'ee\'f0\'f2\'e8\'f0\'ee\'e2\'ea\'e8\par
+\'d1 \'ed\'e5-\'e4\'e5\'f4\'ee\'eb\'f2\'ed\'fb\'ec\'e8 page/size/sort \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'f8\'fc, \'f7\'f2\'ee \'e2 \'ea\'eb\'e8\'e5\'ed\'f2 \'f3\'f8\'eb\'e8 \'f0\'ee\'e2\'ed\'ee \'ee\'ed\'e8.\par
+\'cc\'ee\'e4\'e5\'eb\'fc \'e1\'e5\'f0\'b8\'f2 \'ec\'e5\'f2\'e0-\'e4\'e0\'ed\'ed\'fb\'e5 \'e8\'e7 \'ee\'f2\'e2\'e5\'f2\'e0 \'ea\'eb\'e8\'e5\'ed\'f2\'e0: currentPage/totalPages/size \f2\emdash  \f1\'ed\'e5 \'e8\'e7 \'e7\'e0\'ef\'f0\'ee\'f1\'e0.\par
+\par
+\f0\lang1033 4 \f1\lang1049\'cd\'e5\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'e4\'ee\'f1\'f2\'f3\'ef (\'e5\'f1\'eb\'e8 \'ef\'f3\'f2\'fc \'ee\'f2\'ea\'f0\'fb\'f2)\par
+\'ca\'eb\'e8\'e5\'ed\'f2 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'ea\'e0\'ea \'ee\'e1\'fb\'f7\'ed\'ee, view "main".\par
+\'c2 \'ec\'ee\'e4\'e5\'eb\'e8 auth \'ee\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'e5\'f2 (\'e8\'eb\'e8 null), \'ee\'f1\'f2\'e0\'eb\'fc\'ed\'fb\'e5 \'ef\'ee\'eb\'ff \'ef\'f0\'e8\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'fe\'f2.\par
+\f0\lang1033\par
+5 \f1\lang1049\'cf\'f3\'f1\'f2\'ee\'e9 \'f0\'e5\'e7\'f3\'eb\'fc\'f2\'e0\'f2\par
+\'c5\'f1\'eb\'e8 content \'ef\'f3\'f1\'f2 \f2\emdash  \f1\'e2 \'ec\'ee\'e4\'e5\'eb\'e8 \'ef\'f3\'f1\'f2\'ee\'e9 \'f1\'ef\'e8\'f1\'ee\'ea, \'e0 \'ec\'e5\'f2\'e0-\'e4\'e0\'ed\'ed\'fb\'e5 \'f1\'ee\'e2\'ef\'e0\'e4\'e0\'fe\'f2 \'f1 \'ee\'f2\'e2\'e5\'f2\'ee\'ec.\par
+\par
+\f0\lang1033 6 \f1\lang1049\'cd\'e5\'e2\'e0\'eb\'e8\'e4\'ed\'fb\'e9 \'f4\'ee\'f0\'ec\'e0\'f2 \'e4\'e0\'f2\'fb \f3\u8594?\f0  400\par
+\f1\lang1049\'c4\'eb\'ff \'f1\'f2\'f0\'ee\'ea\'e8 \'e2\'f0\'ee\'e4\'e5 date=14-03-2031 \'e8\'eb\'e8 date=bad \f2\emdash  \f1\'ee\'e6\'e8\'e4\'e0\'e5\'f8\'fc 400 (\'f7\'e5\'f0\'e5\'e7 \'e1\'e8\'ed\'e4\'e8\'ed\'e3 \'ee\'f8\'e8\'e1\'ee\'ea/@ControllerAdvice) \'e8 \'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e5\'f8\'fc \'f2\'e5\'ea\'f3\'f9\'e5\'e5 \'e8\'ec\'ff error-view/\'ec\'ee\'e4\'e5\'eb\'fc (\'e5\'f1\'eb\'e8 \'f3 \'f2\'e5\'e1\'ff \'ee\'ed\'ee \'ed\'e0\'f1\'f2\'f0\'ee\'e5\'ed\'ee).\f0\lang9\par
+\par
+==============================================================\par
+\par
+searchRemindersByDateRange\par
+\par
+\lang1033 1 \f1\lang1049\'d1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'fb\'e9 \'ef\'f3\'f2\'fc (\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed)\par
+\'c2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff restClient.findRemindersByDateRange(start,end,page,size,sort) \'f0\'ee\'e2\'ed\'ee 1 \'f0\'e0\'e7.\par
+start = startDate.atStartOfDay(systemDefault).toInstant();\par
+end = endDate.plusDays(1).atStartOfDay(systemDefault).toInstant() (\'fd\'ea\'f1\'ea\'eb\'fe\'e7\'e8\'e2\'ed\'e0\'ff \'e2\'e5\'f0\'f5\'ed\'ff\'ff \'e3\'f0\'e0\'ed\'e8\'f6\'e0).\par
+\'c2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2\'f1\'ff view "main".\par
+\'c2 \'ec\'ee\'e4\'e5\'eb\'e8: reminders, currentPage = number, totalPages, size = size \'e8\'e7 \'ee\'f2\'e2\'e5\'f2\'e0, auth = authentication, \'fd\'f5\'ee-\'ef\'ee\'eb\'ff startDate, endDate.\par
+\f0\lang1033\par
+2 \f1\lang1049\'c1\'e8\'ed\'e4\'e8\'ed\'e3 \'ef\'e0\'f0\'e0\'ec\'e5\'f2\'f0\'ee\'e2 \'e4\'e0\'f2\'fb\par
+\'c2\'e0\'eb\'e8\'e4\'ed\'fb\'e5 \'f1\'f2\'f0\'ee\'ea\'e8 \'f4\'ee\'f0\'ec\'e0\'f2\'e0 YYYY-MM-DD \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'ee \'e1\'e8\'ed\'e4\'ff\'f2\'f1\'ff \'e2 LocalDate \'e8 \'f3\'f5\'ee\'e4\'ff\'f2 \'e2 \'ea\'ee\'ed\'e2\'e5\'f0\'f2\'e0\'f6\'e8\'fe.\par
+\'d1 \'ed\'e5-\'e4\'e5\'f4\'ee\'eb\'f2\'ed\'fb\'ec\'e8 page/size/sort \f2\emdash  \f1\'ef\'f0\'ee\'ea\'e8\'e4\'fb\'e2\'e0\'fe\'f2\'f1\'ff \'e2 \'ea\'eb\'e8\'e5\'ed\'f2 \'e1\'e5\'e7 \'e8\'e7\'ec\'e5\'ed\'e5\'ed\'e8\'e9.\par
+\f0\lang1033\par
+3 \f1\lang1049\'cf\'f3\'f1\'f2\'ee\'e9 \'f0\'e5\'e7\'f3\'eb\'fc\'f2\'e0\'f2\par
+\'c5\'f1\'eb\'e8 content \'ef\'f3\'f1\'f2 \f2\emdash  \f1\'e2 \'ec\'ee\'e4\'e5\'eb\'e8 \'ef\'f3\'f1\'f2\'ee\'e9 \'f1\'ef\'e8\'f1\'ee\'ea, \'ec\'e5\'f2\'e0 \'e4\'e0\'ed\'ed\'fb\'e5 \'f1\'f2\'f0\'e0\'ed\'e8\'f6\'fb \'f1\'ee\'ee\'f2\'e2\'e5\'f2\'f1\'f2\'e2\'f3\'fe\'f2 \'ee\'f2\'e2\'e5\'f2\'f3 \'ea\'eb\'e8\'e5\'ed\'f2\'e0.\par
+\f0\lang1033\par
+4 \f1\lang1049\'cd\'e5\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'e4\'ee\'f1\'f2\'f3\'ef (\'e5\'f1\'eb\'e8 \'ef\'f3\'f2\'fc \'ee\'f2\'ea\'f0\'fb\'f2)\par
+\'ca\'eb\'e8\'e5\'ed\'f2 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff; view "main". \'c2 \'ec\'ee\'e4\'e5\'eb\'e8 auth \'ee\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'e5\'f2/null, \'ee\'f1\'f2\'e0\'eb\'fc\'ed\'fb\'e5 \'e0\'f2\'f0\'e8\'e1\'f3\'f2\'fb \'ed\'e0 \'ec\'e5\'f1\'f2\'e5.\par
+\f0\lang1033\par
+5 \f1\lang1049\'cd\'e5\'e2\'e0\'eb\'e8\'e4\'ed\'fb\'e5 \'e4\'e0\'f2\'fb \f3\u8594?\f0  400\par
+startDate=2024-13-40 \f1\lang1049\'e8\'eb\'e8 endDate=bad \f3\u8594?\f0  400 (\f1\lang1049\'f7\'e5\'f0\'e5\'e7 \'e1\'e8\'ed\'e4\'e8\'ed\'e3/@ControllerAdvice).\par
+\'d4\'e8\'ea\'f1\'e8\'f0\'f3\'e5\'f2\'e5 \'e8\'ec\'ff error-view \'e8 \'e1\'e0\'e7\'ee\'e2\'fb\'e5 \'e0\'f2\'f0\'e8\'e1\'f3\'f2\'fb \'ee\'f8\'e8\'e1\'ea\'e8.\f0\lang9\par
+\par
+\par
+\par
+}
+ 

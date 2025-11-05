@@ -1,0 +1,103 @@
+{\rtf1\ansi\ansicpg1251\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset204 Calibri;}{\f1\fnil Calibri;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil\fcharset2 Symbol;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang1049\'c7\'e0\'e4\'e0\'f7\'e0: \'e4\'e0\'f2\'fc \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'fe \'e2\'ee\'e7\'ec\'ee\'e6\'ed\'ee\'f1\'f2\'fc \'ef\'ee\'ea\'e0\'e7\'fb\'e2\'e0\'f2\'fc \'f2\'e5\'ea\'f1\'f2\'fb \'ed\'e0 \'f0\'e0\'e7\'ed\'fb\'f5 \'ff\'e7\'fb\'ea\'e0\'f5 (i18n) \f1\emdash  \f0\'e2 HTML-\'f8\'e0\'e1\'eb\'ee\'ed\'e0\'f5, \'e2 \'f1\'ee\'ee\'e1\'f9\'e5\'ed\'e8\'ff\'f5 \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'e8 \'e8 \'e2 REST-\'ee\'f2\'e2\'e5\'f2\'e0\'f5 \'f1 \'ee\'f8\'e8\'e1\'ea\'e0\'ec\'e8.\par
+\par
+\par
+@Configuration\par
+public class LocaleConfig \{\par
+\par
+    @Bean\par
+    public MessageSource messageSource() \{\par
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();\par
+        messageSource.setBasename("classpath:messages");\par
+        messageSource.setDefaultEncoding("UTF-8");\par
+        return messageSource;\par
+    \}\par
+\par
+    @Bean\par
+    public LocaleResolver localeResolver() \{\par
+        AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();\par
+        localeResolver.setDefaultLocale(Locale.ENGLISH);\par
+        return localeResolver;\par
+    \}\par
+\}\par
+\par
+\par
+MessageSource -\f2\lang1033  \f0\lang1049  \'fd\'f2\'ee \'e8\'f1\'f2\'ee\'f7\'ed\'e8\'ea \'f2\'e5\'ea\'f1\'f2\'ee\'e2 \'ef\'ee \'ea\'eb\'fe\'f7\'e0\'ec\par
+
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\f2\lang9 Spring \f0\lang1049\'e1\'f3\'e4\'e5\'f2 \'e8\'f1\'ea\'e0\'f2\'fc \'f4\'e0\'e9\'eb\'fb messages.properties \'e2 src/main/resources/.\f2\lang9\par
+{\pntext\f3\'B7\tab}ReloadableResourceBundleMessageSource \f0\lang1049\'ef\'ee\'e7\'e2\'ee\'eb\'ff\'e5\'f2 \'e2 dev \'ef\'ee\'e4\'e3\'f0\'f3\'e6\'e0\'f2\'fc \'e8\'e7\'ec\'e5\'ed\'e5\'ed\'e8\'ff \'e1\'e5\'e7 \'ef\'e5\'f0\'e5\'e7\'e0\'ef\'f3\'f1\'ea\'e0.\par
+{\pntext\f3\'B7\tab}UTF-8 \f1\emdash  \f0\'f7\'f2\'ee\'e1\'fb \'ed\'e5 \'e1\'fb\'eb\'ee \'ea\'f0\'e0\'ea\'ee\'e7\'ff\'e1\'f0.\f2\lang9\par
+
+\pard\sl240\slmult1\f0\lang1049\'c8\'f2\'ee\'e3: \'eb\'fe\'e1\'ee\'e9 \'ea\'ee\'e4/\'f8\'e0\'e1\'eb\'ee\'ed \'ec\'ee\'e6\'e5\'f2 \'ef\'ee\'ef\'f0\'ee\'f1\'e8\'f2\'fc: \f2\lang1033\'ab\f0\lang1049\'e4\'e0\'e9 \'f1\'f2\'f0\'ee\'ea\'f3 \'ef\'ee \'ea\'eb\'fe\'f7\'f3 X \'e4\'eb\'ff \'f2\'e5\'ea\'f3\'f9\'e5\'e3\'ee \'ff\'e7\'fb\'ea\'e0\f2\lang1033\'bb.\lang9\par
+\par
+LocaleResolver\f0\lang1049  - \'e2\'fb\'e1\'ee\'f0 \'ff\'e7\'fb\'ea\'e0. \f2\lang9\par
+AcceptHeaderLocaleResolver \f0\lang1049\'e1\'e5\'f0\'b8\'f2 \'ff\'e7\'fb\'ea \'e8\'e7 HTTP-\'e7\'e0\'e3\'ee\'eb\'ee\'e2\'ea\'e0 Accept-Language, \'ea\'ee\'f2\'ee\'f0\'fb\'e9 \'f8\'eb\'b8\'f2 \'e1\'f0\'e0\'f3\'e7\'e5\'f0 (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0: ru-RU,ru;q=0.9).\par
+\'c5\'f1\'eb\'e8 \'e7\'e0\'e3\'ee\'eb\'ee\'e2\'ea\'e0 \'ed\'e5\'f2 \f1\emdash  \f0\'f1\'f2\'e0\'e2\'e8\'f2\'f1\'ff Locale.ENGLISH \'ea\'e0\'ea \'ff\'e7\'fb\'ea \'ef\'ee \'f3\'ec\'ee\'eb\'f7\'e0\'ed\'e8\'fe.\par
+\f2\lang9\par
+\f0\lang1049\'c2\'e0\'e6\'ed\'ee: \'fd\'f2\'ee\'f2 \'f0\'e5\'e7\'ee\'eb\'e2\'e5\'f0 \'ed\'e5 \'ef\'e5\'f0\'e5\'ea\'eb\'fe\'f7\'e0\'e5\'f2 \'ff\'e7\'fb\'ea \'ef\'ee ?lang=ru. \'ce\'ed \'f2\'ee\'eb\'fc\'ea\'ee \'f7\'e8\'f2\'e0\'e5\'f2 \'e7\'e0\'e3\'ee\'eb\'ee\'e2\'ee\'ea.\par
+\'d2\'ee \'e5\'f1\'f2\'fc \'e5\'f1\'eb\'e8 \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc \'e7\'e0\'f5\'ee\'f7\'e5\'f2 \'f1\'ec\'e5\'ed\'e8\'f2\'fc \'ff\'e7\'fb\'ea \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'ff, \'f2\'ee \'fd\'f2\'ee\'f2 \'f0\'e5\'e7\'ee\'eb\'e2\'e5\'f0 \'ed\'e5 \'ef\'ee\'e4\'ee\'e9\'e4\'e5\'f2.\par
+\par
+\par
+====================================================================\par
+\par
+\'ca\'e0\'ea \'e5\'f9\'e5 \'ec\'ee\'e6\'ed\'ee \'e1\'fb\'eb\'ee \'e1\'fb \'ed\'e0\'f1\'f2\'f0\'ee\'e8\'f2\'fc \'e4\'e0\'ed\'ed\'fb\'e9 \'ea\'eb\'e0\'f1\'f1\par
+\par
+\par
+\b\fs24\'ce\'f2\'ea\'f3\'e4\'e0 \'e1\'f0\'e0\'f2\'fc \'eb\'ee\'ea\'e0\'eb\'fc (\'ef\'e0\'f2\'f2\'e5\'f0\'ed\'fb)\b0\fs22\par
+A. \'c8\'e7 \'e7\'e0\'e3\'ee\'eb\'ee\'e2\'ea\'e0 \'e1\'f0\'e0\'f3\'e7\'e5\'f0\'e0 (header-driven)\par
+\'ca\'f2\'ee \'e4\'e5\'eb\'e0\'e5\'f2: AcceptHeaderLocaleResolver (\'e8\'eb\'e8 LocaleContextResolver \'e2 \'f0\'ee\'eb\'e8 \'e8\'ed\'f2\'e5\'f0\'f4\'e5\'e9\'f1\'e0).\par
+\'ca\'e0\'ea \'f0\'e0\'e1\'ee\'f2\'e0\'e5\'f2: \'f7\'e8\'f2\'e0\'e5\'f2 Accept-Language.\par
+\par
+B. \'cf\'ee \'ef\'e0\'f0\'e0\'ec\'e5\'f2\'f0\'f3/\'ea\'eb\'e8\'ea\'f3 \'e2 UI (stateful, user-controlled)\par
+\'ca\'f2\'ee \'e4\'e5\'eb\'e0\'e5\'f2: SessionLocaleResolver \'e8\'eb\'e8 CookieLocaleResolver + LocaleChangeInterceptor.\par
+\'ca\'e0\'ea \'f0\'e0\'e1\'ee\'f2\'e0\'e5\'f2: \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc \'ea\'eb\'e8\'ea\'e0\'e5\'f2 \f2\lang1033\'abRU/EN\'bb, \f0\lang1049\'e2\'fb \'ef\'e5\'f0\'e5\'e4\'e0\'b8\'f2\'e5 ?lang=ru, \'e8\'ed\'f2\'e5\'f0\'f6\'e5\'ef\'f2\'ee\'f0 \'ec\'e5\'ed\'ff\'e5\'f2 \'eb\'ee\'ea\'e0\'eb\'fc \'e8 \'f5\'f0\'e0\'ed\'e8\'f2 \'e5\'b8 \'e2 \'f1\'e5\'f1\'f1\'e8\'e8/\'ea\'f3\'ea\'e8.\par
+\par
+C. \'c8\'e7 \'ef\'f0\'ee\'f4\'e8\'eb\'ff \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff (profile-driven)\par
+\'ca\'f2\'ee \'e4\'e5\'eb\'e0\'e5\'f2: \'ea\'e0\'f1\'f2\'ee\'ec\'ed\'e0\'ff \'f0\'e5\'e0\'eb\'e8\'e7\'e0\'f6\'e8\'ff LocaleResolver/LocaleContextResolver \'e8\'eb\'e8 HandlerInterceptor.\par
+\'ca\'e0\'ea \'f0\'e0\'e1\'ee\'f2\'e0\'e5\'f2: \'ff\'e7\'fb\'ea \'f5\'f0\'e0\'ed\'e8\'f2\'f1\'ff \'e2 \'c1\'c4/\'ef\'f0\'ee\'f4\'e8\'eb\'e5; \'ed\'e0 \'ea\'e0\'e6\'e4\'ee\'ec \'e7\'e0\'ef\'f0\'ee\'f1\'e5 \'e4\'ee\'f1\'f2\'e0\'b8\'f2\'e5 preferredLocale \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff.\par
+\par
+D. \'c8\'e7 \'f2\'ee\'ea\'e5\'ed\'e0 (JWT/OIDC claims)\par
+\'ca\'f2\'ee \'e4\'e5\'eb\'e0\'e5\'f2: \'ea\'e0\'f1\'f2\'ee\'ec\'ed\'fb\'e9 LocaleResolver/HandlerInterceptor.\par
+\'ca\'e0\'ea \'f0\'e0\'e1\'ee\'f2\'e0\'e5\'f2: \'f7\'e8\'f2\'e0\'e5\'f2\'e5 claim \'f2\'e8\'ef\'e0 locale/lang \'e8\'e7 Jwt/OidcUser \'e8 \'ed\'e0\'e7\'ed\'e0\'f7\'e0\'e5\'f2\'e5 \'eb\'ee\'ea\'e0\'eb\'fc.\par
+\par
+E. \'c8\'e7 URL (path-based, SEO-friendly)\par
+\'ca\'f2\'ee \'e4\'e5\'eb\'e0\'e5\'f2: \'f1\'e2\'ee\'e9 HandlerInterceptor \'e8\'eb\'e8 OncePerRequestFilter, \'ea\'ee\'f2\'ee\'f0\'fb\'e9 \'ef\'e0\'f0\'f1\'e8\'f2 \'ef\'e5\'f0\'e2\'fb\'e9 \'f1\'e5\'e3\'ec\'e5\'ed\'f2 (/ru/...) \'e8 \'f1\'f2\'e0\'e2\'e8\'f2 LocaleContextHolder.\par
+\par
+\par
+\b\fs24\'ce\'f2\'ea\'f3\'e4\'e0 \'e1\'f0\'e0\'f2\'fc \'f2\'e5\'ea\'f1\'f2\'fb (\'e8\'f1\'f2\'ee\'f7\'ed\'e8\'ea\'e8 \'f1\'ee\'ee\'e1\'f9\'e5\'ed\'e8\'e9)\b0\fs22\par
+\par
+A. \'ca\'eb\'e0\'f1\'f1\'e8\'f7\'e5\'f1\'ea\'e8\'e5 .properties\par
+\'ca\'f2\'ee \'e4\'e5\'eb\'e0\'e5\'f2: MessageSource (ResourceBundleMessageSource \'e8\'eb\'e8 ReloadableResourceBundleMessageSource).\par
+\par
+B. \'c1\'e0\'e7\'e0 \'e4\'e0\'ed\'ed\'fb\'f5 / \'e2\'ed\'e5\'f8\'ed\'e8\'e5 \'f5\'f0\'e0\'ed\'e8\'eb\'e8\'f9\'e0\par
+\'ca\'f2\'ee \'e4\'e5\'eb\'e0\'e5\'f2: \'ea\'e0\'f1\'f2\'ee\'ec\'ed\'e0\'ff \'f0\'e5\'e0\'eb\'e8\'e7\'e0\'f6\'e8\'ff MessageSource \'e8\'eb\'e8 \f2\lang1033\'ab\f0\lang1049\'ea\'ee\'ec\'ef\'ee\'e7\'e8\'f2\f2\lang1033\'bb (DelegatingMessageSource) \f0\lang1049\'ef\'ee\'e2\'e5\'f0\'f5 \'ed\'e5\'f1\'ea\'ee\'eb\'fc\'ea\'e8\'f5 \'e8\'f1\'f2\'ee\'f7\'ed\'e8\'ea\'ee\'e2.\par
+\par
+C. \'cf\'e5\'f0\'e5\'ea\'f0\'fb\'f2\'e8\'e5 \'ef\'ee \'e0\'f0\'e5\'ed\'e4\'e0\'f2\'ee\'f0\'e0\'ec (multi-tenant)\par
+\'ca\'f2\'ee \'e4\'e5\'eb\'e0\'e5\'f2: \f2\lang1033\'ab\f0\lang1049\'f2\'e5\'ed\'e0\'ed\'f2-aware MessageSource\f2\lang1033\'bb (\f0\lang1049\'f0\'e5\'f8\'e0\'e5\'f2 \'e1\'e0\'e7\'f3 \'e8\'ec\'b8\'ed/\'ea\'e0\'f2\'e0\'eb\'ee\'e3 \'ef\'ee tenantId), \'eb\'e8\'e1\'ee DelegatingMessageSource \'f1 \'e2\'fb\'e1\'ee\'f0\'ee\'ec \'e8\'f1\'f2\'ee\'f7\'ed\'e8\'ea\'e0.\par
+\par
+D. \'cf\'eb\'fe\'f0\'e0\'eb\'e8\'e7\'e0\'f6\'e8\'ff \'e8 \'f4\'ee\'f0\'ec\'e0\'f2\'e8\'f0\'ee\'e2\'e0\'ed\'e8\'e5\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\f2\lang9\par
+\par
+}
+ 

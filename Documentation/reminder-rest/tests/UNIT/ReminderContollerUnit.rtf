@@ -1,0 +1,136 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset204 Calibri;}{\f1\fnil Calibri;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil\fcharset1 Cambria Math;}}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont3\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang1049\'de\'ed\'e8\'f2-/\'f1\'f0\'e5\'e7-\'f2\'e5\'f1\'f2 \'e2\'e5\'e1-\'f1\'eb\'ee\'ff \'e4\'eb\'ff ReminderRestController: \'ef\'ee\'e4\'ed\'e8\'ec\'e0\'e5\'f2\'f1\'ff \'f2\'ee\'eb\'fc\'ea\'ee MVC-\'e8\'ed\'f4\'f0\'e0\'f1\'f2\'f0\'f3\'ea\'f2\'f3\'f0\'e0 (\'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'fb, \'ea\'ee\'ed\'e2\'e5\'f0\'f2\'e5\'f0\'fb, \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'ff, MockMvc), \'e0 \'e1\'e8\'e7\'ed\'e5\'f1-\'f1\'eb\'ee\'e9 \'e8 \'f0\'e5\'ef\'ee\'e7\'e8\'f2\'ee\'f0\'e8\'e8 \'ed\'e5 \'ef\'ee\'e4\'ed\'e8\'ec\'e0\'fe\'f2\'f1\'ff. \'c7\'e0\'e2\'e8\'f1\'e8\'ec\'ee\'f1\'f2\'e8 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e0 \'ef\'ee\'e4\'ec\'e5\'ed\'ff\'fe\'f2\'f1\'ff \'ec\'ee\'ea\'e0\'ec\'e8.\par
+\par
+\'d7\'f2\'ee \'e4\'e5\'eb\'e0\'fe\'f2 \'e0\'ed\'ed\'ee\'f2\'e0\'f6\'e8\'e8/\'ef\'ee\'eb\'ff\par
+@WebMvcTest(ReminderRestController.class) \f1\emdash  \f0\'e7\'e0\'e3\'f0\'f3\'e6\'e0\'e5\'f2 \'ec\'e8\'ed\'e8\'ec\'f3\'ec \'e1\'e8\'ed\'ee\'e2 \'e4\'eb\'ff \'f2\'e5\'f1\'f2\'e8\'f0\'ee\'e2\'e0\'ed\'e8\'ff \'ea\'ee\'ed\'ea\'f0\'e5\'f2\'ed\'ee\'e3\'ee \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e0: Spring MVC, Jackson, \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'fe, ControllerAdvice (\'e5\'f1\'eb\'e8 \'ef\'ee\'ef\'e0\'e4\'e0\'e5\'f2 \'e2 \'f1\'ea\'e0\'ed). \'c1\'c4/@Service/@Repository \'ed\'e5 \'ef\'ee\'e4\'ed\'e8\'ec\'e0\'fe\'f2\'f1\'ff.\par
+MockMvc \f1\emdash  \f0\'ee\'f2\'ef\'f0\'e0\'e2\'ea\'e0 HTTP-\'e7\'e0\'ef\'f0\'ee\'f1\'ee\'e2 \'ea \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'f3: \'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e0 \'f1\'f2\'e0\'f2\'f3\'f1\'ee\'e2, \'e7\'e0\'e3\'ee\'eb\'ee\'e2\'ea\'ee\'e2, jsonPath.\par
+@MockitoBean ReminderService \f1\emdash  \f0\'ec\'ee\'ea \'f1\'e5\'f0\'e2\'e8\'f1\'e0, \'ea\'ee\'f2\'ee\'f0\'fb\'e9 \'e8\'ed\'e6\'e5\'ea\'f2\'e8\'f2\'f1\'ff \'e2 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 (\'e0\'ed\'e0\'eb\'ee\'e3 @MockBean \'e8\'e7 Spring Boot; \'f6\'e5\'eb\'fc \f1\emdash  \f0\'e7\'e0\'ec\'e5\'ed\'e8\'f2\'fc \'ed\'e0\'f1\'f2\'ee\'ff\'f9\'e8\'e9 \'e1\'e8\'ed \'ed\'e0 Mockito-\'e7\'e0\'e3\'eb\'f3\'f8\'ea\'f3).\par
+ObjectMapper \f1\emdash  \f0\'f1\'e5\'f0\'e8\'e0\'eb\'e8\'e7\'e0\'f6\'e8\'ff/\'e4\'e5\'f1\'e5\'f0\'e8\'e0\'eb\'e8\'e7\'e0\'f6\'e8\'ff JSON \'e2 \'f2\'e5\'f1\'f2\'e0\'f5 (\'f3\'e4\'ee\'e1\'ed\'ee \'f4\'ee\'f0\'ec\'e8\'f0\'ee\'e2\'e0\'f2\'fc \'f2\'e5\'eb\'e0 \'e7\'e0\'ef\'f0\'ee\'f1\'ee\'e2/\'ee\'e6\'e8\'e4\'e0\'ed\'e8\'e9).\par
+\f2\lang1033\par
+================================================\par
+\f0\lang1049\par
+\f2\lang1033 deleteReminder\f0\lang1049\par
+\par
+1: Happy path. \'d3\'e4\'e0\'eb\'e5\'ed\'e8\'e5 \'ef\'ee \'e2\'e0\'eb\'e8\'e4\'ed\'ee\'ec\'f3 \'e7\'e0\'ef\'f0\'ee\'f1\'f3 (\'f1\'f0\'e5\'e7 \'e2\'e5\'e1-\'f1\'eb\'ee\'ff)\par
+\'c4\'e0\'ed\'ee: \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'ef\'ee\'eb\'f3\'f7\'e0\'e5\'f2 DELETE /api/v1/reminder/42; \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'ff \'f7\'e5\'f0\'e5\'e7 spring-security-test (with(jwt())) \'f1 sub=provider-123, email=test@example.com.\par
+\'ca\'ee\'e3\'e4\'e0: \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'ec mockMvc.perform(delete(...).with(jwt(...))).\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f1\bullet  HTTP 204 No Content.\par
+\bullet  \f0\'ca\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'ef\'e5\'f0\'e5\'e4\'e0\'b8\'f2 \'e2 \'f1\'e5\'f0\'e2\'e8\'f1 \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'e5 \'e0\'f0\'e3\'f3\'ec\'e5\'ed\'f2\'fb: deleteReminder(42L, OAuthProvider.GOOGLE, "provider-123", "test@example.com") (\'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e0 verify(...)).\par
+\'c7\'e0\'f7\'e5\'ec: \'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e5\'ec \'ec\'e0\'ef\'ef\'e8\'ed\'e3 \'ef\'f3\'f2\'e8 \f3\u8594?\f2  Long id, \f0\lang1049\'e8\'e7\'e2\'eb\'e5\'f7\'e5\'ed\'e8\'e5 \'ea\'eb\'e5\'e9\'ec\'ee\'e2 \'e8\'e7 JWT \'e8 \'ef\'f0\'e0\'e2\'e8\'eb\'fc\'ed\'f3\'fe \'ef\'e5\'f0\'e5\'e4\'e0\'f7\'f3 \'e8\'f5 \'e2 \'f1\'e5\'f0\'e2\'e8\'f1\'ed\'fb\'e9 \'f1\'eb\'ee\'e9.\par
+\par
+2: \'cd\'e5\'e2\'e0\'eb\'e8\'e4\'ed\'fb\'e9 id \'e2 URL\par
+\'c4\'e0\'ed\'ee: DELETE /api/v1/reminder/abc, \'e3\'e4\'e5 abc \'ed\'e5 \'ef\'e0\'f0\'f1\'e8\'f2\'f1\'ff \'e2 Long.\par
+\'ca\'ee\'e3\'e4\'e0: \'e2\'fb\'ef\'ee\'eb\'ed\'ff\'e5\'ec \'e7\'e0\'ef\'f0\'ee\'f1 \'f1 with(jwt()).\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f1\bullet  HTTP 400 Bad Request.\par
+\bullet  \f0\'d1\'e5\'f0\'e2\'e8\'f1 \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff (verifyNoInteractions(reminderService)).\par
+\'c7\'e0\'f7\'e5\'ec: \'ef\'ee\'e4\'f2\'e2\'e5\'f0\'e6\'e4\'e0\'e5\'ec \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'fe/\'ea\'ee\'ed\'e2\'e5\'f0\'f2\'e0\'f6\'e8\'fe path variable \'e8 \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'f3\'fe \'f0\'e5\'e0\'ea\'f6\'e8\'fe \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e0 \'ed\'e0 \'ed\'e5\'e2\'e5\'f0\'ed\'fb\'e9 \'f4\'ee\'f0\'ec\'e0\'f2 \'e8\'e4\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f2\'ee\'f0\'e0.\par
+\par
+3: \'cf\'f0\'ee\'e1\'f0\'ee\'f1 \'ea\'eb\'e5\'e9\'ec\'ee\'e2 JWT \'e2 \'f1\'e5\'f0\'e2\'e8\'f1\par
+\'c4\'e0\'ed\'ee: \'e7\'e0\'ef\'f0\'ee\'f1 DELETE /api/v1/reminder/99 \'f1 JWT, \'e3\'e4\'e5 sub=provider-999, email=another@example.com.\par
+\'ca\'ee\'e3\'e4\'e0: \'e2\'fb\'ef\'ee\'eb\'ed\'ff\'e5\'ec mockMvc.perform(...).with(jwt().jwt(jwt -> ...)).\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f1\bullet  HTTP 204 No Content.\par
+\bullet  \f0\'d1\'e5\'f0\'e2\'e8\'f1 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'f1 \'ee\'e6\'e8\'e4\'e0\'e5\'ec\'fb\'ec\'e8 \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'ff\'ec\'e8 \'ea\'eb\'e5\'e9\'ec\'ee\'e2: deleteReminder(99L, OAuthProvider.GOOGLE, "provider-999", "another@example.com").\par
+\'c7\'e0\'f7\'e5\'ec: \'e3\'e0\'f0\'e0\'ed\'f2\'e8\'f0\'f3\'e5\'ec, \'f7\'f2\'ee \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'f1\'f2\'e0\'e1\'e8\'eb\'fc\'ed\'ee \'e8 \'ef\'f0\'e0\'e2\'e8\'eb\'fc\'ed\'ee \'e8\'e7\'e2\'eb\'e5\'ea\'e0\'e5\'f2 \'e8 \'ef\'f0\'ee\'e1\'f0\'e0\'f1\'fb\'e2\'e0\'e5\'f2 \'ea\'eb\'e5\'e9\'ec\'fb (sub, email) \'e2 \'e4\'ee\'ec\'e5\'ed\'ed\'f3\'fe \'eb\'ee\'e3\'e8\'ea\'f3.\par
+\par
+\'cf\'ee\'eb\'e5\'e7\'ed\'fb\'e5 \'e2\'e0\'f0\'e8\'e0\'f6\'e8\'e8\par
+\f1\bullet  shouldReturnUnauthorized_whenNoJwt \f3\u8594?\f2  401 (\f0\lang1049\'e1\'e5\'e7 .with(jwt())).\par
+\f1\bullet  shouldReturnForbidden_whenRoleInsufficient \f3\u8594?\f2  403 (\f0\lang1049\'e5\'f1\'eb\'e8 \'ed\'e0 \'ec\'e5\'f2\'ee\'e4 \'ed\'e0\'e2\'e5\'f8\'e5\'ed\'fb \'f0\'ee\'eb\'e8/authority).\par
+\f1\bullet  shouldMapProviderFromToken_whenMultipleIdPs \emdash  \f0\'e5\'f1\'eb\'e8 \'ef\'ee\'e4\'e4\'e5\'f0\'e6\'e8\'e2\'e0\'fe\'f2\'f1\'ff \'ed\'e5\'f1\'ea\'ee\'eb\'fc\'ea\'ee \'ef\'f0\'ee\'e2\'e0\'e9\'e4\'e5\'f0\'ee\'e2, \'ef\'f0\'ee\'e2\'e5\'f0\'e8\'f2\'fc \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'f3\'fe \'e8\'e4\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'fe OAuthProvider \'e8\'e7 \'f2\'ee\'ea\'e5\'ed\'e0/\'ef\'f0\'e5\'f4\'e8\'ea\'f1\'e0.\par
+\f1\bullet  \f0\'cf\'f0\'ee\'e2\'e5\'f0\'ea\'e0 @ControllerAdvice: \'ef\'f0\'e8 \'e4\'ee\'ec\'e5\'ed\'ed\'ee\'ec \'e8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'e8 \'f1\'e5\'f0\'e2\'e8\'f1\'e0 (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, \f2\lang1033\'ab\f0\lang1049\'ed\'e5 \'f2\'e2\'ee\'e9 \'f0\'e5\'f1\'f3\'f0\'f1\f2\lang1033\'bb) \f3\u8594?\f2  404 \f0\lang1049\'ef\'ee \'ef\'ee\'eb\'e8\'f2\'e8\'ea\'e5 \f2\lang1033\'ab\f0\lang1049\'ed\'e5 \'f0\'e0\'f1\'ea\'f0\'fb\'e2\'e0\'f2\'fc \'f7\'f3\'e6\'e8\'e5 \'f0\'e5\'f1\'f3\'f0\'f1\'fb\f2\lang1033\'bb.\par
+\par
+\par
+\f0\lang1049 ====================================================================\f2\lang1033\par
+\par
+updateReminder\par
+\par
+1: Happy path. \f0\lang1049\'ce\'e1\'ed\'ee\'e2\'eb\'e5\'ed\'e8\'e5 \'ed\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'ed\'e8\'ff \'e2\'e0\'eb\'e8\'e4\'ed\'fb\'ec \'e7\'e0\'ef\'f0\'ee\'f1\'ee\'ec (\'f1\'f0\'e5\'e7 \'e2\'e5\'e1-\'f1\'eb\'ee\'ff)\par
+\'c4\'e0\'ed\'ee: \'e5\'f1\'f2\'fc \'e2\'e0\'eb\'e8\'e4\'ed\'fb\'e9 UpdateReminderPayload (\'ed\'e5\'ef\'f3\'f1\'f2\'fb\'e5 title/description, remind \'e2 \'e1\'f3\'e4\'f3\'f9\'e5\'ec). \'cc\'ee\'ea \'f1\'e5\'f0\'e2\'e8\'f1\'e0 \'ed\'e0\'f1\'f2\'f0\'ee\'e5\'ed \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'f2\'fc \'ee\'e1\'ed\'ee\'e2\'eb\'b8\'ed\'ed\'fb\'e9 ReminderDto.\par
+\'ca\'ee\'e3\'e4\'e0: \'ee\'f2\'ef\'f0\'e0\'e2\'eb\'ff\'e5\'ec PATCH /api/v1/reminder/42 \'f1 Content-Type: application/json \'e8 \'f2\'e5\'eb\'ee\'ec payload, \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'ff \'f7\'e5\'f0\'e5\'e7 with(jwt()) (sub=provider-123, email=test@example.com).\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f1\bullet  HTTP 200 OK.\par
+\bullet  \f0\'c2 \'ee\'f2\'e2\'e5\'f2\'e5 JSON: id=42, title="Updated title", description="Updated description".\par
+\f1\bullet  (\f0\'c8\'ec\'ef\'eb\'e8\'f6\'e8\'f2\'ed\'ee) \'ca\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'e2\'fb\'e7\'e2\'e0\'eb \'f1\'e5\'f0\'e2\'e8\'f1 \'f1 \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'ec\'e8 \'e0\'f0\'e3\'f3\'ec\'e5\'ed\'f2\'e0\'ec\'e8 (\'f1\'ec. when(...).thenReturn(...)).\par
+\'c7\'e0\'f7\'e5\'ec: \'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e5\'ec, \'f7\'f2\'ee \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'ef\'f0\'e0\'e2\'e8\'eb\'fc\'ed\'ee \'ef\'e0\'f0\'f1\'e8\'f2 JSON, \'ec\'e0\'ef\'e8\'f2 \'e2 DTO, \'e8\'e7\'e2\'eb\'e5\'ea\'e0\'e5\'f2 \'ea\'eb\'e5\'e9\'ec\'fb \'e8\'e7 JWT \'e8 \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 \'e4\'e0\'ed\'ed\'fb\'e5 \'f1\'e5\'f0\'e2\'e8\'f1\'e0 \'e1\'e5\'e7 \'e8\'f1\'ea\'e0\'e6\'e5\'ed\'e8\'e9.\par
+\par
+2: \'cd\'e5\'e2\'e0\'eb\'e8\'e4\'ed\'fb\'e9 payload \f3\u8594?\f2  400\par
+\f0\lang1049\'c4\'e0\'ed\'ee: UpdateReminderPayload \'f1 \'ef\'f3\'f1\'f2\'fb\'ec\'e8 title/description \'e8 remind \'e2 \'ef\'f0\'ee\'f8\'eb\'ee\'ec (\'ed\'e0\'f0\'f3\'f8\'e5\'ed\'e8\'e5 \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'e8).\par
+\'ca\'ee\'e3\'e4\'e0: \'ee\'f2\'ef\'f0\'e0\'e2\'eb\'ff\'e5\'ec PATCH /api/v1/reminder/42 \'f1 \'fd\'f2\'e8\'ec \'f2\'e5\'eb\'ee\'ec \'e8 with(jwt()).\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f1\bullet  HTTP 400 Bad Request.\par
+\bullet  \f0\'d1\'e5\'f0\'e2\'e8\'f1 \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff (verifyNoInteractions(reminderService)).\par
+\'c7\'e0\'f7\'e5\'ec: \'ef\'ee\'e4\'f2\'e2\'e5\'f0\'e6\'e4\'e0\'e5\'ec, \'f7\'f2\'ee Bean Validation \'ed\'e0 \'e2\'f5\'ee\'e4\'e5 \'e1\'eb\'ee\'ea\'e8\'f0\'f3\'e5\'f2 \'ed\'e5\'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'e5 \'e7\'e0\'ef\'f0\'ee\'f1\'fb \'e8 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'ed\'e5 \'e4\'e5\'eb\'e5\'e3\'e8\'f0\'f3\'e5\'f2 \'e8\'f5 \'e2 \'e1\'e8\'e7\'ed\'e5\'f1-\'eb\'ee\'e3\'e8\'ea\'f3.\par
+\par
+3: \'cf\'f0\'ee\'e1\'f0\'ee\'f1 \'ea\'eb\'e5\'e9\'ec\'ee\'e2 JWT \'e2 \'f1\'e5\'f0\'e2\'e8\'f1 \'ed\'e0 \'ee\'e1\'ed\'ee\'e2\'eb\'e5\'ed\'e8\'e8\par
+\'c4\'e0\'ed\'ee: \'e2\'e0\'eb\'e8\'e4\'ed\'fb\'e9 payload; JWT \'f1 sub=provider-999, email=another@example.com. \'d1\'e5\'f0\'e2\'e8\'f1 \'e7\'e0\'ec\'ee\'ea\'e0\'ed \'e8 \'e3\'ee\'f2\'ee\'e2 \'e2\'e5\'f0\'ed\'f3\'f2\'fc ReminderDto.\par
+\'ca\'ee\'e3\'e4\'e0: \'ee\'f2\'ef\'f0\'e0\'e2\'eb\'ff\'e5\'ec PATCH /api/v1/reminder/99 \'f1 \'f2\'e5\'eb\'ee\'ec payload \'e8 with(jwt().jwt(...)).\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f1\bullet  HTTP 200 OK.\par
+\bullet  \f0\'d1\'e5\'f0\'e2\'e8\'f1 \'e2\'fb\'e7\'e2\'e0\'ed \'f1 \'ee\'e6\'e8\'e4\'e0\'e5\'ec\'fb\'ec\'e8 \'e0\'f0\'e3\'f3\'ec\'e5\'ed\'f2\'e0\'ec\'e8:\par
+updateReminder(99L, payload, OAuthProvider.GOOGLE, "provider-999", "another@example.com") (\'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e0 verify(...)).\par
+\'c7\'e0\'f7\'e5\'ec: \'e3\'e0\'f0\'e0\'ed\'f2\'e8\'f0\'f3\'e5\'ec, \'f7\'f2\'ee \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'f1\'f2\'e0\'e1\'e8\'eb\'fc\'ed\'ee \'e8\'e7\'e2\'eb\'e5\'ea\'e0\'e5\'f2 \'ea\'eb\'e5\'e9\'ec\'fb (sub, email) \'e8 \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'ee \'ef\'e5\'f0\'e5\'e4\'e0\'b8\'f2 IdP/\'e8\'e4\'e5\'ed\'f2\'e8\'f7\'ed\'ee\'f1\'f2\'fc \'e2 \'f1\'e5\'f0\'e2\'e8\'f1\'ed\'fb\'e9 \'f1\'eb\'ee\'e9.\par
+\par
+\'cf\'ee\'eb\'e5\'e7\'ed\'fb\'e5 \'e2\'e0\'f0\'e8\'e0\'f6\'e8\'e8 (\'e4\'ee\'e1\'e0\'e2\'e8\'f2\'fc \'ee\'f2\'e4\'e5\'eb\'fc\'ed\'fb\'ec\'e8 \'f2\'e5\'f1\'f2\'e0\'ec\'e8)\par
+\f1\bullet  shouldReturnUnauthorized_whenNoJwt \f3\u8594?\f2  401 (\f0\lang1049\'e1\'e5\'e7 with(jwt())).\par
+\f1\bullet  shouldReturnUnsupportedMediaType_whenMissingContentType \f3\u8594?\f2  415 (\f0\lang1049\'e5\'f1\'eb\'e8 Content-Type \'ed\'e5\'e2\'e5\'f0\'ed\'fb\'e9/\'ee\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'e5\'f2).\par
+\f1\bullet  shouldReturnBadRequest_whenMalformedJson \f3\u8594?\f2  400 (\f0\lang1049\'e1\'e8\'f2\'fb\'e9 JSON).\par
+\f1\bullet  shouldReturnNotFound_whenServiceReportsNoSuchReminder \f3\u8594?\f2  404 (\f0\lang1049\'ec\'ee\'ea \'f1\'e5\'f0\'e2\'e8\'f1\'e0 \'e1\'f0\'ee\'f1\'e0\'e5\'f2 \'e4\'ee\'ec\'e5\'ed\'ed\'ee\'e5 \'e8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'e5 \f2\lang1033\'ab\f0\lang1049\'ed\'e5 \'ed\'e0\'e9\'e4\'e5\'ed\'ee\f2\lang1033\'bb).\par
+\par
+=================================================================\par
+\par
+\f0\lang1049 1: Happy path. \'cf\'ee\'eb\'f3\'f7\'e5\'ed\'e8\'e5 \'ef\'ee id (\'f1\'f0\'e5\'e7 \'e2\'e5\'e1-\'f1\'eb\'ee\'ff)\par
+\'c4\'e0\'ed\'ee: \'ec\'ee\'ea \'f1\'e5\'f0\'e2\'e8\'f1\'e0 \'ed\'e0\'f1\'f2\'f0\'ee\'e5\'ed \'e2\'e5\'f0\'ed\'f3\'f2\'fc ReminderDto(id=42, title="Test title", ...).\par
+\'ca\'ee\'e3\'e4\'e0: \'ee\'f2\'ef\'f0\'e0\'e2\'eb\'ff\'e5\'ec GET /api/v1/reminder/42 c \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'e5\'e9 \'f7\'e5\'f0\'e5\'e7 with(jwt()) (sub=provider-123, email=test@example.com).\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f1\bullet  HTTP 200 OK.\par
+\bullet  \f0\'c2 \'ee\'f2\'e2\'e5\'f2\'e5 JSON: id=42, title="Test title", description="Some description".\par
+\'c7\'e0\'f7\'e5\'ec: \'ef\'ee\'e4\'f2\'e2\'e5\'f0\'e6\'e4\'e0\'e5\'ec, \'f7\'f2\'ee \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'ef\'f0\'e0\'e2\'e8\'eb\'fc\'ed\'ee \'ef\'e0\'f0\'f1\'e8\'f2 path variable, \'e8\'e7\'e2\'eb\'e5\'ea\'e0\'e5\'f2 \'ea\'eb\'e5\'e9\'ec\'fb \'e8\'e7 JWT, \'e4\'e5\'eb\'e5\'e3\'e8\'f0\'f3\'e5\'f2 \'e2 \'f1\'e5\'f0\'e2\'e8\'f1 \'e8 \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 \'e4\'e0\'ed\'ed\'fb\'e5 \'e1\'e5\'e7 \'e8\'f1\'ea\'e0\'e6\'e5\'ed\'e8\'e9.\par
+\par
+2: \'cd\'e5\'e2\'e0\'eb\'e8\'e4\'ed\'fb\'e9 id \'e2 URL\par
+\'c4\'e0\'ed\'ee: \'ef\'f3\'f2\'fc \'f1\'ee\'e4\'e5\'f0\'e6\'e8\'f2 id = "abc", \'ea\'ee\'f2\'ee\'f0\'fb\'e9 \'ed\'e5 \'ef\'e0\'f0\'f1\'e8\'f2\'f1\'ff \'e2 Long.\par
+\'ca\'ee\'e3\'e4\'e0: GET /api/v1/reminder/abc \'f1 with(jwt()).\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f1\bullet  HTTP 400 Bad Request.\par
+\bullet  \f0\'d1\'e5\'f0\'e2\'e8\'f1 \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff (verifyNoInteractions(reminderService)).\par
+\'c7\'e0\'f7\'e5\'ec: \'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e5\'ec \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'f3\'fe \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'fe/\'ea\'ee\'ed\'e2\'e5\'f0\'f2\'e0\'f6\'e8\'fe path variable \'e8 \'e7\'e0\'f9\'e8\'f2\'f3 \'ee\'f2 \'ed\'e5\'e2\'e5\'f0\'ed\'fb\'f5 \'e8\'e4\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f2\'ee\'f0\'ee\'e2 \'ed\'e0 \'f3\'f0\'ee\'e2\'ed\'e5 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e0.\par
+\par
+3: \'cf\'f0\'ee\'e1\'f0\'ee\'f1 \'ea\'eb\'e5\'e9\'ec\'ee\'e2 JWT \'e2 \'f1\'e5\'f0\'e2\'e8\'f1\par
+\'c4\'e0\'ed\'ee: \'ec\'ee\'ea \'f1\'e5\'f0\'e2\'e8\'f1\'e0 \'e3\'ee\'f2\'ee\'e2 \'e2\'e5\'f0\'ed\'f3\'f2\'fc \'eb\'fe\'e1\'ee\'e9 ReminderDto; \'e2 \'f2\'ee\'ea\'e5\'ed\'e5 sub=provider-999, email=another@example.com.\par
+\'ca\'ee\'e3\'e4\'e0: GET /api/v1/reminder/99 \'f1 with(jwt().jwt(...)).\par
+\'d2\'ee\'e3\'e4\'e0:\par
+\f1\bullet  HTTP 200 OK.\par
+\bullet  \f0\'d1\'e5\'f0\'e2\'e8\'f1 \'e2\'fb\'e7\'e2\'e0\'ed \'f1 \'ee\'e6\'e8\'e4\'e0\'e5\'ec\'fb\'ec\'e8 \'e0\'f0\'e3\'f3\'ec\'e5\'ed\'f2\'e0\'ec\'e8:\par
+getById(99L, OAuthProvider.GOOGLE, "provider-999", "another@example.com") (\'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e0 verify(...)).\par
+\'c7\'e0\'f7\'e5\'ec: \'e3\'e0\'f0\'e0\'ed\'f2\'e8\'f0\'f3\'e5\'ec \'f1\'f2\'e0\'e1\'e8\'eb\'fc\'ed\'ee\'e5 \'e8\'e7\'e2\'eb\'e5\'f7\'e5\'ed\'e8\'e5 \'ea\'eb\'e5\'e9\'ec\'ee\'e2 (sub, email) \'e8 \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'f3\'fe \'ef\'e5\'f0\'e5\'e4\'e0\'f7\'f3 IdP/\'e8\'e4\'e5\'ed\'f2\'e8\'f7\'ed\'ee\'f1\'f2\'e8 \'e2 \'e1\'e8\'e7\'ed\'e5\'f1-\'eb\'ee\'e3\'e8\'ea\'f3.\par
+\par
+\'cf\'ee\'eb\'e5\'e7\'ed\'fb\'e5 \'e2\'e0\'f0\'e8\'e0\'f6\'e8\'e8 (\'ee\'f2\'e4\'e5\'eb\'fc\'ed\'fb\'ec\'e8 \'f2\'e5\'f1\'f2\'e0\'ec\'e8)\par
+\f1\bullet  shouldReturnUnauthorized_whenNoJwt \f3\u8594?\f2  401.\par
+\f1\bullet  shouldReturnNotFound_whenServiceReportsNoSuchReminder \f3\u8594?\f2  404 (\f0\lang1049\'ec\'ee\'ea \'f1\'e5\'f0\'e2\'e8\'f1\'e0 \'e1\'f0\'ee\'f1\'e0\'e5\'f2 \f2\lang1033\'ab\f0\lang1049\'ed\'e5 \'ed\'e0\'e9\'e4\'e5\'ed\'ee\f2\lang1033\'bb).\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+}
+ 

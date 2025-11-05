@@ -1,0 +1,95 @@
+databaseChangeLog:
+  # === USERS: sequence ===
+  - changeSet:
+      id: users-001-create-seq
+      author: danil
+      changes:
+        - createSequence:
+            sequenceName: user_seq
+            schemaName: public
+            incrementBy: 1
+
+  # === USERS: table ===
+  - changeSet:
+      id: users-002-create-table
+      author: danil
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints: { primaryKey: true, nullable: false }
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints: { nullable: false }
+              - column:
+                  name: provider
+                  type: varchar(32)
+                  constraints: { nullable: false }
+              - column:
+                  name: provider_id
+                  type: varchar(255)
+                  constraints: { nullable: false,
+                                 unique: true }
+              - column:
+                  name: role
+                  type: varchar(32)
+                  constraints: { nullable: false }
+              - column:
+                  name: created_at
+                  type: timestamptz
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints: { nullable: false }
+              - column:
+                  name: updated_at
+                  type: timestamptz
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints: { nullable: false }
+        - addDefaultValue:
+            tableName: users
+            columnName: id
+            defaultValueSequenceNext: user_seq
+      rollback:
+        - dropTable:
+            tableName: users
+        - dropSequence:
+            sequenceName: user_seq
+
+  # === USERS: constraints & indexes ===
+  - changeSet:
+      id: users-003-constraints-and-indexes
+      author: danil
+      changes:
+        # Уникальная связка провайдера и его устойчивого идентификатора (Google sub)
+        - addUniqueConstraint:
+            tableName: users
+            columnNames: provider, provider_id
+            constraintName: uq_users_provider_provider_id
+
+        # Индекс для быстрого case-insensitive поиска по email
+        - sql:
+            splitStatements: false
+            sql: |
+              CREATE INDEX IF NOT EXISTS idx_users_email_lower ON users (LOWER(email));
+
+        # Часто полезен составной индекс для логина/поиска по провайдеру
+        - createIndex:
+            tableName: users
+            indexName: idx_users_provider_provider_id
+            columns:
+              - column: { name: provider }
+              - column: { name: provider_id }
+      rollback:
+        - dropUniqueConstraint:
+            tableName: users
+            constraintName: uq_users_provider_provider_id
+        - sql:
+            splitStatements: false
+            sql: |
+              DROP INDEX IF EXISTS idx_users_email_lower;
+        - dropIndex:
+            tableName: users
+            indexName: idx_users_provider_provider_id

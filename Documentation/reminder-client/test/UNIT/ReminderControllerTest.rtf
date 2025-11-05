@@ -1,0 +1,265 @@
+{\rtf1\ansi\ansicpg1251\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset204 Calibri;}{\f1\fnil\fcharset1 Cambria Math;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil Calibri;}{\f4\fnil\fcharset2 Symbol;}}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang1049\'ca\'ee\'ed\'f2\'e5\'ea\'f1\'f2: @WebMvcTest(ReminderController.class)\par
+\'dd\'f2\'ee slice-\'f2\'e5\'f1\'f2 \'f3\'f0\'ee\'e2\'ed\'ff \'e2\'e5\'e1-\'f1\'eb\'ee\'ff. \'cf\'ee\'e4\'ed\'e8\'ec\'e0\'e5\'f2 \'f2\'ee\'eb\'fc\'ea\'ee MVC-\'e8\'ed\'f4\'f0\'e0\'f1\'f2\'f0\'f3\'ea\'f2\'f3\'f0\'f3 (\'e4\'e8\'f1\'ef\'e5\'f2\'f7\'e5\'f0, \'ea\'ee\'ed\'e2\'e5\'f0\'f2\'e5\'f0\'fb, \'e1\'e8\'ed\'e4\'e8\'ed\'e3, \'e2\'e0\'eb\'e8\'e4\'e0\'f2\'ee\'f0\'fb, ControllerAdvice \'ef\'f0\'e8 \'ff\'e2\'ed\'ee\'ec \'ef\'ee\'e4\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'e8) \'e8 \'f1\'e0\'ec \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0. \'cd\'e8 \'f1\'e5\'f0\'e2\'e8\'f1\'ee\'e2, \'ed\'e8 \'f0\'e5\'ef\'ee\'e7\'e8\'f2\'ee\'f0\'e8\'e5\'e2, \'ed\'e8 \'ed\'e0\'f1\'f2\'ee\'ff\'f9\'e5\'e9 \'c1\'c4.\par
+\par
+\b\fs28\'cf\'ee\'eb\'ff\b0\fs22\par
+\par
+@Autowired MockMvc mockMvc\par
+\'c8\'ed\'f1\'f2\'f0\'f3\'ec\'e5\'ed\'f2 \'e4\'eb\'ff \'ef\'f0\'ee\'e3\'ee\'ed\'ea\'e8 HTTP-\'e7\'e0\'ef\'f0\'ee\'f1\'ee\'e2 \'f7\'e5\'f0\'e5\'e7 Spring MVC \'e1\'e5\'e7 \'e7\'e0\'ef\'f3\'f1\'ea\'e0 \'f1\'e5\'f0\'e2\'e5\'f0\'e0. \'d7\'e5\'f0\'e5\'e7 \'ed\'e5\'e3\'ee \'f2\'fb \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f8\'fc endpoints \'e8 \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'f8\'fc:\par
+\'f1\'f2\'e0\'f2\'f3\'f1, view, \'ec\'ee\'e4\'e5\'eb\'fc, \'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2\'fb, \'e7\'e0\'e3\'ee\'eb\'ee\'e2\'ea\'e8 \'e8 \'f2. \'ef.\par
+\par
+@MockBean RestClientReminderRestClient restClient\par
+\'cc\'ee\'ea \'e2\'ed\'e5\'f8\'ed\'e5\'e3\'ee \'ea\'eb\'e8\'e5\'ed\'f2\'e0, \'ea\'ee\'f2\'ee\'f0\'fb\'e9 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2.\par
+\'cf\'ee\'f7\'e5\'ec\'f3 \'ed\'f3\'e6\'e5\'ed: \'ef\'f0\'e8 @WebMvcTest \'f0\'e5\'e0\'eb\'fc\'ed\'fb\'e5 \'e7\'e0\'e2\'e8\'f1\'e8\'ec\'ee\'f1\'f2\'e8 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e0 \'ed\'e5 \'f1\'ee\'e7\'e4\'e0\'fe\'f2\'f1\'ff, \'ef\'ee\'fd\'f2\'ee\'ec\'f3 \'f2\'fb \'ef\'ee\'e4\'f1\'ee\'e2\'fb\'e2\'e0\'e5\'f8\'fc \'ec\'ee\'ea, \'ed\'e0\'f1\'f2\'f0\'e0\'e8\'e2\'e0\'e5\'f8\'fc when(...).thenReturn(...) \'e8 \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'f8\'fc, \'ea\'e0\'ea \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'f1 \'ed\'e8\'ec \'e2\'e7\'e0\'e8\'ec\'ee\'e4\'e5\'e9\'f1\'f2\'e2\'f3\'e5\'f2 (\'f1\'ea\'ee\'eb\'fc\'ea\'ee \'e2\'fb\'e7\'ee\'e2\'ee\'e2, \'f1 \'ea\'e0\'ea\'e8\'ec\'e8 \'e0\'f0\'e3\'f3\'ec\'e5\'ed\'f2\'e0\'ec\'e8).\par
+\par
+@MockBean OAuth2AuthorizedClientService authorizedClientService\par
+\'dd\'f2\'ee\'f2 \'e1\'e8\'ed \'e5\'f1\'f2\'fc \'e2 \'ef\'f0\'e8\'eb\'ee\'e6\'e5\'ed\'e8\'e8 (\'e8\'f1\'ef\'ee\'eb\'fc\'e7\'f3\'e5\'f2\'f1\'ff \'e1\'e5\'e7\'ee\'ef\'e0\'f1\'ed\'ee\'f1\'f2\'fc\'fe/OAuth2), \'e8 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0/\'ea\'ee\'ed\'f4\'e8\'e3 \'e5\'e3\'ee \'e2\'e8\'e4\'e8\'f2. \'c2 \'ea\'ee\'ed\'ea\'f0\'e5\'f2\'ed\'ee\'ec \'f2\'e5\'f1\'f2\'e5 \'ee\'ed \'ec\'ee\'e6\'e5\'f2 \'ed\'e5 \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'fc\'f1\'ff, \'ed\'ee \'e1\'e5\'e7 \'ed\'e5\'e3\'ee \'ea\'ee\'ed\'f2\'e5\'ea\'f1\'f2 \'f1\'eb\'e0\'e9\'f1\'e0 \'ec\'ee\'e6\'e5\'f2 \'ed\'e5 \'ef\'ee\'e4\'ed\'ff\'f2\'fc\'f1\'ff (unsatisfied dependency). \'cf\'ee\'fd\'f2\'ee\'ec\'f3 \'f2\'fb \'e5\'e3\'ee \'ec\'ee\'ea\'e8\'f0\'f3\'e5\'f8\'fc \ldblquote\'e4\'eb\'ff \'e7\'e4\'ee\'f0\'ee\'e2\'fc\'ff\rdblquote  \'ea\'ee\'ed\'f2\'e5\'ea\'f1\'f2\'e0.\par
+\'cf\'eb\'fe\'f1: \'e5\'f1\'eb\'e8 \'f2\'fb \'e2 \'f2\'e5\'f1\'f2\'e0\'f5 \'ef\'f0\'e8\'ec\'e5\'ed\'ff\'e5\'f8\'fc .with(oauth2Login()), \'ed\'e0\'eb\'e8\'f7\'e8\'e5 OAuth-\'e1\'e8\'ed\'ee\'e2 \'e4\'e5\'eb\'e0\'e5\'f2 \'ef\'ee\'e2\'e5\'e4\'e5\'ed\'e8\'e5 \'e1\'eb\'e8\'e6\'e5 \'ea \'f0\'e5\'e0\'eb\'fc\'ed\'ee\'ec\'f3.\par
+\par
+\b\fs28\'cc\'e5\'ed\'e5\'e4\'e6\'ec\'e5\'ed\'f2 \'f2\'e0\'e9\'ec-\'e7\'ee\'ed\'fb\b0\fs22\par
+private TimeZone originalTz;\par
+\'d5\'f0\'e0\'ed\'e8\'f2 \'e8\'f1\'f5\'ee\'e4\'ed\'f3\'fe \'f1\'e8\'f1\'f2\'e5\'ec\'ed\'f3\'fe \'f2\'e0\'e9\'ec-\'e7\'ee\'ed\'f3 \'f2\'e5\'f1\'f2\'ee\'e2\'ee\'e3\'ee \'ef\'f0\'ee\'f6\'e5\'f1\'f1\'e0.\par
+\par
+@BeforeEach void rememberTz()\par
+\'c7\'e0\'ef\'ee\'ec\'e8\'ed\'e0\'e5\'f8\'fc \'f2\'e5\'ea\'f3\'f9\'f3\'fe TZ \'e4\'ee \'e8\'e7\'ec\'e5\'ed\'e5\'ed\'e8\'ff. \'dd\'f2\'ee \'e2\'e0\'e6\'ed\'ee, \'e5\'f1\'eb\'e8 \'e2 \'ee\'f2\'e4\'e5\'eb\'fc\'ed\'fb\'f5 \'f2\'e5\'f1\'f2\'e0\'f5 \'f2\'fb \'e4\'e5\'eb\'e0\'e5\'f8\'fc TimeZone.setDefault(...) (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, \'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e5\'f8\'fc UTC \'e8\'eb\'e8 Europe/Berlin), \'f7\'f2\'ee\'e1\'fb \'ea\'ee\'ed\'e2\'e5\'f0\'f2\'e0\'f6\'e8\'e8 LocalDateTime \f1\u8594?\f2  Instant \f0\lang1049\'e1\'fb\'eb\'e8 \'e4\'e5\'f2\'e5\'f0\'ec\'e8\'ed\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'ec\'e8.\par
+\par
+@AfterEach void restoreTz()\par
+\'c2\'f1\'e5\'e3\'e4\'e0 \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f8\'fc \'f1\'e8\'f1\'f2\'e5\'ec\'ed\'f3\'fe TZ \'ed\'e0\'e7\'e0\'e4, \'f7\'f2\'ee\'e1\'fb \'ed\'e5 \'eb\'ee\'ec\'e0\'f2\'fc \'e4\'f0\'f3\'e3\'e8\'e5 \'f2\'e5\'f1\'f2\'fb (\'ef\'ee\'e1\'ee\'f7\'ed\'fb\'e5 \'fd\'f4\'f4\'e5\'ea\'f2\'fb \f3\emdash  \f0\'f7\'e0\'f1\'f2\'e0\'ff \'ef\'f0\'e8\'f7\'e8\'ed\'e0 \ldblquote\'f4\'eb\'e0\'ea\'e8\rdblquote  \'f2\'e5\'f1\'f2\'ee\'e2 \'e2\'f0\'e5\'ec\'e5\'ed\'e8).\par
+\par
+\par
+\'c7\'e0\'f7\'e5\'ec \'e2\'ee\'ee\'e1\'f9\'e5 @WebMvcTest, \'e0 \'ed\'e5 @SpringBootTest?\par
+\'c1\'fb\'f1\'f2\'f0\'e5\'e5 (\'ec\'e5\'ed\'fc\'f8\'e5 \'ea\'ee\'ed\'f2\'e5\'ea\'f1\'f2\'e0).\par
+\'c8\'e7\'ee\'eb\'e8\'f0\'f3\'e5\'f2 \'e2\'e5\'e1-\'eb\'ee\'e3\'e8\'ea\'f3 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e0: \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'f8\'fc \'ec\'e0\'f0\'f8\'f0\'f3\'f2\'fb, \'e1\'e8\'ed\'e4\'e8\'ed\'e3, \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'fe, \'ec\'ee\'e4\'e5\'eb\'fc, \'ee\'e1\'f0\'e0\'e1\'ee\'f2\'ea\'f3 \'e8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'e9 \f3\emdash  \f0\'e1\'e5\'e7 \'e2\'eb\'e8\'ff\'ed\'e8\'ff \'e1\'e0\'e7\'fb/\'f1\'e5\'f0\'e2\'e8\'f1\'ee\'e2.\par
+\'c2\'f1\'b8 \'e2\'ed\'e5\'f8\'ed\'e5\'e5 \'ec\'ee\'ea\'e8\'f0\'f3\'e5\'f8\'fc \'ff\'e2\'ed\'fb\'ec \'ee\'e1\'f0\'e0\'e7\'ee\'ec \f1\u8594?\f2  \f0\lang1049\'f2\'e5\'f1\'f2\'fb \'ef\'f0\'e5\'e4\'f1\'ea\'e0\'e7\'f3\'e5\'ec\'fb \'e8 \'f2\'ee\'f7\'e5\'f7\'ed\'fb.\par
+\par
+====================================\par
+\par
+getReminderEditPage\line\line 1 \'c0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'f1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'fb\'e9 \'ef\'f3\'f2\'fc\par
+\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+\'c8\'ec\'e8\'f2\'e0\'f6\'e8\'ff \'e2\'f5\'ee\'e4\'e0: \'e7\'e0\'ef\'f0\'ee\'f1 \'e2\'fb\'ef\'ee\'eb\'ed\'ff\'e5\'f2\'f1\'ff \'f1 .with(oauth2Login()) (\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc \'e7\'e0\'eb\'ee\'e3\'e8\'ed\'e5\'ed).\par
+\'c2\'fb\'e7\'ee\'e2\'fb \'ea REST-\'ea\'eb\'e8\'e5\'ed\'f2\'f3:\par
+\f1\u10625?\f2  restClient.getReminderById(id) \f0\lang1049\'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'f0\'ee\'e2\'ed\'ee 1 \'f0\'e0\'e7 \'f1 \'f2\'e5\'ec \'f1\'e0\'ec\'fb\'ec id.\par
+\f1\u10625?\f2  \f0\lang1049\'c4\'f0\'f3\'e3\'e8\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 \'ea restClient \'ed\'e5\'f2.\par
+HTTP-\'ee\'f2\'e2\'e5\'f2: \'f1\'f2\'e0\'f2\'f3\'f1 200 OK.\par
+View: \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2\'f1\'ff \'ef\'f0\'e5\'e4\'f1\'f2\'e0\'e2\'eb\'e5\'ed\'e8\'e5 "reminder-edit-page".\par
+\'cc\'ee\'e4\'e5\'eb\'fc:\par
+\f1\u10625?\f2  \f0\lang1049\'e5\'f1\'f2\'fc \'e0\'f2\'f0\'e8\'e1\'f3\'f2 "reminder";\par
+\f1\u10625?\f2  \f0\lang1049\'e7\'ed\'e0\'f7\'e5\'ed\'e8\'e5 \'e0\'f2\'f0\'e8\'e1\'f3\'f2\'e0 \'f1\'f2\'f0\'ee\'e3\'ee \'f0\'e0\'e2\'ed\'ee \'ec\'ee\'ea\'ee\'e2\'ee\'ec\'f3 dto (\'f2\'ee\'f2 \'e6\'e5 \'ee\'e1\'fa\'e5\'ea\'f2).\par
+\par
+\'cf\'f0\'e8\'ec\'e5\'f7\'e0\'ed\'e8\'ff:\par
+.with(csrf()) \'e4\'eb\'ff GET \'ed\'e5 \'ee\'e1\'ff\'e7\'e0\'f2\'e5\'eb\'e5\'ed, \'ed\'ee \'ed\'e5 \'ec\'e5\'f8\'e0\'e5\'f2.\par
+\'c2 \'fd\'f2\'ee\'ec \'f2\'e5\'f1\'f2\'e5 \'ed\'e5 \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'fe\'f2\'f1\'ff \'f1\'f6\'e5\'ed\'e0\'f0\'e8\'e8 \'ee\'f8\'e8\'e1\'ee\'ea (404/500), \'f0\'ee\'eb\'e8/\'e4\'ee\'f1\'f2\'f3\'ef \'e8 \'ee\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'e8\'e5/\'ef\'f0\'ee\'f1\'f0\'ee\'f7\'ea\'e0 \'f2\'ee\'ea\'e5\'ed\'ee\'e2 \f3\emdash  \f0\'e8\'f5 \'ec\'ee\'e6\'ed\'ee \'ef\'ee\'ea\'f0\'fb\'f2\'fc \'ee\'f2\'e4\'e5\'eb\'fc\'ed\'fb\'ec\'e8 \'f2\'e5\'f1\'f2\'e0\'ec\'e8.\par
+\par
+\par
+2 \'cd\'e5\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'ef\'f3\'f2\'fc (redirect to login)\par
+\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+\'c4\'ee\'f1\'f2\'f3\'ef \'e1\'e5\'e7 \'eb\'ee\'e3\'e8\'ed\'e0: \'e2\'fb\'ef\'ee\'eb\'ed\'ff\'e5\'ec GET \'e1\'e5\'e7 .with(oauth2Login()).\par
+\par
+\'ce\'f2\'e2\'e5\'f2:\par
+\'f1\'f2\'e0\'f2\'f3\'f1 3xx Redirect;\par
+\'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2 \'ed\'e0 \'f1\'f2\'f0\'e0\'ed\'e8\'f6\'f3 \'e0\'e2\'f2\'ee\'f0\'e8\'e7\'e0\'f6\'e8\'e8 OAuth2 \f3\emdash  redirectedUrlPattern("**/oauth2/authorization/**").\par
+\f0\par
+\'c8\'ed\'f2\'e5\'e3\'f0\'e0\'f6\'e8\'ff \'f1 \'e1\'fd\'ea\'e5\'ed\'e4\'ee\'ec:\par
+restClient.getReminderById(..) \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'e2\'ee\'e2\'f1\'e5 (never()),\par
+\'ed\'e5\'f2 \'e4\'f0\'f3\'e3\'e8\'f5 \'e2\'e7\'e0\'e8\'ec\'ee\'e4\'e5\'e9\'f1\'f2\'e2\'e8\'e9 \'f1 restClient (verifyNoMoreInteractions).\par
+\par
+\'c7\'e0\'f7\'e5\'ec \'fd\'f2\'ee \'ed\'f3\'e6\'ed\'ee:\par
+\'c3\'e0\'f0\'e0\'ed\'f2\'e8\'f0\'f3\'e5\'ec, \'f7\'f2\'ee \'e7\'e0\'f9\'e8\'f9\'b8\'ed\'ed\'fb\'e9 \'ec\'e0\'f0\'f8\'f0\'f3\'f2 \'f2\'f0\'e5\'e1\'f3\'e5\'f2 \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'fe \'e8 \'f1\'e0\'ec \'ed\'e8\'f7\'e5\'e3\'ee \'ed\'e5 \'f2\'ff\'ed\'e5\'f2 \'e8\'e7 REST \'e4\'ee \'eb\'ee\'e3\'e8\'ed\'e0 (\'ed\'e8\'ea\'e0\'ea\'e8\'f5 \'f3\'f2\'e5\'f7\'e5\'ea/\'eb\'e8\'f8\'ed\'e5\'e9 \'ed\'e0\'e3\'f0\'f3\'e7\'ea\'e8).\par
+\par
+\par
+3 \'c0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9: \'e1\'fd\'ea\'e5\'ed\'e4 \'e2\'e5\'f0\'ed\'f3\'eb 404 \f1\u8594?\f2  \f0\lang1049\'ec\'e0\'ef\'ef\'e8\'ed\'e3 \'ee\'f8\'e8\'e1\'ea\'e8\par
+\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'cb\'ee\'e3\'e8\'ed: \'e7\'e0\'ef\'f0\'ee\'f1 \'e2\'fb\'ef\'ee\'eb\'ed\'ff\'e5\'f2\'f1\'ff \'f1 .with(oauth2Login()).\par
+{\pntext\f4\'B7\tab}\'c8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'e5 \'ee\'f2 \'ea\'eb\'e8\'e5\'ed\'f2\'e0: restClient.getReminderById(id) \'ea\'e8\'e4\'e0\'e5\'f2 HttpClientErrorException \'f1\'ee \'f1\'f2\'e0\'f2\'f3\'f1\'ee\'ec 404 \'e8 JSON-\'f2\'e5\'eb\'ee\'ec \{"message":"Reminder not found", ...\}.\par
+{\pntext\f4\'B7\tab}HTTP-\'ee\'f2\'e2\'e5\'f2 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e0: \'f1\'f2\'e0\'f2\'f3\'f1 404 Not Found.\par
+{\pntext\f4\'B7\tab}\'cc\'ee\'e4\'e5\'eb\'fc \'e4\'eb\'ff error-view: \'ef\'f0\'e8\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'fe\'f2 \'e0\'f2\'f0\'e8\'e1\'f3\'f2\'fb errorMessage, status, path, timestamp;\par
+{\pntext\f4\'B7\tab}errorMessage \'f0\'e0\'e2\'e5\'ed "Reminder not found".\par
+
+\pard\sl240\slmult1\'c2\'e7\'e0\'e8\'ec\'ee\'e4\'e5\'e9\'f1\'f2\'e2\'e8\'ff \'f1 REST:\par
+\f1\u10625?\f2  restClient.getReminderById(id) \f0\lang1049\'e2\'fb\'e7\'e2\'e0\'ed \'f0\'ee\'e2\'ed\'ee 1 \'f0\'e0\'e7;\par
+\f1\u10625?\f2  \f0\lang1049\'ed\'e5\'f2 \'e4\'f0\'f3\'e3\'e8\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 \'ea restClient.\par
+\par
+\'c7\'e0\'f7\'e5\'ec \'fd\'f2\'ee \'ed\'f3\'e6\'ed\'ee:\par
+\'cf\'ee\'e4\'f2\'e2\'e5\'f0\'e6\'e4\'e0\'e5\'ec, \'f7\'f2\'ee RestClientResponseException \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'ee \'ef\'e5\'f0\'e5\'f5\'e2\'e0\'f2\'fb\'e2\'e0\'e5\'f2\'f1\'ff @ControllerAdvice \'e8 \'ef\'f0\'e5\'ee\'e1\'f0\'e0\'e7\'f3\'e5\'f2\'f1\'ff \'e2 \'ef\'ee\'ed\'ff\'f2\'ed\'fb\'e9 \'e4\'eb\'ff \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'ff 404 \'f1 \'e7\'e0\'ef\'ee\'eb\'ed\'e5\'ed\'ed\'ee\'e9 \'ec\'ee\'e4\'e5\'eb\'fc\'fe \'ee\'f8\'e8\'e1\'ea\'e8 (\'f1\'ee\'ee\'e1\'f9\'e5\'ed\'e8\'e5, \'ef\'f3\'f2\'fc, \'e2\'f0\'e5\'ec\'ff).\par
+\'c3\'e0\'f0\'e0\'ed\'f2\'e8\'f0\'f3\'e5\'ec \'ee\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'e8\'e5 \'eb\'e8\'f8\'ed\'e8\'f5 \'ee\'e1\'f0\'e0\'f9\'e5\'ed\'e8\'e9 \'ea \'e1\'fd\'ea\'e5\'ed\'e4\'f3 \'ef\'f0\'e8 \'ee\'f8\'e8\'e1\'ea\'e5.\par
+\par
+\'cf\'f0\'e8\'ec\'e5\'f7\'e0\'ed\'e8\'e5:\par
+\'c5\'f1\'eb\'e8 \'e2 advice \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2\'f1\'ff \'ea\'ee\'ed\'ea\'f0\'e5\'f2\'ed\'fb\'e9 \'f8\'e0\'e1\'eb\'ee\'ed (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, errors/4xx5xx), \'ec\'ee\'e6\'ed\'ee \'e4\'ee\'e1\'e0\'e2\'e8\'f2\'fc \'ef\'f0\'ee\'e2\'e5\'f0\'ea\'f3 view().name("errors/4xx5xx") \f3\emdash  \f0\'f1\'e5\'e9\'f7\'e0\'f1 \'f2\'e5\'f1\'f2 \'e2\'e0\'eb\'e8\'e4\'e8\'f0\'f3\'e5\'f2 \'f1\'f2\'e0\'f2\'f3\'f1 \'e8 \'e0\'f2\'f0\'e8\'e1\'f3\'f2\'fb \'ec\'ee\'e4\'e5\'eb\'e8.\par
+\par
+4 \'c0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9: \'ed\'e5\'ef\'f0\'e5\'e4\'e2\'e8\'e4\'e5\'ed\'ed\'e0\'ff \'ee\'f8\'e8\'e1\'ea\'e0 \f1\u8594?\f2  500\par
+\f0\lang1049\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+\'cb\'ee\'e3\'e8\'ed: \'e7\'e0\'ef\'f0\'ee\'f1 \'e2\'fb\'ef\'ee\'eb\'ed\'ff\'e5\'f2\'f1\'ff \'f1 .with(oauth2Login()) (\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc \'e7\'e0\'eb\'ee\'e3\'e8\'ed\'e5\'ed).\par
+\'c8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'e5 \'ee\'f2 \'ea\'eb\'e8\'e5\'ed\'f2\'e0: restClient.getReminderById(id) \'ea\'e8\'e4\'e0\'e5\'f2 RuntimeException("DB connection failed").\par
+HTTP-\'ee\'f2\'e2\'e5\'f2 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e0: \'f1\'f2\'e0\'f2\'f3\'f1 500 Internal Server Error.\par
+\'cc\'ee\'e4\'e5\'eb\'fc \'e4\'eb\'ff error-view: \'e5\'f1\'f2\'fc \'e0\'f2\'f0\'e8\'e1\'f3\'f2\'fb errorMessage, status, path, timestamp;\par
+\'ef\'f0\'e8 \'ed\'e0\'eb\'e8\'f7\'e8\'e8 \'ea\'ee\'f0\'f0\'e5\'eb\'ff\'f6\'e8\'e8 \'e2 advice \f3\emdash  \f0\'e5\'f1\'f2\'fc correlationId.\par
+\'c2\'e7\'e0\'e8\'ec\'ee\'e4\'e5\'e9\'f1\'f2\'e2\'e8\'ff \'f1 REST:\par
+\f1\u10625?\f2  restClient.getReminderById(id) \f0\lang1049\'e2\'fb\'e7\'e2\'e0\'ed \'f0\'ee\'e2\'ed\'ee 1 \'f0\'e0\'e7;\par
+\f1\u10625?\f2  \f0\lang1049\'ed\'e5\'f2 \'e4\'f0\'f3\'e3\'e8\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 \'ea restClient.\par
+\par
+\'c7\'e0\'f7\'e5\'ec \'fd\'f2\'ee \'ed\'f3\'e6\'ed\'ee:\par
+\'cf\'ee\'e4\'f2\'e2\'e5\'f0\'e6\'e4\'e0\'e5\'ec, \'f7\'f2\'ee \'ed\'e5\'ee\'e6\'e8\'e4\'e0\'ed\'ed\'fb\'e5 \'e8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'ff \'ec\'e0\'ef\'ef\'ff\'f2\'f1\'ff \'e3\'eb\'ee\'e1\'e0\'eb\'fc\'ed\'fb\'ec @ControllerAdvice \'e2 \'e0\'ea\'ea\'f3\'f0\'e0\'f2\'ed\'f3\'fe \'f1\'f2\'f0\'e0\'ed\'e8\'f6\'f3 \'ee\'f8\'e8\'e1\'ea\'e8 500 \'f1 \'e4\'e8\'e0\'e3\'ed\'ee\'f1\'f2\'e8\'f7\'e5\'f1\'ea\'e8\'ec\'e8 \'ef\'ee\'eb\'ff\'ec\'e8 \'e8 \'e1\'e5\'e7 \'ef\'ee\'e2\'f2\'ee\'f0\'ed\'fb\'f5/\'eb\'e8\'f8\'ed\'e8\'f5 \'ee\'e1\'f0\'e0\'f9\'e5\'ed\'e8\'e9 \'ea \'e1\'fd\'ea\'e5\'ed\'e4\'f3.\par
+\par
+\f2\lang9\par
+\f0\lang1049 ==================================================\par
+\par
+updateReminder\par
+\par
+1 \'c0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'f1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'fb\'e9 \'ef\'f3\'f2\'fc (\'f3\'f1\'ef\'e5\'f8\'ed\'ee\'e5 \'ee\'e1\'ed\'ee\'e2\'eb\'e5\'ed\'e8\'e5)\par
+\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c1\'e5\'e7\'ee\'ef\'e0\'f1\'ed\'ee\'f1\'f2\'fc \'e8 \'eb\'ee\'e3\'e8\'ed: \'e7\'e0\'ef\'f0\'ee\'f1 \'e2\'fb\'ef\'ee\'eb\'ed\'ff\'e5\'f2\'f1\'ff c .with(csrf()) \'e8 .with(oauth2Login()).\par
+{\pntext\f4\'B7\tab}\'cf\'ee\'f1\'f2\'f0\'ee\'e5\'ed\'e8\'e5 payload: \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'ea\'ee\'ed\'e2\'e5\'f0\'f2\'e8\'f0\'f3\'e5\'f2 LocalDateTime \'f4\'ee\'f0\'ec\'fb \f1\u8594?\f2  ZonedDateTime c ZoneId.systemDefault() \f1\u8594?\f2  Instant.\par
+{\pntext\f4\'B7\tab}\f0\lang1049\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec \'f7\'e5\'f0\'e5\'e7 ArgumentCaptor, \'f7\'f2\'ee \'e2 UpdateReminderPayload:\par
+
+\pard\sl240\slmult1 title = "Buy protein",\par
+description = "desc",\par
+remind = \'f2\'ee\'f7\'ed\'ee \'ee\'e6\'e8\'e4\'e0\'e5\'ec\'fb\'e9 Instant (\'e8\'e7 "2030-01-10T14:30" \'ef\'ee \'f1\'e8\'f1\'f2\'e5\'ec\'ed\'ee\'e9 \'e7\'ee\'ed\'e5).\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c2\'e7\'e0\'e8\'ec\'ee\'e4\'e5\'e9\'f1\'f2\'e2\'e8\'e5 \'f1 REST:\par
+
+\pard\sl240\slmult1 restClient.updateReminder(reminderId, payload) \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'f0\'ee\'e2\'ed\'ee 1 \'f0\'e0\'e7 \'e8 \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 Result.success(...).\par
+restClient.getReminderById(..) \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff (\'e2\'e5\'f2\'ea\'e0 handleValidationError \'ed\'e5 \'f2\'f0\'ee\'e3\'e0\'e5\'f2\'f1\'ff).\par
+\'cd\'e5\'f2 \'eb\'e8\'f8\'ed\'e8\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 \'ea restClient (verifyNoMoreInteractions).\par
+\par
+\'ce\'f2\'e2\'e5\'f2:\par
+\'f1\'f2\'e0\'f2\'f3\'f1 3xx Redirect,\par
+\'f2\'ee\'f7\'ed\'fb\'e9 \'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2 \'ed\'e0 /client/reminder/main/bytitle.\par
+\par
+\'c7\'e0\'f7\'e5\'ec \'fd\'f2\'ee \'ed\'f3\'e6\'ed\'ee:\par
+\'d4\'e8\'ea\'f1\'e8\'f0\'f3\'e5\'ec \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'f3\'fe \'e2\'f0\'e5\'ec\'e5\'ed\'ed\'f3\'fe \'ea\'ee\'ed\'e2\'e5\'f0\'f2\'e0\'f6\'e8\'fe (\'ee\'f1\'ee\'e1\'e5\'ed\'ed\'ee \'ea\'f0\'e8\'f2\'e8\'f7\'ed\'ee \'e4\'eb\'ff \'ef\'ee\'eb\'e5\'e9 \'f2\'e8\'ef\'e0 Instant).\par
+\'c3\'e0\'f0\'e0\'ed\'f2\'e8\'f0\'f3\'e5\'ec, \'f7\'f2\'ee \'ef\'f0\'e8 \'f3\'f1\'ef\'e5\'f8\'ed\'ee\'ec \'ee\'e1\'ed\'ee\'e2\'eb\'e5\'ed\'e8\'e8 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'e4\'e5\'eb\'e0\'e5\'f2 \'f0\'ee\'e2\'ed\'ee \'ee\'e4\'e8\'ed \'e2\'fb\'e7\'ee\'e2 \'ea \'e1\'fd\'ea\'e5\'ed\'e4\'f3 \'e8 \'f3\'f5\'ee\'e4\'e8\'f2 \'ed\'e0 \'f1\'ef\'e8\'f1\'ee\'ea \'ef\'ee \'ed\'e0\'e7\'e2\'e0\'ed\'e8\'fe.\par
+\par
+2 \'c0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'f1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'fb\'e9 \'ef\'f3\'f2\'fc: \'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e0 \'ea\'ee\'ed\'e2\'e5\'f0\'f1\'e8\'e8 \'e2\'f0\'e5\'ec\'e5\'ed\'e8 (UTC)\par
+\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c4\'e5\'f2\'e5\'f0\'ec\'e8\'ed\'e8\'e7\'ec \'ef\'ee \'e2\'f0\'e5\'ec\'e5\'ed\'e8: \'ef\'e5\'f0\'e5\'e4 \'f2\'e5\'f1\'f2\'ee\'ec \'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e5\'ec \'f1\'e8\'f1\'f2\'e5\'ec\'ed\'f3\'fe \'f2\'e0\'e9\'ec-\'e7\'ee\'ed\'f3 \'e2 UTC (TimeZone.setDefault(UTC)), \'f7\'f2\'ee\'e1\'fb \'e8\'f1\'ea\'eb\'fe\'f7\'e8\'f2\'fc \'e2\'eb\'e8\'ff\'ed\'e8\'e5 \'eb\'ee\'ea\'e0\'eb\'fc\'ed\'ee\'e9 TZ \'e8 DST.\par
+{\pntext\f4\'B7\tab}\'ca\'ee\'ed\'e2\'e5\'f0\'f2\'e0\'f6\'e8\'ff \'e4\'e0\'f2\'fb/\'e2\'f0\'e5\'ec\'e5\'ed\'e8 \'f4\'ee\'f0\'ec\'fb: \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'e4\'ee\'eb\'e6\'e5\'ed \'ef\'f0\'e5\'ee\'e1\'f0\'e0\'e7\'ee\'e2\'e0\'f2\'fc LocalDateTime("2030-01-10T14:30")\par
+
+\pard\sl240\slmult1\f1\u8594?\f2  ZonedDateTime \f0\lang1049\'e2 ZoneId.systemDefault() (\'e7\'e4\'e5\'f1\'fc \'fd\'f2\'ee UTC)\par
+\f1\u8594?\f2  Instant.\par
+\f0\lang1049\'d1\'e2\'e5\'f0\'ff\'e5\'ec \'f4\'e0\'ea\'f2\'e8\'f7\'e5\'f1\'ea\'e8\'e9 payload.remind() \'f1 \'ee\'e6\'e8\'e4\'e0\'e5\'ec\'fb\'ec expectedInstant.\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c2\'e7\'e0\'e8\'ec\'ee\'e4\'e5\'e9\'f1\'f2\'e2\'e8\'e5 \'f1 REST:\par
+
+\pard\sl240\slmult1 restClient.updateReminder(id, payload) \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'f0\'ee\'e2\'ed\'ee 1 \'f0\'e0\'e7 \'f1 \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'ec UpdateReminderPayload (\'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec \'f7\'e5\'f0\'e5\'e7 ArgumentCaptor).\par
+restClient.getReminderById(..) \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff (\'e2\'e5\'f2\'ea\'e0 \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'e8 \'ed\'e5 \'e7\'e0\'f2\'f0\'e0\'e3\'e8\'e2\'e0\'e5\'f2\'f1\'ff).\par
+\'cd\'e5\'f2 \'eb\'e8\'f8\'ed\'e8\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 (verifyNoMoreInteractions).\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'ce\'f2\'e2\'e5\'f2 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e0:\par
+
+\pard\sl240\slmult1\'f1\'f2\'e0\'f2\'f3\'f1 3xx Redirect,\par
+\'f2\'ee\'f7\'ed\'fb\'e9 \'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2 \'ed\'e0 /client/reminder/main/bytitle.\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c1\'e5\'e7\'ee\'ef\'e0\'f1\'ed\'ee\'f1\'f2\'fc: \'e7\'e0\'ef\'f0\'ee\'f1 \'e2\'fb\'ef\'ee\'eb\'ed\'ff\'e5\'f2\'f1\'ff \'ef\'ee\'e4 \'e7\'e0\'eb\'ee\'e3\'e8\'ed\'e5\'ed\'ed\'fb\'ec \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'e5\'ec (.with(oauth2Login())) \'e8 \'f1 CSRF (.with(csrf())).\par
+
+\pard\sl240\slmult1\par
+\'c7\'e0\'f7\'e5\'ec \'fd\'f2\'ee \'ed\'f3\'e6\'ed\'ee:\par
+\'c3\'e0\'f0\'e0\'ed\'f2\'e8\'f0\'f3\'e5\'ec \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'f3\'fe \'e8 \'ef\'f0\'e5\'e4\'f1\'ea\'e0\'e7\'f3\'e5\'ec\'f3\'fe \'ea\'ee\'ed\'e2\'e5\'f0\'f1\'e8\'fe \'e2\'f0\'e5\'ec\'e5\'ed\'e8 \'e2 Instant \'ed\'e5\'e7\'e0\'e2\'e8\'f1\'e8\'ec\'ee \'ee\'f2 \'ee\'ea\'f0\'f3\'e6\'e5\'ed\'e8\'ff \'e8 \'f1\'e5\'e7\'ee\'ed\'ed\'fb\'f5 \'f1\'e4\'e2\'e8\'e3\'ee\'e2.\par
+\'d4\'e8\'ea\'f1\'e8\'f0\'f3\'e5\'ec \'ea\'ee\'ed\'f2\'f0\'e0\'ea\'f2 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e0: \'ee\'e4\'e8\'ed \'f3\'f1\'ef\'e5\'f8\'ed\'fb\'e9 \'e2\'fb\'e7\'ee\'e2 \'ee\'e1\'ed\'ee\'e2\'eb\'e5\'ed\'e8\'ff \'e8 \'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2 \'ed\'e0 \'f1\'ef\'e8\'f1\'ee\'ea, \'e1\'e5\'e7 \'eb\'e8\'f8\'ed\'e8\'f5 \'ee\'e1\'f0\'e0\'f9\'e5\'ed\'e8\'e9.\par
+\par
+3 \par
+updateReminder_convertsLocalDateTimeToInstant_inDstZone_safeLocalTime()\par
+\'c0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'f1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'fb\'e9 \'ef\'f3\'f2\'fc: \'ea\'ee\'ed\'e2\'e5\'f0\'f1\'e8\'ff \'e2\'f0\'e5\'ec\'e5\'ed\'e8 \'e2 \'e7\'ee\'ed\'e5 \'f1 DST (\'e2\'e0\'eb\'e8\'e4\'ed\'ee\'e5 \'eb\'ee\'ea\'e0\'eb\'fc\'ed\'ee\'e5 \'e2\'f0\'e5\'ec\'ff)\par
+\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'d2\'e0\'e9\'ec-\'e7\'ee\'ed\'e0 \'f2\'e5\'f1\'f2\'e0: \'f1\'e8\'f1\'f2\'e5\'ec\'ed\'e0\'ff \'e7\'ee\'ed\'e0 \f3\emdash  Europe/Berlin (\f0\'e5\'f1\'f2\'fc \'ef\'e5\'f0\'e5\'f5\'ee\'e4 \'ed\'e0 \'eb\'e5\'f2\'ed\'e5\'e5 \'e2\'f0\'e5\'ec\'ff).\par
+{\pntext\f4\'B7\tab}\'c2\'e0\'eb\'e8\'e4\'ed\'ee\'e5 \'eb\'ee\'ea\'e0\'eb\'fc\'ed\'ee\'e5 \'e2\'f0\'e5\'ec\'ff \'e2\'ee\'e7\'eb\'e5 \'ef\'e5\'f0\'e5\'f5\'ee\'e4\'e0: 2030-03-31T01:30 \'f1\'f3\'f9\'e5\'f1\'f2\'e2\'f3\'e5\'f2 \'e2 \'c1\'e5\'f0\'eb\'e8\'ed\'e5.\par
+{\pntext\f4\'B7\tab}\'ca\'ee\'ed\'e2\'e5\'f0\'f2\'e0\'f6\'e8\'ff \'f4\'ee\'f0\'ec\'fb: LocalDateTime("2030-03-31T01:30")\par
+
+\pard\sl240\slmult1\f1\u8594?\f2  ZonedDateTime \f0\lang1049\'e2 ZoneId.systemDefault() (Europe/Berlin)\par
+\f1\u8594?\f2  Instant.\par
+\f0\lang1049\'d1\'e2\'e5\'f0\'ff\'e5\'ec payload.remind() \'f1 expectedInstant.\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c2\'e7\'e0\'e8\'ec\'ee\'e4\'e5\'e9\'f1\'f2\'e2\'e8\'e5 \'f1 REST:\par
+
+\pard\sl240\slmult1 restClient.updateReminder(id, payload) \f3\emdash  \f0\'f0\'ee\'e2\'ed\'ee 1 \'f0\'e0\'e7 (\'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec ArgumentCaptor).\par
+\'cd\'e5\'f2 \'eb\'e8\'f8\'ed\'e8\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 \'ea restClient (verifyNoMoreInteractions), \'e7\'ed\'e0\'f7\'e8\'f2 getReminderById \'ed\'e5 \'f2\'f0\'ee\'e3\'e0\'e5\'f2\'f1\'ff.\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'ce\'f2\'e2\'e5\'f2 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e0:\par
+
+\pard\sl240\slmult1\'f1\'f2\'e0\'f2\'f3\'f1 3xx Redirect,\par
+\'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2 \'ed\'e0 /client/reminder/main/bytitle.\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c1\'e5\'e7\'ee\'ef\'e0\'f1\'ed\'ee\'f1\'f2\'fc: \'e7\'e0\'ef\'f0\'ee\'f1 \'f1 .with(oauth2Login()) \'e8 .with(csrf()).\par
+
+\pard\sl240\slmult1\par
+\'c7\'e0\'f7\'e5\'ec \'fd\'f2\'ee \'ed\'f3\'e6\'ed\'ee:\par
+\'cf\'ee\'e4\'f2\'e2\'e5\'f0\'e6\'e4\'e0\'e5\'ec \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'f3\'fe \'ea\'ee\'ed\'e2\'e5\'f0\'f1\'e8\'fe \'e4\'e0\'f2\'fb/\'e2\'f0\'e5\'ec\'e5\'ed\'e8 \'e2 \'e7\'ee\'ed\'e0\'f5 \'f1 \'f1\'e5\'e7\'ee\'ed\'ed\'fb\'ec \'ef\'e5\'f0\'e5\'e2\'ee\'e4\'ee\'ec, \'ea\'ee\'e3\'e4\'e0 \'eb\'ee\'ea\'e0\'eb\'fc\'ed\'ee\'e5 \'e2\'f0\'e5\'ec\'ff \'e2\'e0\'eb\'e8\'e4\'ed\'ee, \f3\emdash  \f0\'f0\'e5\'e7\'f3\'eb\'fc\'f2\'e0\'f2\'ee\'ec \'e4\'ee\'eb\'e6\'e5\'ed \'e1\'fb\'f2\'fc \'f2\'ee\'f7\'ed\'fb\'e9 \'e8 \'ef\'f0\'e5\'e4\'f1\'ea\'e0\'e7\'f3\'e5\'ec\'fb\'e9 Instant.\par
+\par
+4 \par
+updateReminder_whenRemindIsNull_returnsEditView_withErrorsAndEchoes_andDoesNotCallUpdate()\par
+\par
+\'c0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9: \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'ff \'f4\'ee\'f0\'ec\'fb \f3\emdash  remind == null\par
+\f0\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c1\'e5\'e7\'ee\'ef\'e0\'f1\'ed\'ee\'f1\'f2\'fc/\'eb\'ee\'e3\'e8\'ed: \'e7\'e0\'ef\'f0\'ee\'f1 \'f1 .with(oauth2Login()) \'e8 .with(csrf()).\par
+{\pntext\f4\'B7\tab}\'ce\'f2\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'e5\'f2 \'ef\'e0\'f0\'e0\'ec\'e5\'f2\'f0 remind \f1\u8594?\f2  \f0\lang1049\'e2 \'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0\'e5 form.remind() == null \'e8 \'f1\'f0\'e0\'e1\'e0\'f2\'fb\'e2\'e0\'e5\'f2 \'e2\'e5\'f2\'ea\'e0 handleValidationError(...).\par
+{\pntext\f4\'B7\tab}\'ce\'f2\'e2\'e5\'f2 \'e8 view:\par
+
+\pard\sl240\slmult1\'f1\'f2\'e0\'f2\'f3\'f1 200 OK,\par
+\'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2\'f1\'ff "reminder-edit-page" (\'ef\'ee\'e2\'f2\'ee\'f0\'ed\'fb\'e9 \'ef\'ee\'ea\'e0\'e7 \'f4\'ee\'f0\'ec\'fb).\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'cc\'ee\'e4\'e5\'eb\'fc \'e7\'e0\'ef\'ee\'eb\'ed\'ff\'e5\'f2\'f1\'ff \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'ee:\par
+
+\pard\sl240\slmult1\'e5\'f1\'f2\'fc \'e1\'e0\'e7\'ee\'e2\'fb\'e5 \'e0\'f2\'f0\'e8\'e1\'f3\'f2\'fb reminder, errors, errorMessage, title, description;\par
+reminder = DTO, \'ef\'ee\'eb\'f3\'f7\'e5\'ed\'ed\'fb\'e9 \'e8\'e7 restClient.getReminderById(id);\par
+errorMessage = "Invalid input data";\par
+errors \'f1\'ee\'e4\'e5\'f0\'e6\'e8\'f2 \'ea\'eb\'fe\'f7 "remind" \'f1\'ee \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'e5\'ec ["Remind is required"];\par
+\'fd\'f5\'ee-\'ef\'ee\'eb\'ff \'f4\'ee\'f0\'ec\'fb: title \'e8 description \f3\emdash  \f0\'f1\'ee\'f5\'f0\'e0\'ed\'e5\'ed\'fb, remind \f3\emdash  null.\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\f0\'c2\'e7\'e0\'e8\'ec\'ee\'e4\'e5\'e9\'f1\'f2\'e2\'e8\'ff \'f1 REST:\par
+
+\pard\sl240\slmult1\'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'ec restClient.updateReminder(..) (\'ee\'e1\'ed\'ee\'e2\'eb\'e5\'ed\'e8\'ff \'ed\'e5\'f2);\par
+restClient.getReminderById(id) \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'f0\'ee\'e2\'ed\'ee 1 \'f0\'e0\'e7;\par
+\'ed\'e5\'f2 \'eb\'e8\'f8\'ed\'e8\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 (verifyNoMoreInteractions).\par
+\par
+\'c7\'e0\'f7\'e5\'ec \'fd\'f2\'ee \'ed\'f3\'e6\'ed\'ee:\par
+\'cf\'ee\'e4\'f2\'e2\'e5\'f0\'e6\'e4\'e0\'e5\'ec \'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'f3\'fe \'f1\'e5\'f0\'e2\'e5\'f0\'ed\'f3\'fe \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'fe \'e8 UX: \'ef\'f0\'e8 \'ee\'f8\'e8\'e1\'ea\'e5 \'ef\'ee\'eb\'e5 \'ef\'ee\'e4\'f1\'e2\'e5\'f7\'e8\'e2\'e0\'e5\'f2\'f1\'ff, \'f1\'ee\'ee\'e1\'f9\'e5\'ed\'e8\'e5 \'ef\'ee\'ea\'e0\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff, \'e2\'e2\'e5\'e4\'b8\'ed\'ed\'fb\'e5 \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'ff \'ed\'e5 \'f2\'e5\'f0\'ff\'fe\'f2\'f1\'ff, \'e0 \'ee\'e1\'ed\'ee\'e2\'eb\'e5\'ed\'e8\'e5 \'ed\'e0 \'e1\'fd\'ea\'e5\'ed\'e4 \'ed\'e5 \'f3\'f5\'ee\'e4\'e8\'f2.\par
+\par
+5 \par
+updateReminder_whenBackendReturnsFailure_returnsEditView_withNormalizedErrors_echoes_andProperOrder()\par
+\par
+\'c0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9: backend \'e2\'e5\'f0\'ed\'f3\'eb failure (\'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'ee\'ed\'ed\'fb\'e5 \'ee\'f8\'e8\'e1\'ea\'e8)\par
+\'d7\'f2\'ee \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'c1\'e5\'e7\'ee\'ef\'e0\'f1\'ed\'ee\'f1\'f2\'fc/\'eb\'ee\'e3\'e8\'ed: \'e7\'e0\'ef\'f0\'ee\'f1 \'f1 .with(oauth2Login()) \'e8 .with(csrf()).\par
+{\pntext\f4\'B7\tab}\'ce\'f2\'e2\'e5\'f2 \'e8 view:\par
+
+\pard\sl240\slmult1\'f1\'f2\'e0\'f2\'f3\'f1 200 OK (\'ef\'ee\'e2\'f2\'ee\'f0\'ed\'fb\'e9 \'ef\'ee\'ea\'e0\'e7 \'f4\'ee\'f0\'ec\'fb),\par
+\'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2\'f1\'ff "reminder-edit-page".\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'cd\'ee\'f0\'ec\'e0\'eb\'e8\'e7\'e0\'f6\'e8\'ff \'ee\'f8\'e8\'e1\'ee\'ea:\par
+
+\pard\sl240\slmult1\'f1\'fb\'f0\'fb\'e5 details \'e8\'e7 failure \'ec\'ee\'e3\'f3\'f2 \'f1\'ee\'e4\'e5\'f0\'e6\'e0\'f2\'fc \'e8 \'f1\'f2\'f0\'ee\'ea\'f3, \'e8 \'f1\'ef\'e8\'f1\'ee\'ea;\par
+\'ea\'ee\'ed\'f2\'f0\'ee\'eb\'eb\'e5\'f0 \'ef\'f0\'e8\'e2\'ee\'e4\'e8\'f2 \'e8\'f5 \'ea Map<String, List<String>>:\par
+"title": "Too short" \f1\u8594?\f2  ["Too short"],\par
+"description": ["Must be at least 10 chars", "No abusive words"] (\f0\lang1049\'f1\'ee\'f5\'f0\'e0\'ed\'ff\'e5\'f2\'f1\'ff \'ea\'e0\'ea \'e5\'f1\'f2\'fc).\par
+\'e2 \'ec\'ee\'e4\'e5\'eb\'e8 \'ef\'f0\'e8\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'fe\'f2 \'e0\'f2\'f0\'e8\'e1\'f3\'f2\'fb errors \'e8 errorMessage = "Validation failed".\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'dd\'f5\'ee-\'ef\'ee\'eb\'ff \'f4\'ee\'f0\'ec\'fb:\par
+
+\pard\sl240\slmult1 title, description, remind \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'fe\'f2\'f1\'ff \'e2 \'ec\'ee\'e4\'e5\'eb\'fc \'f0\'ee\'e2\'ed\'ee \'f1 \'ee\'f2\'ef\'f0\'e0\'e2\'eb\'e5\'ed\'ed\'fb\'ec\'e8 \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'ff\'ec\'e8 (remind \f3\emdash  \f0\'ea\'e0\'ea LocalDateTime).\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'cf\'ee\'e4\'f2\'ff\'e3\'e8\'e2\'e0\'ed\'e8\'e5 \'f2\'e5\'ea\'f3\'f9\'e5\'e3\'ee \'ee\'e1\'fa\'e5\'ea\'f2\'e0:\par
+
+\pard\sl240\slmult1\'ef\'f0\'e8 \'ee\'f8\'e8\'e1\'ea\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'e5\'f2\'f1\'ff getReminderById(id), \'e8 \'e2 \'ec\'ee\'e4\'e5\'eb\'e8 \'e5\'f1\'f2\'fc reminder \'f1 \'fd\'f2\'e8\'ec DTO.\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'ca\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'ee\'f1\'f2\'fc payload:\par
+
+\pard\sl240\slmult1\'f7\'e5\'f0\'e5\'e7 ArgumentCaptor \'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec, \'f7\'f2\'ee UpdateReminderPayload \'f1\'ee\'e1\'f0\'e0\'ed \'e8\'e7 \'f4\'ee\'f0\'ec\'fb,\par
+\'ea\'f0\'e8\'f2\'e8\'f7\'ed\'ee: remind \'e2 payload \f3\emdash  \f0\'fd\'f2\'ee Instant, \'ef\'ee\'eb\'f3\'f7\'e5\'ed\'ed\'fb\'e9 \'e8\'e7 LocalDateTime \'f4\'ee\'f0\'ec\'fb \'f7\'e5\'f0\'e5\'e7 \'f1\'e8\'f1\'f2\'e5\'ec\'ed\'f3\'fe \'e7\'ee\'ed\'f3 (ZoneId.systemDefault()); \'f1\'ee\'e2\'ef\'e0\'e4\'e0\'e5\'f2 \'f1 expectedInstant.\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\'cf\'ee\'f0\'ff\'e4\'ee\'ea \'e8 \'ea\'ee\'eb\'e8\'f7\'e5\'f1\'f2\'e2\'ee \'e2\'fb\'e7\'ee\'e2\'ee\'e2:\par
+
+\pard\sl240\slmult1\'f1\'ed\'e0\'f7\'e0\'eb\'e0 updateReminder(id, payload), \'e7\'e0\'f2\'e5\'ec getReminderById(id) (\'ef\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec InOrder),\par
+\'ed\'e5\'f2 \'eb\'e8\'f8\'ed\'e8\'f5 \'e2\'fb\'e7\'ee\'e2\'ee\'e2 \'ea restClient (verifyNoMoreInteractions).\par
+\f2\lang9\par
+\par
+\f0\lang1049 =======================================================\f2\lang9\par
+\par
+\par
+}
+ 

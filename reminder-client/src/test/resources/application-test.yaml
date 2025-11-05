@@ -1,0 +1,14 @@
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: test-id
+            client-secret: test-secret
+            scope: openid, email
+rest:
+  reminder:
+    base-url: "http://localhost:${wiremock.server.port}"

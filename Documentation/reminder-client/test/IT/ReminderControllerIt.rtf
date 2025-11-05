@@ -1,0 +1,82 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset204 Calibri;}{\f1\fnil\fcharset1 Cambria Math;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil Calibri;}}
+{\colortbl ;\red0\green176\blue80;}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang1049\'d2\'e8\'ef: MVC integration test (full Spring Boot context, MockMvc, Spring Security).\par
+\'d6\'e5\'eb\'fc: \'ef\'f0\'ee\'e2\'e5\'f0\'e8\'f2\'fc \'f1\'e2\'ff\'e7\'ea\'f3 Controller \f1\u8594?\f2  Security \f1\u8594?\f2  MVC \f1\u8594?\f2  Advice \f0\lang1049\'e1\'e5\'e7 \'f0\'e5\'e0\'eb\'fc\'ed\'ee\'e3\'ee \'f1\'e5\'f0\'e2\'e5\'f0\'e0/\'e2\'ed\'e5\'f8\'ed\'e8\'f5 \'f1\'e8\'f1\'f2\'e5\'ec.\par
+\'c8\'ed\'f1\'f2\'f0\'f3\'ec\'e5\'ed\'f2\'fb: @SpringBootTest + @AutoConfigureMockMvc, MockMvc, SecurityMockMvcRequestPostProcessors, \'ec\'ee\'ea\'e8 RestClient.\f2\lang9\par
+\par
+updateReminder\par
+\par
+\cf1\f0\lang1049\'d1\'e4\'e5\'eb\'e0\'ed\cf0  \f2\lang9 1) \f0\lang1049\'d1\'f7\'e0\'f1\'f2\'eb\'e8\'e2\'fb\'e9 \'ef\'f3\'f2\'fc (\'e2\'e0\'eb\'e8\'e4\'ed\'e0\'ff \'f4\'ee\'f0\'ec\'e0)\par
+\'ca\'ee\'e3\'e4\'e0: POST /client/reminder/42/edit \'f1 \'e2\'e0\'eb\'e8\'e4\'ed\'fb\'ec\'e8 title/description/remind. restClient.updateReminder(42, payload) \f1\u8594?\f2  Result.success(...).\par
+\f0\lang1049\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=302, redirect:/client/reminder/main/bytitle.\par
+restClient.updateReminder(42, payload) \'e2\'fb\'e7\'e2\'e0\'ed 1 \'f0\'e0\'e7, payload.remind == form.remind.atZone(systemDefault).toInstant().\par
+restClient.getReminderById(42) \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'eb\'f1\'ff (\'ed\'e0 \'f3\'f1\'ef\'e5\'f5\'e5 \'ed\'e5 \'ed\'f3\'e6\'e5\'ed).\par
+\par
+\cf1\'d1\'e4\'e5\'eb\'e0\'ed \cf0 2) \'cb\'ee\'ea\'e0\'eb\'fc\'ed\'e0\'ff \'f1\'e5\'f0\'e2\'e5\'f0\'ed\'e0\'ff \'ef\'f0\'ee\'e2\'e5\'f0\'ea\'e0 (remind == null)\par
+\'ca\'ee\'e3\'e4\'e0: \'f4\'ee\'f0\'ec\'e0 \'ef\'f0\'e8\'f8\'eb\'e0 \'f1 remind = null.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=200, view="reminder-edit-page".\par
+\'c2 model:\par
+\'e5\'f1\'f2\'fc reminder (DTO, \'e7\'e0\'e3\'f0\'f3\'e6\'e5\'ed\'ed\'fb\'e9 \'f7\'e5\'f0\'e5\'e7 restClient.getReminderById(42)),\par
+errors["remind"] = ["Remind is required"],\par
+errorMessage = "Invalid input data",\par
+echo-\'ef\'ee\'eb\'ff: title, description \'e8\'e7 \'f4\'ee\'f0\'ec\'fb, remind = null.\par
+\'c2\'e7\'e0\'e8\'ec\'ee\'e4\'e5\'e9\'f1\'f2\'e2\'e8\'ff:\par
+restClient.getReminderById(42) \'e2\'fb\'e7\'e2\'e0\'ed 1 \'f0\'e0\'e7,\par
+restClient.updateReminder(...) \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'eb\'f1\'ff.\par
+\par
+3) \'c2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'ff \'f1\'ee \'f1\'f2\'ee\'f0\'ee\'ed\'fb REST (Bean Validation)\par
+\'ca\'ee\'e3\'e4\'e0: \'f4\'ee\'f0\'ec\'e0 \'e2\'e0\'eb\'e8\'e4\'ed\'e0 \'eb\'ee\'ea\'e0\'eb\'fc\'ed\'ee, \'ed\'ee restClient.updateReminder(42, payload) \f1\u8594?\f2  Result.error(ApiError) \f0\lang1049\'f1 message \'e8 details (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, title: ["size must be \f1\u8804?\f2  100"]).\par
+\f0\lang1049\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=200, view="reminder-edit-page".\par
+\'c2 model:\par
+reminder \'ef\'f0\'e8\'f1\'f3\'f2\'f1\'f2\'e2\'f3\'e5\'f2 (\'e7\'e0\'e3\'f0\'f3\'e6\'e5\'ed \'f7\'e5\'f0\'e5\'e7 getReminderById(42)),\par
+errors \'f2\'ee\'f7\'ed\'ee \'f1\'ee\'e2\'ef\'e0\'e4\'e0\'e5\'f2 \'f1\'ee \'f1\'f2\'f0\'f3\'ea\'f2\'f3\'f0\'ee\'e9 ApiError.details(),\par
+errorMessage = ApiError.message(),\par
+echo-\'ef\'ee\'eb\'ff \'f0\'e0\'e2\'ed\'fb \'e2\'f5\'ee\'e4\'ed\'fb\'ec (title/description/remind).\par
+\'c2\'e7\'e0\'e8\'ec\'ee\'e4\'e5\'e9\'f1\'f2\'e2\'e8\'ff:\par
+updateReminder(42, payload) \f3\emdash  1 \f0\'f0\'e0\'e7,\par
+getReminderById(42) \f3\emdash  1 \f0\'f0\'e0\'e7 (\'e8\'e7 handleValidationError).\par
+\par
+\cf1\'d1\'e4\'e5\'eb\'e0\'ed\cf0  4) \'ce\'f8\'e8\'e1\'ea\'e0 \'f2\'f0\'e0\'ed\'f1\'ef\'ee\'f0\'f2\'ed\'ee\'e3\'ee \'f1\'eb\'ee\'ff/\'e8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'e5 \'e8\'e7 RestClient \'ef\'f0\'e8 update\par
+\'ca\'ee\'e3\'e4\'e0: \'f4\'ee\'f0\'ec\'e0 \'e2\'e0\'eb\'e8\'e4\'ed\'e0, \'ed\'ee restClient.updateReminder(...) \'e1\'f0\'ee\'f1\'e0\'e5\'f2 RestClientResponseException / HttpStatusCodeException (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, 502). \'dd\'f2\'ee \'eb\'ee\'e2\'e8\'f2 \'f2\'e2\'ee\'e9 @ControllerAdvice \'e8 \'f0\'e5\'ed\'e4\'e5\'f0\'e8\'f2 errors/4xx5xx.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status = \'f1\'f2\'e0\'f2\'f3\'f1 \'e8\'e7 \'e8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'ff (\'ed\'e0\'ef\'f0\'e8\'ec\'e5\'f0, 502),\par
+view="errors/4xx5xx".\par
+\'c2 model: \'e5\'f1\'f2\'fc errorMessage \'e8 \'ed\'ee\'f0\'ec\'e0\'eb\'e8\'e7\'ee\'e2\'e0\'ed\'ed\'fb\'e5 errors, \'ed\'e5\'f2 reminder/title/description/remind (\'ec\'fb \'ed\'e5 \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'ec \'f4\'ee\'f0\'ec\'f3).\par
+\'c2\'e7\'e0\'e8\'ec\'ee\'e4\'e5\'e9\'f1\'f2\'e2\'e8\'ff:\par
+updateReminder(...) \f3\emdash  1 \f0\'f0\'e0\'e7,\par
+getReminderById(...) \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'eb\'f1\'ff (\'e4\'ee handleValidationError \'e4\'e5\'eb\'ee \'ed\'e5 \'e4\'ee\'f8\'eb\'ee).\par
+\par
+\cf1\'d1\'e4\'e5\'eb\'e0\'ed\cf0  5) \'cd\'e5\'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'f6\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'e9 \'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'e5\'eb\'fc (\'e7\'e0\'e2\'e8\'f1\'e8\'f2 \'ee\'f2 Security) \f3\emdash  \f0\'c2\'e0\'f0\'e8\'e0\'ed\'f2 A (\'e7\'e0\'f9\'e8\'f9\'e5\'ed\'ee)\par
+\'ca\'ee\'e3\'e4\'e0: POST \'e1\'e5\'e7 \'e0\'f3\'f2\'e5\'ed\'f2\'e8\'f4\'e8\'ea\'e0\'f6\'e8\'e8.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=3xx \'e8 \'f0\'e5\'e4\'e8\'f0\'e5\'ea\'f2 \'ed\'e0 \'eb\'ee\'e3\'e8\'ed//oauth2/authorization/... (\'e8\'eb\'e8 401/403 \f3\emdash  \f0\'ef\'ee \'f2\'e2\'ee\'e5\'e9 \'ea\'ee\'ed\'f4\'e8\'e3\'f3\'f0\'e0\'f6\'e8\'e8).\par
+restClient.updateReminder(...) \'e8 getReminderById(...) \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'eb\'e8\'f1\'fc.\par
+\par
+6) CSRF (\'e5\'f1\'eb\'e8 \'e2\'ea\'eb\'fe\'f7\'b8\'ed)\par
+\'ca\'ee\'e3\'e4\'e0: POST \'e1\'e5\'e7 CSRF-\'f2\'ee\'ea\'e5\'ed\'e0.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+status=403.\par
+\'cd\'e8 updateReminder, \'ed\'e8 getReminderById \'ed\'e5 \'e2\'fb\'e7\'fb\'e2\'e0\'eb\'e8\'f1\'fc.\par
+\'d2\'ee\'f7\'e5\'f7\'ed\'fb\'e5/\'ea\'f0\'e0\'e5\'e2\'fb\'e5 \'f1\'f6\'e5\'ed\'e0\'f0\'e8\'e8 (\'ef\'ee \'e6\'e5\'eb\'e0\'ed\'e8\'fe, \'ed\'ee \'ef\'ee\'eb\'e5\'e7\'ed\'fb)\par
+\par
+7) \'ca\'ee\'ed\'e2\'e5\'f0\'f2\'e0\'f6\'e8\'ff \'e4\'e0\'f2\'fb \f1\u8594?\f2  Instant (\f0\lang1049\'f1\'e5\'ec\'e0\'ed\'f2\'e8\'ea\'e0 \'e2\'f0\'e5\'ec\'e5\'ed\'ed\'ee\'e9 \'e7\'ee\'ed\'fb)\par
+\'ca\'ee\'e3\'e4\'e0: \'e2\'e0\'eb\'e8\'e4\'ed\'e0\'ff \'f4\'ee\'f0\'ec\'e0 \'f1 remind \'ed\'e0 \f2\lang1033\'ab\f0\lang1049\'f1\'eb\'ee\'e6\'ed\'ee\'e9\f2\lang1033\'bb \f0\lang1049\'e4\'e0\'f2\'e5 (\'e3\'f0\'e0\'ed\'e8\'f6\'e0 DST/\'f7\'e0\'f1\'ee\'e2\'ee\'e3\'ee \'ef\'ee\'ff\'f1\'e0).\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec: payload.remind == form.remind.atZone(systemDefault).toInstant() (\'f1\'f2\'f0\'ee\'e3\'ee).\par
+\'c7\'e0\'f4\'e8\'ea\'f1\'e8\'f0\'f3\'e9 \'fd\'f2\'ee \'ef\'ee\'e2\'e5\'e4\'e5\'ed\'e8\'e5, \'f7\'f2\'ee\'e1\'fb \'f1\'ec\'e5\'ed\'e0 TZ \'e8\'eb\'e8 \'f0\'e5\'f4\'e0\'ea\'f2\'ee\'f0\'e8\'ed\'e3 \'ed\'e5 \'f1\'eb\'ee\'ec\'e0\'eb\'e8 \'ea\'ee\'ed\'e2\'e5\'f0\'f2\'e0\'f6\'e8\'fe.\par
+\par
+8) \'ce\'f8\'e8\'e1\'ea\'e0/\'e8\'f1\'ea\'eb\'fe\'f7\'e5\'ed\'e8\'e5 \'ef\'f0\'e8 \'ef\'ee\'e4\'e3\'f0\'f3\'e7\'ea\'e5 reminder \'e2 handleValidationError\par
+\'ca\'ee\'e3\'e4\'e0: \'e2 \'e2\'e5\'f2\'ea\'e5 \'ee\'f8\'e8\'e1\'ea\'e8 restClient.getReminderById(42) \'f1\'e0\'ec \'ef\'e0\'e4\'e0\'e5\'f2 RestClientResponseException(404) \'e8\'eb\'e8 5xx.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec: \'ee\'e1\'f0\'e0\'e1\'e0\'f2\'fb\'e2\'e0\'e5\'f2\'f1\'ff \'f2\'e2\'ee\'e8\'ec @ControllerAdvice \f1\u8594?\f2  errors/4xx5xx, \f0\lang1049\'ea\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'fb\'e9 \'f1\'f2\'e0\'f2\'f3\'f1, \'e1\'e5\'e7 echo-\'ef\'ee\'eb\'e5\'e9.\par
+\'dd\'f2\'ee \'e7\'e0\'f9\'e8\'f9\'e0\'e5\'f2 UI \'ee\'f2 \'f1\'e8\'f2\'f3\'e0\'f6\'e8\'e9, \'ea\'ee\'e3\'e4\'e0 \'f0\'e5\'e4\'e0\'ea\'f2\'e8\'f0\'f3\'e5\'ec\'fb\'e9 \'ee\'e1\'fa\'e5\'ea\'f2 \'f3\'e6\'e5 \'f3\'e4\'e0\'eb\'b8\'ed/\'ed\'e5\'e4\'ee\'f1\'f2\'f3\'ef\'e5\'ed.\par
+\par
+9) \'ca\'ee\'f0\'f0\'e5\'ea\'f2\'ed\'e0\'ff \f2\lang1033\'ab\f0\lang1049\'fd\'ea\'ee\'ed\'ee\'ec\'e8\'ff\f2\lang1033\'bb \f0\lang1049\'e2\'fb\'e7\'ee\'e2\'ee\'e2\par
+\'ca\'ee\'e3\'e4\'e0: \'eb\'fe\'e1\'ee\'e9 \'e8\'e7 \'ee\'f8\'e8\'e1\'ee\'ea/\'e2\'e0\'eb\'e8\'e4.\par
+\'cf\'f0\'ee\'e2\'e5\'f0\'ff\'e5\'ec:\par
+\'c2 \'f3\'f1\'ef\'e5\'f5\'e5 \f3\emdash  getReminderById \f0\'ed\'e5 \'e4\'e5\'f0\'e3\'e0\'e5\'f2\'f1\'ff, \'f2\'ee\'eb\'fc\'ea\'ee updateReminder.\par
+\'c2 \'ee\'f8\'e8\'e1\'ea\'e0\'f5 \f3\emdash  updateReminder \f0\'eb\'e8\'e1\'ee 0 (\'eb\'ee\'ea\'e0\'eb\'fc\'ed\'e0\'ff \'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'ff), \'eb\'e8\'e1\'ee 1 (REST-\'e2\'e0\'eb\'e8\'e4\'e0\'f6\'e8\'ff), \'e0 getReminderById \f3\emdash  \f0\'f0\'ee\'e2\'ed\'ee 1 (\'f2\'ee\'eb\'fc\'ea\'ee \'f7\'e5\'f0\'e5\'e7 handleValidationError).\f2\lang9\par
+}
+ 
